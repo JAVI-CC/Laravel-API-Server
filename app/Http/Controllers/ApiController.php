@@ -8,7 +8,12 @@ use Illuminate\Http\Request;
 class ApiController extends Controller
 {
     public function getAll(){
-        $juegos = Api::all();
+        $juegos = Api::orderBy('id', 'DESC')->get();
+        return $juegos;
+      }
+
+      public function getPaginate($num){
+        $juegos = Api::paginate($num);
         return $juegos;
       }
   
