@@ -4,16 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Api;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ApiController extends Controller
 {
-    public function getAll(){
-        $juegos = Api::orderBy('id', 'DESC')->get();
-        return $juegos;
-      }
-
-      public function getPaginate($num){
-        $juegos = Api::paginate($num);
+    public function getAll() {
+        $juegos = Api::orderBy('id', 'DESC')->select(DB::raw('md5(id) AS uid'), 'nombre', 'descripcion', 'desarrolladora', 'fecha')->get();
         return $juegos;
       }
   
@@ -23,19 +19,17 @@ class ApiController extends Controller
       }
   
       public function get($id) {
-          $juego = Api::find($id);
+          $juego = Api::where(DB::raw('md5(id)'), $id)->select(DB::raw('md5(id) AS uid'), 'nombre', 'descripcion', 'desarrolladora', 'fecha')->first();
           return $juego;
       }
   
       public function edit($id, Request $request) {
-          $juego = $this->get($id);
-          $juego->fill($request->all())->save();
+          $juego = Api::where(DB::raw('md5(id)'), $id)->update($request->all());
           return $juego;
       }
   
       public function delete($id) {
-          $juego = $this->get($id);
-          $juego->delete();
+          $juego = Api::where(DB::raw('md5(id)'), $id)->delete();
           return $juego;
       }
 }
