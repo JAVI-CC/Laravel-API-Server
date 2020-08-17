@@ -37,7 +37,11 @@ class ApiController extends Controller
     public function get($id)
     {
         $juego = Api::find($id);
-        return $juego;
+        if($juego) {
+          return $juego;
+        } else {
+          return response()->json(['error' => 'Juego no encontrado']);  
+        }
     }
 
     public function edit($id, Request $request)
