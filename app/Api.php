@@ -15,7 +15,7 @@ class Api extends Model
     {
 
         $validator = Validator::make($request->all(), [
-            'nombre' => 'required|min:2|max:255',
+            'nombre' => 'required|min:2|max:255|unique:juegos',
             'descripcion' => 'required|min:10|max:255',
             'desarrolladora' => 'required|min:2|max:255',
             'fecha' => 'required',
