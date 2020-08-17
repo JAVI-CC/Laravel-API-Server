@@ -47,8 +47,8 @@ class Api extends Model
 
     public function exists_id_delete($id_juego)
     {
-
-        if ($id_juego == null) {
+        return $id_juego;
+        if (method_exists($id_juego, 'getData')) {
             return response()->json(['error' => 'Juego no encontrado']);
         } else {
             $id_juego->delete();
