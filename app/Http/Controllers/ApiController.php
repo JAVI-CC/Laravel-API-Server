@@ -37,11 +37,7 @@ class ApiController extends Controller
     public function get($id)
     {
         $juego = Api::find($id);
-        if ($juego) {
-            return $juego;
-        } else {
-            return response()->json(['error' => 'Juego no encontrado']);
-        }
+        return $juego;
     }
 
     public function edit($id, Request $request)
@@ -51,26 +47,16 @@ class ApiController extends Controller
         if ($validator->fails()) {
             return response()->json($validator->errors());
         } else {
-
-            $juego = $this->get($id);
-            if (method_exists($juego, 'getData')) {
-                return response()->json(['error' => 'Juego no encontrado']);
-            } else {
-                $juego->fill($request->all())->save();
-                return response()->json(['success' => 'Se ha modificado correctamente el juego: ' . $juego->nombre]);
-            }
+            $id_juego = $this->get($id);
+            $juego = $this->api->exists_id_update($id_juego, $request);
+            return $juego;
         }
     }
 
     public function delete($id)
     {
-        $juego = $this->get($id);
-
-        if (method_exists($juego, 'getData')) {
-            return response()->json(['error' => 'Juego no encontrado']);
-        } else {
-            $juego->delete();
-            return response()->json(['success' => 'Se ha eliminado correctamente el juego: ' . $juego->nombre]);
-        }
+        $id_juego = $this->get($id);
+        $juego = $this->api->exists_id_delete($id_juego);
+        return $juego;
     }
 }
