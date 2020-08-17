@@ -24,6 +24,16 @@ class Api extends Model
         return $validator;
     }
 
+    public function exists_id($id_juego)
+    {
+
+        if ($id_juego == null) {
+            return response()->json(['error' => 'Juego no encontrado']);
+        } else {
+            return $id_juego;
+        }
+    }
+
     public function exists_id_update($id_juego, $request)
     {
 

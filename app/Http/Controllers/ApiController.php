@@ -37,6 +37,7 @@ class ApiController extends Controller
     public function get($id)
     {
         $juego = Api::find($id);
+        $juego = $this->api->exists_id($juego);
         return $juego;
     }
 
