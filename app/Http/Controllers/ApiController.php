@@ -30,7 +30,7 @@ class ApiController extends Controller
             return response()->json($validator->errors());
         } else {
             $juego = Api::create($request->all());
-            return $juego;
+            return response()->json(['success' => 'Se ha añadido correctamente el juego ' . $juego->nombre]);
         }
     }
 
@@ -50,7 +50,7 @@ class ApiController extends Controller
         } else {
             $juego = $this->get($id);
             $juego->fill($request->all())->save();
-            return $juego;
+            return response()->json(['success' => 'Se ha modificado correctamente el juego ' . $juego->nombre]);
         }
     }
 
@@ -58,6 +58,6 @@ class ApiController extends Controller
     {
         $juego = $this->get($id);
         $juego->delete();
-        return $juego;
+        return response()->json(['success' => 'Se ha eliminado correctamente el juego ' . $juego->nombre]);
     }
 }
