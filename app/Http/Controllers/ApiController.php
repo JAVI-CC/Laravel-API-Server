@@ -83,7 +83,7 @@ class ApiController extends Controller
         ->orderBy($request->filter, $request->order)->get();
 
 
-        if($juegos == "" || $juegos == NULL) {
+        if($juegos == '[]') {
           return response()->json(['error' => 'La búsqueda de ' . $request->search . ' no obtuvo ningún resultado' ]);
         } else {
           return $juegos;
