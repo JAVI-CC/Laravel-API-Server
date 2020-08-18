@@ -63,6 +63,8 @@ class ApiController extends Controller
 
     public function filter(Request $request)
     {
+
+        return $request;
         
         if($request->search == "" || $request->search == NULL) {
             $request->search = '';
