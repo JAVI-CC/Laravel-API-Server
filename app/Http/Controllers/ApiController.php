@@ -76,10 +76,10 @@ class ApiController extends Controller
             $request->order = 'DESC';
         }
 
-        $juegos = Api::WHERE('nombre', 'LIKE', "'%$request->search%'")
-        ->OrWhere('desarrolladora', 'LIKE', "'%$request->search%'")
-        ->OrWhere('descripcion', 'LIKE', "'%$request->search%'")
-        ->OrWhere('fecha', 'LIKE', "'%$request->search%'")
+        $juegos = Api::WHERE('nombre', 'LIKE', '%'.$request->search.'%')
+        ->OrWhere('desarrolladora', 'LIKE', '%'.$request->search.'%')
+        ->OrWhere('descripcion', 'LIKE', '%'.$request->search.'%')
+        ->OrWhere('fecha', 'LIKE', '%'.$request->search.'%')
         ->orderBy($request->filter, $request->order)->get();
 
 
