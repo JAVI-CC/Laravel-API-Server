@@ -60,4 +60,14 @@ class ApiController extends Controller
         $juego = $this->api->exists_id_delete($id_juego);
         return $juego;
     }
+
+    public function filter($search = '', $filter = 'id', $ord = 'DESC')
+    {
+        $juegos = Api::WHERE('nombre', 'LIKE', "%$search%")
+        ->OrWhere('desarrolladora', 'LIKE', "%$search%")
+        ->OrWhere('descripcion', 'LIKE', "%$search%")
+        ->OrWhere('fecha', 'LIKE', "%$search%")
+        ->orderBy($filter, $ord)->get();
+        return $juegos;
+    }
 }

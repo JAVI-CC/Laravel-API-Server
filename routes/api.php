@@ -22,3 +22,4 @@ Route::post('juegos', 'ApiController@add')->name('addJuego');
 Route::get('juegos/{id}', 'ApiController@get')->name('getJuego');
 Route::post('juegos/{id}', 'ApiController@edit')->name('editJuego');
 Route::get('juegos/delete/{id}', 'ApiController@delete')->name('deleteJuego');
+Route::get('juegos/filter/search/{search?}/{filter?}/{ord?}', 'ApiController@filter')->name('filterJuego');
