@@ -61,13 +61,32 @@ class ApiController extends Controller
         return $juego;
     }
 
-    public function filter($search = '', $filter = 'id', $ord = 'DESC')
+    public function filter(Request $request)
     {
-        $juegos = Api::WHERE('nombre', 'LIKE', "%$search%")
-        ->OrWhere('desarrolladora', 'LIKE', "%$search%")
-        ->OrWhere('descripcion', 'LIKE', "%$search%")
-        ->OrWhere('fecha', 'LIKE', "%$search%")
-        ->orderBy($filter, $ord)->get();
-        return $juegos;
+        
+        if($request->search == "" || $request->search == NULL) {
+            $request->search = '';
+        }
+
+        if($request->filter == "" || $request->filter == NULL) {
+            $request->filter = 'id';
+        }
+
+        if($request->order == "" || $request->order == NULL) {
+            $request->order = 'DESC';
+        }
+
+        $juegos = Api::WHERE('nombre', 'LIKE', "%$request->search%")
+        ->OrWhere('desarrolladora', 'LIKE', "%$request->search%")
+        ->OrWhere('descripcion', 'LIKE', "%$request->search%")
+        ->OrWhere('fecha', 'LIKE', "%$request->search%")
+        ->orderBy($request->filter, $request->order)->get();
+
+
+        if($juegos == "" || $juegos == NULL) {
+          return response()->json(['error' => 'La búsqueda de ' . $request->search . ' no obtuvo ningún resultado' ]);
+        } else {
+          return $juegos;
+        }
     }
 }
