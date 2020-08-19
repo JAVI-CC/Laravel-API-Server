@@ -19,7 +19,7 @@
 <p>-Add game: <strong>$this->client->request('POST', '/api/juegos', ['form_params' => ['nombre' => $request->input('nombre'), 'desarrolladora' => $request->input('desarrolladora'), 'fecha' => $request->input('fecha'), 'descripcion' => $request->input('descripcion'),]]);</strong></p>
 <p>-Update game: <strong>$this->client->request('POST', '/api/juegos/' . $id, ['form_params' => ['nombre' => $request->input('nombre'), 'desarrolladora' => $request->input('desarrolladora'), 'fecha' => $request->input('fecha'), 'descripcion' => $request->input('descripcion'),]]);</strong></p>
 <p>-Delete game: <strong>$this->client->request('GET', '/api/juegos/delete/' . $id);</strong></p>
-<p>-Search game: <strong>$this->client->request('POST', '/api/juegos/filter/search', ['form_params' => ['search' => $request->input('search'), 'filter' => $filter, 'order' => $order,]]);</strong></p>
+<p>-Search game: <strong>$this->client->request('POST', '/api/juegos/filter/search', ['form_params' => ['search' => $search, 'filter' => $filter, 'order' => $order,]]);</strong></p>
 
 <span>$search = 'name_game1';</span>
 <span>$filter = 'nombre' or 'descripcion' or 'desarolladora' or 'fecha'</span>
