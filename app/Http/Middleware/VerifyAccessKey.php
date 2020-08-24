@@ -19,6 +19,7 @@ class VerifyAccessKey
         $key = $request->headers->get('api_key');
         // Si coincide con el valor almacenado en la aplicacion
         // la aplicacion se sigue ejecutando
+        return $key;
         if ($key == env('API_KEY')) {
             return $next($request);
         } else {
