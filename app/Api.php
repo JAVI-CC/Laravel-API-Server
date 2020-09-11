@@ -9,6 +9,7 @@ class Api extends Model
 {
     public $timestamps = false;
     protected $table = 'juegos';
+    protected $hidden = array('id');
     protected $fillable = array('nombre', 'descripcion', 'desarrolladora', 'fecha', 'slug');
 
     protected function convert_url($txt)
