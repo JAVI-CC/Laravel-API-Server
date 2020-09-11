@@ -24,39 +24,42 @@ class ApiController extends Controller
     public function add(Request $request)
     {
 
-        $validator = $this->api->validation($request);
+        $validator = $this->api->validation_add($request);
 
         if ($validator->fails()) {
             return response()->json($validator->errors());
         } else {
-            $juego = Api::create($request->all());
-            return response()->json(['success' => 'Se ha añadido correctamente el juego: ' . $juego->nombre]);
+            $juego = $this->api->add_juego($request);
+            return response()->json(['success' => 'Se ha añadido correctamente el juego: ' . $juego]);
         }
     }
 
-    public function get($id)
+    public function get($slug)
     {
-        $juego = Api::find($id);
-        $juego = $this->api->exists_id($juego);
+        $juego = Api::WHERE('slug', $slug)->first();
+        $juego = $this->api->exists_slug($juego);
         return $juego;
     }
 
-    public function edit($id, Request $request)
-    {
-        $validator = $this->api->validation($request);
-
-        if ($validator->fails()) {
-            return response()->json($validator->errors());
-        } else {
-            $id_juego = $this->get($id);
-            $juego = $this->api->exists_id_update($id_juego, $request);
+    public function edit($slug, Request $request)
+    {        
+        $juego = $this->get($slug);
+        if(array($juego->original['error']) == NULL) {
             return $juego;
+        } else {
+            $validator = $this->api->validation_update($request, $juego->nombre);
+            if ($validator->fails()) {
+                return response()->json($validator->errors());
+            } else {
+                $juego = $this->api->exists_id_update($juego, $request);
+                return $juego;
+            }
         }
     }
 
-    public function delete($id)
+    public function delete($slug)
     {
-        $id_juego = $this->get($id);
+        $id_juego = $this->get($slug);
         $juego = $this->api->exists_id_delete($id_juego);
         return $juego;
     }
