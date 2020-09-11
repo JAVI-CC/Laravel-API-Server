@@ -24,7 +24,6 @@ class ApiController extends Controller
     public function add(Request $request)
     {
 
-        return "eee";
         $validator = $this->api->validation($request);
 
         if ($validator->fails()) {
