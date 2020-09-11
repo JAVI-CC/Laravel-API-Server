@@ -42,9 +42,9 @@ class ApiController extends Controller
     }
 
     public function edit($slug, Request $request)
-    {        
+    {
         $juego = $this->get($slug);
-        if(array($juego->original['error']) == NULL) {
+        if (array($juego->original['error']) != NULL) {
             return $juego;
         } else {
             $validator = $this->api->validation_update($request, $juego->nombre);
@@ -66,30 +66,30 @@ class ApiController extends Controller
 
     public function filter(Request $request)
     {
-        
-        if($request->search == "" || $request->search == NULL) {
+
+        if ($request->search == "" || $request->search == NULL) {
             $request->search = '';
         }
 
-        if($request->filter == "" || $request->filter == NULL) {
+        if ($request->filter == "" || $request->filter == NULL) {
             $request->filter = 'id';
         }
 
-        if($request->order == "" || $request->order == NULL) {
+        if ($request->order == "" || $request->order == NULL) {
             $request->order = 'DESC';
         }
 
-        $juegos = Api::WHERE('nombre', 'ILIKE', '%'.$request->search.'%')
-        ->OrWhere('desarrolladora', 'ILIKE', '%'.$request->search.'%')
-        ->OrWhere('descripcion', 'ILIKE', '%'.$request->search.'%')
-        ->OrWhere('fecha', 'ILIKE', '%'.$request->search.'%')
-        ->orderBy($request->filter, $request->order)->get();
+        $juegos = Api::WHERE('nombre', 'ILIKE', '%' . $request->search . '%')
+            ->OrWhere('desarrolladora', 'ILIKE', '%' . $request->search . '%')
+            ->OrWhere('descripcion', 'ILIKE', '%' . $request->search . '%')
+            ->OrWhere('fecha', 'ILIKE', '%' . $request->search . '%')
+            ->orderBy($request->filter, $request->order)->get();
 
 
-        if($juegos == '[]') {
-          return response()->json(['error' => 'La búsqueda de ' . $request->search . ' no obtuvo ningún resultado' ]);
+        if ($juegos == '[]') {
+            return response()->json(['error' => 'La búsqueda de ' . $request->search . ' no obtuvo ningún resultado']);
         } else {
-          return $juegos;
+            return $juegos;
         }
     }
 }
