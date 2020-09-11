@@ -44,7 +44,7 @@ class ApiController extends Controller
     public function edit($slug, Request $request)
     {
         $juego = $this->get($slug);
-        if (array($juego->original['error']) != NULL) {
+        if (isset($juego->original['error'])) {
             return $juego;
         } else {
             $validator = $this->api->validation_update($request, $juego->nombre);
