@@ -36,7 +36,7 @@ class Api extends Model
     public function validation_update($request, $nombre)
     {
 
-        if($request->nombre == $nombre) {
+        if ($request->nombre == $nombre) {
             $exp = '';
         } else {
             $exp = '|unique:juegos';
@@ -89,6 +89,34 @@ class Api extends Model
         } else {
             $id_juego->delete();
             return response()->json(['success' => 'Se ha eliminado correctamente el juego: ' . $id_juego->nombre]);
+        }
+    }
+
+    public function search($request)
+    {
+        if ($request->search == "" || $request->search == NULL) {
+            $request->search = '';
+        }
+
+        if ($request->filter == "" || $request->filter == NULL) {
+            $request->filter = 'id';
+        }
+
+        if ($request->order == "" || $request->order == NULL) {
+            $request->order = 'DESC';
+        }
+
+        $juegos = Api::WHERE('nombre', 'ILIKE', '%' . $request->search . '%')
+            ->OrWhere('desarrolladora', 'ILIKE', '%' . $request->search . '%')
+            ->OrWhere('descripcion', 'ILIKE', '%' . $request->search . '%')
+            ->OrWhere('fecha', 'ILIKE', '%' . $request->search . '%')
+            ->orderBy($request->filter, $request->order)->get();
+
+
+        if ($juegos == '[]') {
+            return response()->json(['error' => 'La búsqueda de ' . $request->search . ' no obtuvo ningún resultado']);
+        } else {
+            return $juegos;
         }
     }
 }
