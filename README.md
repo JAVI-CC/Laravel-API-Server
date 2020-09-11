@@ -11,7 +11,10 @@
 <p>https://laravelapijuegos.herokuapp.com</p>
 
 <h3>.env</h3>
-<p>API_KEY=58cd1658e9a605d139043ef426e16b9d</p>
+<p>API_KEY=$2y$10$f01jcbsMhFuNif8yHAotQuGr4OaqwfXi6g96Y4DHVIkw3HjQgMwMu</p>
+
+<h3>HEADERS</h3>
+<p>api-key=$2y$10$f01jcbsMhFuNif8yHAotQuGr4OaqwfXi6g96Y4DHVIkw3HjQgMwMu</p>
 
 <h3>Requests API</h3>
 <p>-Get all games: <strong>$this->client->request('GET', '/api/juegos')</strong> </p>
