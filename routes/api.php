@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('juegos', 'ApiController@getAll')->name('getAllJuegos');
-Route::put('juegos', 'ApiController@add')->name('addJuego');
+Route::post('juegos/', 'ApiController@add')->name('addJuego');
 Route::get('juegos/{id}', 'ApiController@get')->name('getJuego');
 Route::post('juegos/{id}', 'ApiController@edit')->name('editJuego');
 Route::get('juegos/delete/{id}', 'ApiController@delete')->name('deleteJuego');
