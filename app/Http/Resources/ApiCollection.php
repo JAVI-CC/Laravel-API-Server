@@ -2,9 +2,9 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Http\Resources\Json\Resource;
 
-class ApiCollection extends ResourceCollection
+class ApiCollection extends Resource
 {
     /**
      * Transform the resource collection into an array.
@@ -14,6 +14,12 @@ class ApiCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'nombre'            => $this->nombre,
+            'descripcion'       => $this->descripcion,
+            'desarrolladora'    => $this->desarrolladora,
+            'fecha'             => $this->fecha,
+            'slug'              => $this->slug,
+        ];
     }
 }

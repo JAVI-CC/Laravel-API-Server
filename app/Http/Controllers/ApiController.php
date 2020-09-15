@@ -20,7 +20,7 @@ class ApiController extends Controller
     public function getAll()
     {
         $juegos = Api::orderBy('id', 'DESC')->get();
-        return response()->json(new ApiCollection($juegos), 200);
+        return ApiCollection::collection($juegos);
     }
 
     public function add(Request $request)
