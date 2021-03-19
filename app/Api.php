@@ -5,6 +5,20 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
 
+
+/**
+ * @OA\Schema(
+ *   @OA\Xml(name="Api"),
+ *   @OA\Property(property="nombre", description="Nombre del juego", type="string", example="Test123"),
+ *   @OA\Property(property="descripcion", description="descripción del juego", type="string", example="añadiendo juego de prueba..."),
+ *   @OA\Property(property="desarrolladora", description="nombre de la desarrolladora que pertenece al juego", type="string", example="Test Software"),
+ *   @OA\Property(property="fecha", type="string", description="fecha de salida de lanzamiento del juego", example="2021-01-01"),
+ *   @OA\Property(property="slug", type="string", description="Url amigable del nombre del juego", readOnly="true", example="test123")
+ * )
+ * Class BaseModel
+ *
+ * @package App\Models
+ */
 class Api extends Model
 {
     public $timestamps = false;
@@ -107,15 +121,15 @@ class Api extends Model
             $request->order = 'DESC';
         }
 
-        $juegos = Api::WHERE('nombre', 'ILIKE', '%' . $request->search . '%')
-            ->OrWhere('desarrolladora', 'ILIKE', '%' . $request->search . '%')
-            ->OrWhere('descripcion', 'ILIKE', '%' . $request->search . '%')
-            ->OrWhere('fecha', 'ILIKE', '%' . $request->search . '%')
+        $juegos = Api::WHERE('nombre', 'LIKE', '%' . $request->search . '%')
+            ->OrWhere('desarrolladora', 'LIKE', '%' . $request->search . '%')
+            ->OrWhere('descripcion', 'LIKE', '%' . $request->search . '%')
+            ->OrWhere('fecha', 'LIKE', '%' . $request->search . '%')
             ->orderBy($request->filter, $request->order)->get();
 
 
         if ($juegos == '[]') {
-            return response()->json(['error' => 'La búsqueda de ' . $request->search . ' no obtuvo ningún resultado']);
+            return response()->json(['error' => 'La búsqueda de ' . $request->search . ' no obtuvo ningún resultado'], 221);
         } else {
             return $juegos;
         }
