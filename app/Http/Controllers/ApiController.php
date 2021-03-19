@@ -15,13 +15,13 @@ class ApiController extends Controller
         $this->api = $api;
     }
 
-    public function getAll()
+    public function index()
     {
         $juegos = Api::orderBy('id', 'DESC')->get();
         return $juegos;
     }
 
-    public function add(Request $request)
+    public function store(Request $request)
     {
 
         $validator = $this->api->validation_add($request);
@@ -34,16 +34,16 @@ class ApiController extends Controller
         }
     }
 
-    public function get($slug)
+    public function show($slug)
     {
         $juego = Api::WHERE('slug', $slug)->first();
         $juego = $this->api->exists_slug($juego);
         return $juego;
     }
 
-    public function edit($slug, Request $request)
+    public function update($slug, Request $request)
     {
-        $juego = $this->get($slug);
+        $juego = $this->show($slug);
         if (isset($juego->original['error'])) {
             return $juego;
         } else {
@@ -59,7 +59,7 @@ class ApiController extends Controller
 
     public function delete($slug)
     {
-        $id_juego = $this->get($slug);
+        $id_juego = $this->show($slug);
         $juego = $this->api->exists_id_delete($id_juego);
         return $juego;
     }

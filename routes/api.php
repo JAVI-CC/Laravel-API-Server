@@ -17,9 +17,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('juegos', 'ApiController@getAll')->name('getAllJuegos');
-Route::post('juegos', 'ApiController@add')->name('addJuego');
-Route::get('juegos/{slug}', 'ApiController@get')->name('getJuego');
-Route::post('juegos/{slug}', 'ApiController@edit')->name('editJuego');
-Route::get('juegos/delete/{slug}', 'ApiController@delete')->name('deleteJuego');
+Route::get('juegos', 'ApiController@index')->name('getAllJuegos');
+Route::post('juegos', 'ApiController@store')->name('addJuego');
+Route::get('juegos/{slug}', 'ApiController@show')->name('getJuego');
+Route::put('juegos/{slug}', 'ApiController@update')->name('editJuego');
+Route::delete('juegos/delete/{slug}', 'ApiController@delete')->name('deleteJuego');
 Route::post('juegos/filter/search/', 'ApiController@filter')->name('filterJuego');
