@@ -23,8 +23,8 @@
 <p>-Get all games: <strong>$this->client->request('GET', '/api/juegos')</strong> </p>
 <p>-Get game: <strong>$this->client->request('GET', '/api/juegos/' . $slug)</strong></p>
 <p>-Add game: <strong>$this->client->request('POST', '/api/juegos', ['form_params' => ['nombre' => $request->input('nombre'), 'desarrolladora' => $request->input('desarrolladora'), 'fecha' => $request->input('fecha'), 'descripcion' => $request->input('descripcion'),]]);</strong></p>
-<p>-Update game: <strong>$this->client->request('POST', '/api/juegos/' . $slug, ['form_params' => ['nombre' => $request->input('nombre'), 'desarrolladora' => $request->input('desarrolladora'), 'fecha' => $request->input('fecha'), 'descripcion' => $request->input('descripcion'),]]);</strong></p>
-<p>-Delete game: <strong>$this->client->request('GET', '/api/juegos/delete/' . $slug);</strong></p>
+<p>-Update game: <strong>$this->client->request('PUT', '/api/juegos/' . $slug, ['form_params' => ['nombre' => $request->input('nombre'), 'desarrolladora' => $request->input('desarrolladora'), 'fecha' => $request->input('fecha'), 'descripcion' => $request->input('descripcion'),]]);</strong></p>
+<p>-Delete game: <strong>$this->client->request('DELETE', '/api/juegos/delete/' . $slug);</strong></p>
 <p>-Search game: <strong>$this->client->request('POST', '/api/juegos/filter/search', ['form_params' => ['search' => $search, 'filter' => $filter, 'order' => $order,]]);</strong></p>
 
 <span>$search = 'name_game1';</span>
