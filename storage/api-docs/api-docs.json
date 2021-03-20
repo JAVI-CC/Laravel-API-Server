@@ -69,7 +69,7 @@
                                     "fecha"
                                 ],
                                 "properties": {
-                                    "": {
+                                    "nombre": {
                                         "$ref": "#/components/schemas/Api/properties/nombre"
                                     },
                                     "descripcion": {
