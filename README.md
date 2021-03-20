@@ -1,4 +1,4 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
@@ -9,6 +9,9 @@
 
 <h3>Demo API</h3>
 <p>https://laravelapijuegos.herokuapp.com</p>
+
+<h3>Documentation API SWAGGER 3.0</h3>
+<p>http://laravelapijuegos.herokuapp.com/api/documentation</p>
 
 <h3>.env</h3>
 <p>API_KEY=$2y$10$f01jcbsMhFuNif8yHAotQuGr4OaqwfXi6g96Y4DHVIkw3HjQgMwMu</p>
