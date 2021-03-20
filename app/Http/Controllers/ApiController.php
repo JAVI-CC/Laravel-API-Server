@@ -233,6 +233,7 @@ class ApiController extends Controller
      *   @OA\Response(response=500, description="Error interno del servidor")
      * )
      *
+     * 
      */
     public function delete($slug)
     {
