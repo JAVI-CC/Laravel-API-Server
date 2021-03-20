@@ -264,7 +264,7 @@
                 }
             }
         },
-        "/api/juegos/filter/search/": {
+        "/api/juegos/filter/search": {
             "post": {
                 "tags": [
                     "Juegos"
