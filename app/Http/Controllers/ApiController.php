@@ -243,7 +243,7 @@ class ApiController extends Controller
 
     /**
      * @OA\Post(
-     *   path="/api/juegos/filter/search",
+     *   path="/api/juegos/filter/searc",
      *   tags={"Juegos"},
      *   summary="Busqueda",
      *   description="Busqueda por nombres de juegos y también ordena el resultado de distintas maneras.",
