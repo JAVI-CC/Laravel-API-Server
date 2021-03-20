@@ -1,0 +1,259 @@
+{
+	"info": {
+		"_postman_id": "d81aa3bf-72c5-4550-bc34-56e24f66a0d5",
+		"name": "LARAVEL API JUEGOS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all games",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "API-KEY",
+						"value": "$2y$10$f01jcbsMhFuNif8yHAotQuGr4OaqwfXi6g96Y4DHVIkw3HjQgMwMu",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://laravelapijuegos.herokuapp.com/api/juegos/",
+					"protocol": "https",
+					"host": [
+						"laravelapijuegos",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"juegos",
+						""
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get slug game",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "API-KEY",
+						"value": "$2y$10$f01jcbsMhFuNif8yHAotQuGr4OaqwfXi6g96Y4DHVIkw3HjQgMwMu",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://laravelapijuegos.herokuapp.com/api/juegos/test123",
+					"protocol": "https",
+					"host": [
+						"laravelapijuegos",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"juegos",
+						"test123"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete game",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "API-KEY",
+						"value": "$2y$10$f01jcbsMhFuNif8yHAotQuGr4OaqwfXi6g96Y4DHVIkw3HjQgMwMu",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://laravelapijuegos.herokuapp.com/api/juegos/delete/test123",
+					"protocol": "https",
+					"host": [
+						"laravelapijuegos",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"juegos",
+						"delete",
+						"test123"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search games",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "API-KEY",
+						"value": "$2y$10$f01jcbsMhFuNif8yHAotQuGr4OaqwfXi6g96Y4DHVIkw3HjQgMwMu",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "https://laravelapijuegos.herokuapp.com/api/juegos/filter/search?search=dark&filter=fecha&order=ASC",
+					"protocol": "https",
+					"host": [
+						"laravelapijuegos",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"juegos",
+						"filter",
+						"search"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "dark"
+						},
+						{
+							"key": "filter",
+							"value": "fecha"
+						},
+						{
+							"key": "order",
+							"value": "ASC"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit game",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "API-KEY",
+						"value": "$2y$10$f01jcbsMhFuNif8yHAotQuGr4OaqwfXi6g96Y4DHVIkw3HjQgMwMu",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://laravelapijuegos.herokuapp.com/api/juegos/test123?nombre=test123&descripcion=texto actualizado v.2&desarrolladora=STUDIO TEST 123&fecha=2020-09-01",
+					"protocol": "https",
+					"host": [
+						"laravelapijuegos",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"juegos",
+						"test123"
+					],
+					"query": [
+						{
+							"key": "nombre",
+							"value": "test123"
+						},
+						{
+							"key": "descripcion",
+							"value": "texto actualizado v.2"
+						},
+						{
+							"key": "desarrolladora",
+							"value": "STUDIO TEST 123"
+						},
+						{
+							"key": "fecha",
+							"value": "2020-09-01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add game",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "API-KEY",
+						"value": "$2y$10$f01jcbsMhFuNif8yHAotQuGr4OaqwfXi6g96Y4DHVIkw3HjQgMwMu",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "https://laravelapijuegos.herokuapp.com/api/juegos?nombre=test123&descripcion=escribiendo...&desarrolladora=STUDIO TEST 123&fecha=2020-08-01",
+					"protocol": "https",
+					"host": [
+						"laravelapijuegos",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"juegos"
+					],
+					"query": [
+						{
+							"key": "nombre",
+							"value": "test123"
+						},
+						{
+							"key": "descripcion",
+							"value": "escribiendo..."
+						},
+						{
+							"key": "desarrolladora",
+							"value": "STUDIO TEST 123"
+						},
+						{
+							"key": "fecha",
+							"value": "2020-08-01"
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
