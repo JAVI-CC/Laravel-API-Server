@@ -103,6 +103,11 @@ return [
                 /*
                  * Examples of Security schemes
                 */
+                'API-KEY' => [ /* Unique name of security*/
+                    'type' => 'apiKey', /* The type of the security scheme. Valid values are "basic", "apiKey" or "oauth2".*/ 
+                    'description' => 'Token para poder enviar y recibir datos de la api.', 'name' => 'API-KEY', /* The name of the header or query parameter to be used.*/ 
+                    'in' => 'header', // The location of the API key. Valid values are "query" or "header". ],
+                 ],
                 /*
                 'api_key_security_example' => [ // Unique name of security
                     'type' => 'apiKey', // The type of the security scheme. Valid values are "basic", "apiKey" or "oauth2".

@@ -29,16 +29,7 @@ class ApiController extends Controller
      *   summary="Obtener todos los juegos",
      *   description="Muestra todos los registros de juegos en formato JSON",
      *   operationId="getAllJuegos",
-     *   @OA\Parameter(
-     *     name="API-KEY",
-     *     description="Añadir token",
-     *     in="header",
-     *     required=true, 
-     *     @OA\Schema(
-     *       type="string",
-     *       example="$2y$10$f01jcbsMhFuNif8yHAotQuGr4OaqwfXi6g96Y4DHVIkw3HjQgMwMu"
-     *     ),
-     *   ),
+     *   security={ * {"API-KEY": {}}, * },
      *   @OA\Response(response=200, description="Success"),
      *   @OA\Response(response=401, description="No autorizado"),
      *   @OA\Response(response=500, description="Error interno del servidor")
@@ -55,20 +46,10 @@ class ApiController extends Controller
      * @OA\Post(
      *   path="/api/juegos",
      *   tags={"Juegos"},
-     *   summary="Añadir un juego",
-     *   description="Añadir el registro de un juego nuevo con parametros.",
+     *   summary="Insertar un juego",
+     *   description="Insertar el registro de un juego nuevo con parametros.",
      *   operationId="addJuego",
-     *   @OA\Parameter(
-     *     name="API-KEY",
-     *     description="Añadir token",
-     *     in="header",
-     *     required=true, 
-     *     @OA\Schema(
-     *       type="string",
-     *       example="$2y$10$f01jcbsMhFuNif8yHAotQuGr4OaqwfXi6g96Y4DHVIkw3HjQgMwMu"
-     *     ),
-     *   ),
-     *  
+     *   security={ * {"API-KEY": {}}, * },
      *   @OA\RequestBody(
      *     required=true,
      *     description="{nombre, descripcion, desarrolladora, fecha}",
@@ -96,7 +77,7 @@ class ApiController extends Controller
             return response()->json($validator->errors(), 220);
         } else {
             $juego = $this->api->add_juego($request);
-            return response()->json(['success' => 'Se ha añadido correctamente el juego: ' . $juego], 201);
+            return response()->json(['success' => 'Se ha insertado correctamente el juego: ' . $juego], 201);
         }
     }
 
@@ -107,16 +88,7 @@ class ApiController extends Controller
      *   summary="Obtener un juego",
      *   description="Muestra la información de un juego especifico segun el valor del parametro slug.",
      *   operationId="getJuego",
-     *   @OA\Parameter(
-     *     name="API-KEY",
-     *     description="Añadir token",
-     *     in="header",
-     *     required=true, 
-     *     @OA\Schema(
-     *       type="string",
-     *       example="$2y$10$f01jcbsMhFuNif8yHAotQuGr4OaqwfXi6g96Y4DHVIkw3HjQgMwMu"
-     *     ),
-     *   ),
+     *   security={ * {"API-KEY": {}}, * },
      *   @OA\Parameter(
      *     name="slug",
      *     description="Url del nombre del juego",
@@ -147,16 +119,7 @@ class ApiController extends Controller
      *   summary="Actualizar un juego",
      *   description="Actulizar un juego ya existente con parametros.",
      *   operationId="editJuego",
-     *   @OA\Parameter(
-     *     name="API-KEY",
-     *     description="Añadir token",
-     *     in="header",
-     *     required=true, 
-     *     @OA\Schema(
-     *       type="string",
-     *       example="$2y$10$f01jcbsMhFuNif8yHAotQuGr4OaqwfXi6g96Y4DHVIkw3HjQgMwMu"
-     *     ),
-     *   ),
+     *   security={ * {"API-KEY": {}}, * },
      *   @OA\Parameter(
      *     name="slug",
      *     description="Url del nombre del juego",
@@ -208,16 +171,7 @@ class ApiController extends Controller
      *   summary="Eliminar un juego",
      *   description="Elimina un juego especifico segun el valor del parametro slug.",
      *   operationId="deleteJuego",
-     *   @OA\Parameter(
-     *     name="API-KEY",
-     *     description="Añadir token",
-     *     in="header",
-     *     required=true, 
-     *     @OA\Schema(
-     *       type="string",
-     *       example="$2y$10$f01jcbsMhFuNif8yHAotQuGr4OaqwfXi6g96Y4DHVIkw3HjQgMwMu"
-     *     ),
-     *   ),
+     *   security={ * {"API-KEY": {}}, * },
      *   @OA\Parameter(
      *     name="slug",
      *     description="Url del nombre del juego",
@@ -248,16 +202,7 @@ class ApiController extends Controller
      *   summary="Busqueda",
      *   description="Busqueda por nombres de juegos y también ordena el resultado de distintas maneras.",
      *   operationId="filterJuego",
-     *   @OA\Parameter(
-     *     name="API-KEY",
-     *     description="Añadir token",
-     *     in="header",
-     *     required=true, 
-     *     @OA\Schema(
-     *       type="string",
-     *       example="$2y$10$f01jcbsMhFuNif8yHAotQuGr4OaqwfXi6g96Y4DHVIkw3HjQgMwMu"
-     *     ),
-     *   ),
+     *   security={ * {"API-KEY": {}}, * },
      *   @OA\Parameter(
      *     name="search",
      *     description="Nombre del juego que quieres buscar",

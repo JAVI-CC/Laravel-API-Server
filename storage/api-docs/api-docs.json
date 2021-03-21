@@ -13,18 +13,6 @@
                 "summary": "Obtener todos los juegos",
                 "description": "Muestra todos los registros de juegos en formato JSON",
                 "operationId": "getAllJuegos",
-                "parameters": [
-                    {
-                        "name": "API-KEY",
-                        "in": "header",
-                        "description": "Añadir token",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": "$2y$10$f01jcbsMhFuNif8yHAotQuGr4OaqwfXi6g96Y4DHVIkw3HjQgMwMu"
-                        }
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "Success"
@@ -35,27 +23,20 @@
                     "500": {
                         "description": "Error interno del servidor"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "API-KEY": []
+                    }
+                ]
             },
             "post": {
                 "tags": [
                     "Juegos"
                 ],
-                "summary": "Añadir un juego",
-                "description": "Añadir el registro de un juego nuevo con parametros.",
+                "summary": "Insertar un juego",
+                "description": "Insertar el registro de un juego nuevo con parametros.",
                 "operationId": "addJuego",
-                "parameters": [
-                    {
-                        "name": "API-KEY",
-                        "in": "header",
-                        "description": "Añadir token",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": "$2y$10$f01jcbsMhFuNif8yHAotQuGr4OaqwfXi6g96Y4DHVIkw3HjQgMwMu"
-                        }
-                    }
-                ],
                 "requestBody": {
                     "description": "{nombre, descripcion, desarrolladora, fecha}",
                     "required": true,
@@ -100,7 +81,12 @@
                     "500": {
                         "description": "Error interno del servidor"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "API-KEY": []
+                    }
+                ]
             }
         },
         "/api/juegos/{slug}": {
@@ -112,16 +98,6 @@
                 "description": "Muestra la información de un juego especifico segun el valor del parametro slug.",
                 "operationId": "getJuego",
                 "parameters": [
-                    {
-                        "name": "API-KEY",
-                        "in": "header",
-                        "description": "Añadir token",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": "$2y$10$f01jcbsMhFuNif8yHAotQuGr4OaqwfXi6g96Y4DHVIkw3HjQgMwMu"
-                        }
-                    },
                     {
                         "name": "slug",
                         "in": "path",
@@ -143,7 +119,12 @@
                     "500": {
                         "description": "Error interno del servidor"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "API-KEY": []
+                    }
+                ]
             },
             "put": {
                 "tags": [
@@ -153,16 +134,6 @@
                 "description": "Actulizar un juego ya existente con parametros.",
                 "operationId": "editJuego",
                 "parameters": [
-                    {
-                        "name": "API-KEY",
-                        "in": "header",
-                        "description": "Añadir token",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": "$2y$10$f01jcbsMhFuNif8yHAotQuGr4OaqwfXi6g96Y4DHVIkw3HjQgMwMu"
-                        }
-                    },
                     {
                         "name": "slug",
                         "in": "path",
@@ -218,7 +189,12 @@
                     "500": {
                         "description": "Error interno del servidor"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "API-KEY": []
+                    }
+                ]
             }
         },
         "/api/juegos/delete/{slug}": {
@@ -230,16 +206,6 @@
                 "description": "Elimina un juego especifico segun el valor del parametro slug.",
                 "operationId": "deleteJuego",
                 "parameters": [
-                    {
-                        "name": "API-KEY",
-                        "in": "header",
-                        "description": "Añadir token",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": "$2y$10$f01jcbsMhFuNif8yHAotQuGr4OaqwfXi6g96Y4DHVIkw3HjQgMwMu"
-                        }
-                    },
                     {
                         "name": "slug",
                         "in": "path",
@@ -261,7 +227,12 @@
                     "500": {
                         "description": "Error interno del servidor"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "API-KEY": []
+                    }
+                ]
             }
         },
         "/api/juegos/filter/search": {
@@ -273,16 +244,6 @@
                 "description": "Busqueda por nombres de juegos y también ordena el resultado de distintas maneras.",
                 "operationId": "filterJuego",
                 "parameters": [
-                    {
-                        "name": "API-KEY",
-                        "in": "header",
-                        "description": "Añadir token",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": "$2y$10$f01jcbsMhFuNif8yHAotQuGr4OaqwfXi6g96Y4DHVIkw3HjQgMwMu"
-                        }
-                    },
                     {
                         "name": "search",
                         "in": "query",
@@ -327,7 +288,12 @@
                     "500": {
                         "description": "Error interno del servidor"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "API-KEY": []
+                    }
+                ]
             }
         }
     },
@@ -343,7 +309,7 @@
                     "descripcion": {
                         "description": "descripción del juego",
                         "type": "string",
-                        "example": "añadiendo juego de prueba..."
+                        "example": "insertando juego de prueba..."
                     },
                     "desarrolladora": {
                         "description": "nombre de la desarrolladora que pertenece al juego",
@@ -366,6 +332,14 @@
                 "xml": {
                     "name": "Api"
                 }
+            }
+        },
+        "securitySchemes": {
+            "API-KEY": {
+                "type": "apiKey",
+                "description": "Token para poder enviar y recibir datos de la api.",
+                "name": "API-KEY",
+                "in": "header"
             }
         }
     },
