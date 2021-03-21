@@ -12,6 +12,7 @@
 
 <h3>Documentation API SWAGGER 3.0</h3>
 <p>http://laravelapijuegos.herokuapp.com/api/documentation</p>
+<p>Authorize API-KEY: $2y$10$f01jcbsMhFuNif8yHAotQuGr4OaqwfXi6g96Y4DHVIkw3HjQgMwMu</p>
 
 <h3>.env</h3>
 <p>API_KEY=$2y$10$f01jcbsMhFuNif8yHAotQuGr4OaqwfXi6g96Y4DHVIkw3HjQgMwMu</p>
