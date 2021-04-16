@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\File; 
 use Illuminate\Support\Facades\Validator;
 
 
@@ -42,7 +43,8 @@ class Api extends Model
             'nombre' => 'required|min:2|max:255|unique:juegos',
             'descripcion' => 'required|min:10|max:255',
             'desarrolladora' => 'required|min:2|max:255',
-            'fecha' => 'required',
+            'fecha' => 'required|date_format:Y-m-d',
+            'imagen' => 'required|mimes:jpg,jpeg,png|max:1024|',
         ]);
 
         return $validator;
@@ -61,7 +63,8 @@ class Api extends Model
             'nombre' => 'required|min:2|max:255' . $exp,
             'descripcion' => 'required|min:10|max:255',
             'desarrolladora' => 'required|min:2|max:255',
-            'fecha' => 'required',
+            'fecha' => 'required|date_format:Y-m-d',
+            'imagen' => 'required|mimes:jpg|max:1024|',
         ]);
 
         return $validator;
@@ -80,7 +83,8 @@ class Api extends Model
     {
         $slug = API::convert_url($request->nombre);
         $request->request->add(['slug' => $slug]);
-        API::create(array_merge($request->all()));
+        $juego = API::create(array_merge($request->all()));
+        API::upload_imagen($juego->id, $slug, $request->imagen);
         return $request->nombre;
     }
 
@@ -93,6 +97,7 @@ class Api extends Model
             $slug = API::convert_url($request->nombre);
             $request->request->add(['slug' => $slug]);
             $id_juego->fill($request->all())->save();
+            API::update_imagen($id_juego['id'], $slug, $request->imagen);
             return response()->json(['success' => 'Se ha modificado correctamente el juego: ' . $id_juego->nombre]);
         }
     }
@@ -103,8 +108,33 @@ class Api extends Model
             return response()->json(['error' => 'Juego no encontrado']);
         } else {
             $id_juego->delete();
+            API::delete_imagen($id_juego['id']);
             return response()->json(['success' => 'Se ha eliminado correctamente el juego: ' . $id_juego->nombre]);
         }
+    }
+
+    public function show_id($slug)
+    {
+        $juego = Api::WHERE('slug', $slug)->first();
+        $juego = Api::exists_slug($juego);
+        return $juego;
+    }
+
+    public function upload_imagen($id, $slug, $imagen) {
+        $filename = "eliminar." .$imagen->getClientOriginalExtension();
+        $filenamePNG = $id . "-" . $slug . ".png";
+        $imagen->move(public_path('media/juegos/'), $filename);
+        imagepng(imagecreatefromstring(file_get_contents(public_path('media/juegos/'.$filename))), public_path('media/juegos/'.$filenamePNG));
+        File::delete(File::glob(public_path('media/juegos/eliminar.*')));
+    }
+
+    public function update_imagen($id, $slug, $imagen) {
+        File::delete(File::glob(public_path('media/juegos/'.$id.'-*')));
+        API::upload_imagen($id, $slug, $imagen);
+    }
+
+    public function delete_imagen($id) {
+        File::delete(File::glob(public_path('media/juegos/'.$id.'-*')));
     }
 
     public function search($request)
@@ -121,10 +151,10 @@ class Api extends Model
             $request->order = 'DESC';
         }
 
-        $juegos = Api::WHERE('nombre', 'ILIKE', '%' . $request->search . '%')
-            ->OrWhere('desarrolladora', 'ILIKE', '%' . $request->search . '%')
-            ->OrWhere('descripcion', 'ILIKE', '%' . $request->search . '%')
-            ->OrWhere('fecha', 'ILIKE', '%' . $request->search . '%')
+        $juegos = Api::WHERE('nombre', 'LIKE', '%' . $request->search . '%')
+            ->OrWhere('desarrolladora', 'LIKE', '%' . $request->search . '%')
+            ->OrWhere('descripcion', 'LIKE', '%' . $request->search . '%')
+            ->OrWhere('fecha', 'LIKE', '%' . $request->search . '%')
             ->orderBy($request->filter, $request->order)->get();
 
 

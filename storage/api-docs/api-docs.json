@@ -37,30 +37,44 @@
                 "summary": "Insertar un juego",
                 "description": "Insertar el registro de un juego nuevo con parametros.",
                 "operationId": "addJuego",
+                "parameters": [
+                    {
+                        "name": "Juego",
+                        "in": "query",
+                        "description": "{nombre, descripcion, desarrolladora, fecha, imagen}",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "nombre": {
+                                    "$ref": "#/components/schemas/Api/properties/nombre"
+                                },
+                                "descripcion": {
+                                    "$ref": "#/components/schemas/Api/properties/descripcion"
+                                },
+                                "desarrolladora": {
+                                    "$ref": "#/components/schemas/Api/properties/desarrolladora"
+                                },
+                                "fecha": {
+                                    "$ref": "#/components/schemas/Api/properties/fecha"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
                 "requestBody": {
-                    "description": "{nombre, descripcion, desarrolladora, fecha}",
                     "required": true,
                     "content": {
-                        "application/json": {
+                        "multipart/form-data": {
                             "schema": {
-                                "required": [
-                                    "nombre",
-                                    "descripcion",
-                                    "desarrolladora",
-                                    "fecha"
-                                ],
                                 "properties": {
-                                    "nombre": {
-                                        "$ref": "#/components/schemas/Api/properties/nombre"
-                                    },
-                                    "descripcion": {
-                                        "$ref": "#/components/schemas/Api/properties/descripcion"
-                                    },
-                                    "desarrolladora": {
-                                        "$ref": "#/components/schemas/Api/properties/desarrolladora"
-                                    },
-                                    "fecha": {
-                                        "$ref": "#/components/schemas/Api/properties/fecha"
+                                    "imagen": {
+                                        "description": "imagen del juego",
+                                        "type": "file",
+                                        "items": {
+                                            "type": "string",
+                                            "format": "binary"
+                                        }
                                     }
                                 },
                                 "type": "object"
@@ -143,32 +157,54 @@
                             "type": "string",
                             "example": "test123"
                         }
+                    },
+                    {
+                        "name": "_method",
+                        "in": "header",
+                        "description": "Metodo put para permitir envio de imagenes",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "PUT"
+                        }
+                    },
+                    {
+                        "name": "Juego",
+                        "in": "query",
+                        "description": "{nombre, descripcion, desarrolladora, fecha, imagen}",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "nombre": {
+                                    "$ref": "#/components/schemas/Api/properties/nombre"
+                                },
+                                "descripcion": {
+                                    "$ref": "#/components/schemas/Api/properties/descripcion"
+                                },
+                                "desarrolladora": {
+                                    "$ref": "#/components/schemas/Api/properties/desarrolladora"
+                                },
+                                "fecha": {
+                                    "$ref": "#/components/schemas/Api/properties/fecha"
+                                }
+                            },
+                            "type": "object"
+                        }
                     }
                 ],
                 "requestBody": {
-                    "description": "{nombre, descripcion, desarrolladora, fecha}",
                     "required": true,
                     "content": {
-                        "application/json": {
+                        "multipart/form-data": {
                             "schema": {
-                                "required": [
-                                    "nombre",
-                                    "descripcion",
-                                    "desarrolladora",
-                                    "fecha"
-                                ],
                                 "properties": {
-                                    "nombre": {
-                                        "$ref": "#/components/schemas/Api/properties/nombre"
-                                    },
-                                    "descripcion": {
-                                        "$ref": "#/components/schemas/Api/properties/descripcion"
-                                    },
-                                    "desarrolladora": {
-                                        "$ref": "#/components/schemas/Api/properties/desarrolladora"
-                                    },
-                                    "fecha": {
-                                        "$ref": "#/components/schemas/Api/properties/fecha"
+                                    "imagen": {
+                                        "description": "imagen del juego",
+                                        "type": "file",
+                                        "items": {
+                                            "type": "string",
+                                            "format": "binary"
+                                        }
                                     }
                                 },
                                 "type": "object"

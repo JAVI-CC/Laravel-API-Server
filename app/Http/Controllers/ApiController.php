@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Api;
+use App\Http\Resources\ApiResource;
+use App\Http\Resources\ApiResourcePrivate;
 use Illuminate\Http\Request;
 
 /**
@@ -39,7 +41,7 @@ class ApiController extends Controller
     public function index()
     {
         $juegos = Api::orderBy('id', 'DESC')->get();
-        return response()->json($juegos, 200);
+        return response()->json(ApiResource::collection(($juegos)), 200);
     }
 
     /**
@@ -50,16 +52,31 @@ class ApiController extends Controller
      *   description="Insertar el registro de un juego nuevo con parametros.",
      *   operationId="addJuego",
      *   security={ * {"API-KEY": {}}, * },
-     *   @OA\RequestBody(
+     *   @OA\Parameter(
+     *     name="Juego",
+     *     in="query",
      *     required=true,
-     *     description="{nombre, descripcion, desarrolladora, fecha}",
-     *     @OA\JsonContent(
-     *       required={"nombre", "descripcion", "desarrolladora", "fecha"},
+     *     description="{nombre, descripcion, desarrolladora, fecha, imagen}",
+     *     @OA\Schema(
      *       @OA\Property(property="nombre", ref="#/components/schemas/Api/properties/nombre"),
      *       @OA\Property(property="descripcion", ref="#/components/schemas/Api/properties/descripcion"),
      *       @OA\Property(property="desarrolladora", ref="#/components/schemas/Api/properties/desarrolladora"),
-     *       @OA\Property(property="fecha", ref="#/components/schemas/Api/properties/fecha")
-     *    ),
+     *       @OA\Property(property="fecha", ref="#/components/schemas/Api/properties/fecha"),
+     *     ),
+     *   ),
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="multipart/form-data",
+     *       @OA\Schema(
+     *         @OA\Property(
+     *           property="imagen",
+     *           description="imagen del juego",
+     *           type="file",
+     *           @OA\Items(type="string", format="binary")
+     *         ),
+     *       ),
+     *     ), 
      *   ),
      *   @OA\Response(response=201, description="Se ha creado correctamente"),
      *   @OA\Response(response=220, description="No se cumple todos los requisitos"),
@@ -109,8 +126,10 @@ class ApiController extends Controller
     {
         $juego = Api::WHERE('slug', $slug)->first();
         $juego = $this->api->exists_slug($juego);
-        return $juego;
+        //return $juego;
+        return response()->json(new ApiResource($juego), 200);
     }
+
 
     /**
      * @OA\Put(
@@ -130,16 +149,41 @@ class ApiController extends Controller
      *       example="test123"
      *     ),
      *   ),
-     *   @OA\RequestBody(
+     *   @OA\Parameter(
+     *     name="_method",
+     *     description="Metodo put para permitir envio de imagenes",
+     *     in="header",
+     *     required=true, 
+     *     @OA\Schema(
+     *       type="string",
+     *       example="PUT"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *     name="Juego",
+     *     in="query",
      *     required=true,
-     *     description="{nombre, descripcion, desarrolladora, fecha}",
-     *     @OA\JsonContent(
-     *       required={"nombre", "descripcion", "desarrolladora", "fecha"},
+     *     description="{nombre, descripcion, desarrolladora, fecha, imagen}",
+     *     @OA\Schema(
      *       @OA\Property(property="nombre", ref="#/components/schemas/Api/properties/nombre"),
      *       @OA\Property(property="descripcion", ref="#/components/schemas/Api/properties/descripcion"),
      *       @OA\Property(property="desarrolladora", ref="#/components/schemas/Api/properties/desarrolladora"),
-     *       @OA\Property(property="fecha", ref="#/components/schemas/Api/properties/fecha")
-     *    ),
+     *       @OA\Property(property="fecha", ref="#/components/schemas/Api/properties/fecha"),
+     *     ),
+     *   ),
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\MediaType(
+     *       mediaType="multipart/form-data",
+     *       @OA\Schema(
+     *         @OA\Property(
+     *           property="imagen",
+     *           description="imagen del juego",
+     *           type="file",
+     *           @OA\Items(type="string", format="binary")
+     *         ),
+     *       ),
+     *     ), 
      *   ),
      *   @OA\Response(response=200, description="Success"),
      *   @OA\Response(response=220, description="No se cumple todos los requisitos"),
@@ -150,7 +194,7 @@ class ApiController extends Controller
      */
     public function update($slug, Request $request)
     {
-        $juego = $this->show($slug);
+        $juego = $this->api->show_id($slug);
         if (isset($juego->original['error'])) {
             return $juego;
         } else {
@@ -190,7 +234,7 @@ class ApiController extends Controller
      */
     public function delete($slug)
     {
-        $id_juego = $this->show($slug);
+        $id_juego = $this->api->show_id($slug);
         $juego = $this->api->exists_id_delete($id_juego);
         return $juego;
     }
@@ -244,6 +288,6 @@ class ApiController extends Controller
     public function filter(Request $request)
     {
         $juegos = $this->api->search($request);
-        return $juegos;
+        return response()->json(ApiResource::collection(($juegos)), 200);
     }
 }
