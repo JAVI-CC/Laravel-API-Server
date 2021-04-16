@@ -64,7 +64,7 @@ class Api extends Model
             'descripcion' => 'required|min:10|max:255',
             'desarrolladora' => 'required|min:2|max:255',
             'fecha' => 'required|date_format:Y-m-d',
-            'imagen' => 'required|mimes:jpg|max:1024|',
+            'imagen' => 'required|mimes:jpg,jpeg,png|max:1024|',
         ]);
 
         return $validator;
