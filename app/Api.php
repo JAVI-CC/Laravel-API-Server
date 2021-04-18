@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Validator;
  * )
  * Class BaseModel
  *
+ * 
  * @package App\Models
  */
 class Api extends Model
