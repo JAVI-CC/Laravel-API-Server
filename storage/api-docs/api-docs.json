@@ -139,8 +139,10 @@
                         "API-KEY": []
                     }
                 ]
-            },
-            "put": {
+            }
+        },
+        "/api/juegos/edit": {
+            "post": {
                 "tags": [
                     "Juegos"
                 ],
@@ -149,29 +151,9 @@
                 "operationId": "editJuego",
                 "parameters": [
                     {
-                        "name": "slug",
-                        "in": "path",
-                        "description": "Url del nombre del juego",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": "test123"
-                        }
-                    },
-                    {
-                        "name": "_method",
-                        "in": "header",
-                        "description": "Metodo put para permitir envio de imagenes",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": "PUT"
-                        }
-                    },
-                    {
                         "name": "Juego",
                         "in": "query",
-                        "description": "{nombre, descripcion, desarrolladora, fecha, imagen}",
+                        "description": "{nombre, descripcion, desarrolladora, fecha, slug, imagen}",
                         "required": true,
                         "schema": {
                             "properties": {
@@ -186,6 +168,9 @@
                                 },
                                 "fecha": {
                                     "$ref": "#/components/schemas/Api/properties/fecha"
+                                },
+                                "slug": {
+                                    "$ref": "#/components/schemas/Api/properties/slug"
                                 }
                             },
                             "type": "object"
@@ -360,7 +345,6 @@
                     "slug": {
                         "description": "Url amigable del nombre del juego",
                         "type": "string",
-                        "readOnly": "true",
                         "example": "test123"
                     }
                 },

@@ -132,43 +132,24 @@ class ApiController extends Controller
 
 
     /**
-     * @OA\Put(
-     *   path="/api/juegos/{slug}",
+     * @OA\Post(
+     *   path="/api/juegos/edit",
      *   tags={"Juegos"},
      *   summary="Actualizar un juego",
      *   description="Actulizar un juego ya existente con parametros.",
      *   operationId="editJuego",
      *   security={ * {"API-KEY": {}}, * },
      *   @OA\Parameter(
-     *     name="slug",
-     *     description="Url del nombre del juego",
-     *     in="path",
-     *     required=true, 
-     *     @OA\Schema(
-     *       type="string",
-     *       example="test123"
-     *     ),
-     *   ),
-     *   @OA\Parameter(
-     *     name="_method",
-     *     description="Metodo put para permitir envio de imagenes",
-     *     in="header",
-     *     required=true, 
-     *     @OA\Schema(
-     *       type="string",
-     *       example="PUT"
-     *     ),
-     *   ),
-     *   @OA\Parameter(
      *     name="Juego",
      *     in="query",
      *     required=true,
-     *     description="{nombre, descripcion, desarrolladora, fecha, imagen}",
+     *     description="{nombre, descripcion, desarrolladora, fecha, slug, imagen}",
      *     @OA\Schema(
      *       @OA\Property(property="nombre", ref="#/components/schemas/Api/properties/nombre"),
      *       @OA\Property(property="descripcion", ref="#/components/schemas/Api/properties/descripcion"),
      *       @OA\Property(property="desarrolladora", ref="#/components/schemas/Api/properties/desarrolladora"),
      *       @OA\Property(property="fecha", ref="#/components/schemas/Api/properties/fecha"),
+     *       @OA\Property(property="slug", ref="#/components/schemas/Api/properties/slug"),
      *     ),
      *   ),
      *   @OA\RequestBody(
@@ -192,9 +173,9 @@ class ApiController extends Controller
      * )
      *
      */
-    public function update($slug, Request $request)
+    public function update(Request $request)
     {
-        $juego = $this->api->show_id($slug);
+        $juego = $this->api->show_id($request->input('slug'));
         if (isset($juego->original['error'])) {
             return $juego;
         } else {
@@ -288,6 +269,11 @@ class ApiController extends Controller
     public function filter(Request $request)
     {
         $juegos = $this->api->search($request);
-        return response()->json(ApiResource::collection(($juegos)), 200);
+        
+        if (isset($juegos->original)) {
+          return $juegos;
+        } else {
+          return response()->json(ApiResource::collection(($juegos)), 200);
+        }
     }
 }
