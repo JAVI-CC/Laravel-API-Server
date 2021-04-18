@@ -173,5 +173,246 @@ class JuegoSeeder extends Seeder
             'fecha' => '2020-07-17', 
             'slug' => 'ghost-of-tsushima',
         ]);
+
+        DB::table('juegos')->insert([
+            'nombre' => 'Super Mario 64',
+            'descripcion' => 'Super Mario 64 es un videojuego de plataformas de mundo abierto para la videoconsola Nintendo 64, desarrollado por Nintendo Entertainment Analysis and Development y publicado por la propia Nintendo.',
+            'desarrolladora' => 'Nintendo Entertainment',
+            'fecha' => '1996-06-23', 
+            'slug' => 'super-mario-64',
+        ]);
+
+        DB::table('juegos')->insert([
+            'nombre' => 'The Legend of Zelda Ocarina of Time',
+            'descripcion' => 'The Legend of Zelda: Ocarina of Time 3D es un juego de acción y aventuras desarrollado por Grezzo y publicado por Nintendo para la consola de juegos portátil Nintendo 3DS.',
+            'desarrolladora' => 'Nintendo Entertainment',
+            'fecha' => '2011-06-21', 
+            'slug' => 'the-Legend-of-zelda-ocarina-of-time-3d',
+        ]);
+
+        DB::table('juegos')->insert([
+            'nombre' => 'Horizon Zero Dawn',
+            'descripcion' => 'Horizon Zero Dawn es un videojuego de acción, aventura y de mundo abierto desarrollado por Guerrilla Games y distribuido por Sony Interactive Entertainment.',
+            'desarrolladora' => 'Guerrilla Games',
+            'fecha' => '2017-02-28', 
+            'slug' => 'horizon-zero-dawn',
+        ]);
+
+        DB::table('juegos')->insert([
+            'nombre' => 'Minecraft',
+            'descripcion' => 'Minecraft es un juego de mundo abierto, por lo que no posee un objetivo específico, permitiéndole al jugador una gran libertad en cuanto a la elección de su forma de jugar.',
+            'desarrolladora' => 'Mojang Studios',
+            'fecha' => '2011-11-28', 
+            'slug' => 'minecraft',
+        ]);
+
+        DB::table('juegos')->insert([
+            'nombre' => 'Splatton 2',
+            'descripcion' => 'La acción transcurre dos años después del último festival de Splatoon, en el que Tina derrotó a su prima Mar en la encuesta de popularidad del dúo que ambas forman, las Calamarciñas.',
+            'desarrolladora' => 'Nintendo Entertainment',
+            'fecha' => '2017-07-21', 
+            'slug' => 'splatoon-2',
+        ]);
+
+        DB::table('juegos')->insert([
+            'nombre' => 'Cyberpunk 2077',
+            'descripcion' => 'Siendo una adaptación del juego de rol de mesa Cyberpunk 2020, se establece cincuenta y siete años más tarde en la ciudad distópica de Night City, California. Es un mundo abierto con seis distritos diferentes.',
+            'desarrolladora' => 'CD Projekt RED',
+            'fecha' => '2020-12-10', 
+            'slug' => 'cyberpunk-2077',
+        ]);
+
+        DB::table('juegos')->insert([
+            'nombre' => 'Metal Gear Solid',
+            'descripcion' => 'Metal Gear Solid sigue a Solid Snake, un soldado que se infiltra en una instalación de armas nucleares para neutralizar la amenaza terrorista de FOXHOUND, una unidad genéticamente mejorada de fuerzas especiales.​',
+            'desarrolladora' => 'Konami',
+            'fecha' => '1998-09-03', 
+            'slug' => 'metal-gear-solid',
+        ]);
+
+        DB::table('juegos')->insert([
+            'nombre' => 'Gears 5',
+            'descripcion' => 'Tras los eventos de Gears of War 4, el mundo se está desmoronando. La dependencia de la tecnología de los humanos se ha convertido en su caída y los enemigos se están uniendo para eliminar a todos los supervivientes.',
+            'desarrolladora' => 'The Coalition',
+            'fecha' => '2019-09-10', 
+            'slug' => 'gears-5',
+        ]);
+
+        DB::table('juegos')->insert([
+            'nombre' => 'Zombie Army 4',
+            'descripcion' => 'Es una secuela del juego recopilatorio de 2015 Zombie Army Trilogy, un spin-off de la serie Sniper Elite.',
+            'desarrolladora' => 'Rebellion Developments',
+            'fecha' => '2020-02-04', 
+            'slug' => 'zombie-army-4',
+        ]);
+
+        DB::table('juegos')->insert([
+            'nombre' => 'Fallout 4',
+            'descripcion' => 'Como es común en el título, puedes volver a elegir entre un modo en primera persona y tercera persona, y donde puedes ir con total libertad a cualquier punto del mapa.',
+            'desarrolladora' => 'Bethesda Game Studios',
+            'fecha' => '2015-11-10', 
+            'slug' => 'fallout-4',
+        ]);
+
+        DB::table('juegos')->insert([
+            'nombre' => 'Los Simpsons el videojuego',
+            'descripcion' => 'El juego tiene 16 niveles y todos tienen relación con los capítulos de Los Simpson. Se ha revelado que los jugadores podrán controlar cuatro de los cinco miembros de la familia con sus propios niveles y capacidades únicas.',
+            'desarrolladora' => 'Electronic Arts',
+            'fecha' => '2007-10-30', 
+            'slug' => 'los-simpsons-el-videojuego',
+        ]);
+
+        DB::table('juegos')->insert([
+            'nombre' => 'Metroid Prime 2 Echoes',
+            'descripcion' => 'Transcurridos seis meses desde los eventos de Metroid Prime, Samus Aran ha sido contratada por la Federación Galáctica para investigar la desaparición de un grupo de soldados en el planeta Aether.',
+            'desarrolladora' => 'Retro Studios',
+            'fecha' => '2005-05-16', 
+            'slug' => 'metroid-prime-2-echoes',
+        ]);
+
+        DB::table('juegos')->insert([
+            'nombre' => 'Far Cry 3',
+            'descripcion' => 'Far Cry 3 es un videojuego de disparos en primera persona, que contiene elementos de un videojuego de rol, tales como los puntos de experiencia,árboles de habilidades y un menú de creación.',
+            'desarrolladora' => 'Ubisoft Montreal',
+            'fecha' => '2012-11-29', 
+            'slug' => 'far-cry-3',
+        ]);
+
+        DB::table('juegos')->insert([
+            'nombre' => 'Mario Kart 8',
+            'descripcion' => 'La jugabilidad principal sigue siendo la misma de las ediciones anteriores de Mario Kart. Incluye el mismo diseño de Karts de Mario Kart 7, se puede planear con ala deltas y conducir bajo el agua como en la entrega anterior.',
+            'desarrolladora' => 'Nintendo EAD',
+            'fecha' => '2014-05-29', 
+            'slug' => 'mario-kart-8',
+        ]);
+
+        DB::table('juegos')->insert([
+            'nombre' => 'Final Fantasy VII Remake',
+            'descripcion' => 'La nueva versión de Final Fantasy VII, vuelve a contar la historia del videojuego original, que sigue a Cloud Strife, un exsoldado de Shinra que se une al grupo ecoterrorista AVALANCHE como un mercenario para luchar contra la corporación Shinra.',
+            'desarrolladora' => 'Square Enix',
+            'fecha' => '2020-04-10', 
+            'slug' => 'final-fantasy-vii-remake',
+        ]);
+
+        DB::table('juegos')->insert([
+            'nombre' => 'A Way Out',
+            'descripcion' => 'A Way Out es un videojuego de acción-aventura jugado desde la perspectiva de tercera persona. Está diseñado para ser jugado en cooperativo a pantalla partida, lo que significa que debe ser jugado con otro jugador tanto en línea como local.',
+            'desarrolladora' => 'Electronics Arts',
+            'fecha' => '2018-03-23', 
+            'slug' => 'a-way-out',
+        ]);
+
+        DB::table('juegos')->insert([
+            'nombre' => 'The Witcher 3 Wild Hunt',
+            'descripcion' => 'The Witcher 3: Wild Hunt es un juego de rol de acción con una perspectiva en tercera persona . Los jugadores controlan a Geralt de Rivia, un cazador de monstruos conocido como brujo. Geralt camina, corre, rueda y esquiva.',
+            'desarrolladora' => 'CD Projekt Red',
+            'fecha' => '2015-05-19', 
+            'slug' => 'the-witcher-3-wild-hunt',
+        ]);
+
+        DB::table('juegos')->insert([
+            'nombre' => 'Red Dead Redemption 2',
+            'descripcion' => 'Al igual que la primera entrega, Red Dead Redemption 2 es un juego de acción y aventura, jugado tanto como primera como tercera persona.',
+            'desarrolladora' => 'Rockstar Games',
+            'fecha' => '2018-10-26', 
+            'slug' => 'red-dead-redemption-2',
+        ]);
+
+        DB::table('juegos')->insert([
+            'nombre' => 'Pokémon Lets Go, Pikachu! y Lets Go, Eevee!',
+            'descripcion' => 'Los juegos se desarrollan en la región de Kanto. Cuenta con los elementos comunes de la franquicia, como entrenadores pokémon y combates de gimnasio.',
+            'desarrolladora' => 'Game Freak',
+            'fecha' => '2018-11-16', 
+            'slug' => 'pokemon-Lets-go-pikachu-eevee',
+        ]);
+
+        DB::table('juegos')->insert([
+            'nombre' => 'Crash Team Racing Nitro-Fueled',
+            'descripcion' => 'La dinámica del videojuego es similar al original, la cual consistía en disputar distintas modalidades de carreras junto a una serie de contrincantes a los que se puede atacar mediante diversas armas.',
+            'desarrolladora' => 'Beenox',
+            'fecha' => '2019-06-21', 
+            'slug' => 'crash-team-racing-nitro-fueled',
+        ]);
+
+        DB::table('juegos')->insert([
+            'nombre' => 'The Last Guardian',
+            'descripcion' => 'The Last Guardian es un videojuego en tercera persona que combina elementos de acción y aventura con rompecabezas. El jugador controla a un niño sin nombre que debe cooperar con la criatura mitad pájaro y mitad mamífero.',
+            'desarrolladora' => 'genDesign',
+            'fecha' => '2016-12-06', 
+            'slug' => 'the-last-guardian',
+        ]);
+
+        DB::table('juegos')->insert([
+            'nombre' => 'Monster Hunter World',
+            'descripcion' => 'Monster Hunter: World es un videojuego de rol y acción, ambientado en un entorno de mundo abierto, y jugado desde una perspectiva en tercera persona. Al igual que en los juegos anteriores de la serie.',
+            'desarrolladora' => 'Capcom',
+            'fecha' => '2018-01-26', 
+            'slug' => 'monster-hunter-world',
+        ]);
+
+        DB::table('juegos')->insert([
+            'nombre' => 'Killing Floor 2',
+            'descripcion' => 'Killing Floor 2 es un videojuego de disparos en primera persona que se puede jugar solo o de forma cooperativa con hasta seis jugadores.',
+            'desarrolladora' => 'Tripwire Interactive',
+            'fecha' => '2016-11-18', 
+            'slug' => 'killing-floor-2',
+        ]);
+
+        DB::table('juegos')->insert([
+            'nombre' => 'Sekiro Shadows Die Twice',
+            'descripcion' => 'En un reinventado período Sengoku de finales del siglo XVI en Japón, el señor de la guerra Isshin Ashina organizó un golpe sangriento y tomó el control de la tierra de Ashina del Ministerio del Interior.',
+            'desarrolladora' => 'From Software',
+            'fecha' => '2019-03-22', 
+            'slug' => 'sekiro-shadows-die-twice',
+        ]);
+
+        DB::table('juegos')->insert([
+            'nombre' => 'Resident Evil 7 BioHazard',
+            'descripcion' => 'Resident Evil 7 es el primer título de la saga principal que emplea una perspectiva en primera persona. A diferencia de otros videojuegos más cercanos al género del horror puro, como Amnesia: The Dark Descent y Outlast.',
+            'desarrolladora' => 'Capcom',
+            'fecha' => '2017-01-24', 
+            'slug' => 'resident-evil-7-biohazard',
+        ]);
+
+        DB::table('juegos')->insert([
+            'nombre' => 'Resident Evil 4',
+            'descripcion' => 'Resident Evil 4 cuenta con un personaje principal llamado Leon S. Kennedy. Este es el principal protagonista masculino controlable de la franquicia debido a su popularidad dicho esto por el mismo Shinji Mikami.',
+            'desarrolladora' => 'Capcom',
+            'fecha' => '2005-01-11', 
+            'slug' => 'resident-evil-4',
+        ]);
+
+        DB::table('juegos')->insert([
+            'nombre' => 'Mafia Definitive Edition',
+            'descripcion' => 'En 1930, durante la Gran Depresión, dos miembros de la familia Salieri, Paulie Lombardo y Sam Trapani, obligan al taxista empobrecido Tommy Angelo a ayudarlos a escapar de una emboscada de la familia Morello.',
+            'desarrolladora' => 'Hangar 13',
+            'fecha' => '2020-09-25', 
+            'slug' => 'mafia-definitive-editon',
+        ]);
+
+        DB::table('juegos')->insert([
+            'nombre' => 'The Last of Us Part 2',
+            'descripcion' => 'En las afueras de Jackson (Wyoming), Joel relata los eventos de Salt Lake City, el escape de St. Marys Hospital y la mentira que le dijo a Ellie para protegerla de la verdad; a su hermano Tommy.',
+            'desarrolladora' => 'Naughty Dog',
+            'fecha' => '2020-06-19', 
+            'slug' => 'the-last-of-us-part-2',
+        ]);
+
+        DB::table('juegos')->insert([
+            'nombre' => 'Kingdom Come Deliverance',
+            'descripcion' => 'Kingdom Come: Deliverance es un videojuego de rol y acción ambientado en un mundo abierto y jugado desde una perspectiva en primera persona que utiliza un sistema RPG sin clases.',
+            'desarrolladora' => 'Warhorse Studios',
+            'fecha' => '2018-02-13', 
+            'slug' => 'kingdom-come-deliverance',
+        ]);
+
+        DB::table('juegos')->insert([
+            'nombre' => 'Need For Speed Hot Pursuit',
+            'descripcion' => 'El juego está inspirado en Need for Speed: Hot Pursuit original, basado a su vez en las persecuciones de alta velocidad con autos exóticos. Como se ha visto en juegos anteriores.',
+            'desarrolladora' => 'Criterion Games',
+            'fecha' => '2010-11-16', 
+            'slug' => 'need-for-speed-hot-pursuit',
+        ]);
+
     }
 }
