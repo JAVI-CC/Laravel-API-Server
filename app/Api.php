@@ -123,18 +123,18 @@ class Api extends Model
     public function upload_imagen($id, $slug, $imagen) {
         $filename = "eliminar." .$imagen->getClientOriginalExtension();
         $filenamePNG = $id . "-" . $slug . ".png";
-        $imagen->move(storage_path('media/juegos/'), $filename);
-        imagepng(imagecreatefromstring(file_get_contents(storage_path('media/juegos/'.$filename))), storage_path('media/juegos/'.$filenamePNG));
-        File::delete(File::glob(storage_path('media/juegos/eliminar.*')));
+        $imagen->move(storage_path('app/public/media/juegos/'), $filename);
+        imagepng(imagecreatefromstring(file_get_contents(storage_path('app/public/media/juegos/'.$filename))), storage_path('app/public/media/juegos/'.$filenamePNG));
+        File::delete(File::glob(storage_path('app/public/media/juegos/eliminar.*')));
     }
 
     public function update_imagen($id, $slug, $imagen) {
-        File::delete(File::glob(storage_path('media/juegos/'.$id.'-*')));
+        File::delete(File::glob(storage_path('app/public/media/juegos/'.$id.'-*')));
         API::upload_imagen($id, $slug, $imagen);
     }
 
     public function delete_imagen($id) {
-        File::delete(File::glob(storage_path('media/juegos/'.$id.'-*')));
+        File::delete(File::glob(storage_path('app/public/media/juegos/'.$id.'-*')));
     }
 
     public function search($request)
