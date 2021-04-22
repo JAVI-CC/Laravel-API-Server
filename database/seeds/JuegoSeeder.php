@@ -20,6 +20,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Ubisoft',
             'fecha' => '2015-12-01', 
             'slug' => 'rainbow-six-siege',
+            'url_imagen' => 'https://www.dropbox.com/s/f1v7ymtjftj0ue4/1-rainbow-six-siege.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -28,6 +29,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'SIE Bend Studio',
             'fecha' => '2019-04-26', 
             'slug' => 'days-gone',
+            'url_imagen' => 'https://www.dropbox.com/s/90rdw0a57pej2su/2-days-gone.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -36,6 +38,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Electronics Arts',
             'fecha' => '2016-10-21', 
             'slug' => 'battlefield-1',
+            'url_imagen' => 'https://www.dropbox.com/s/wghqqqzekzs71zr/3-battlefield-1.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -44,6 +47,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Vicarious Visions',
             'fecha' => '2017-06-30', 
             'slug' => 'crash-bandicoot-n-sane-trilogy',
+            'url_imagen' => 'https://www.dropbox.com/s/wk0wulndv78m3wr/4-crash-bandicoot-n-sane-trilogy.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -52,6 +56,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Bluepoint Games',
             'fecha' => '2018-02-17', 
             'slug' => 'shadow-of-the-colossus',
+            'url_imagen' => 'https://www.dropbox.com/s/q6wg9ijkwbigfer/5-shadow-of-the-colossus.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -60,6 +65,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'From Software',
             'fecha' => '2018-05-24', 
             'slug' => 'dark-souls-remastered',
+            'url_imagen' => 'https://www.dropbox.com/s/vf0en3lbc5htw0f/6-dark-souls-remastered.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -68,6 +74,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Id Software',
             'fecha' => '2020-03-20', 
             'slug' => 'doom-eternal',
+            'url_imagen' => 'https://www.dropbox.com/s/ogwwzeuvnk7wxxd/7-doom-eternal.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -76,6 +83,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Rockstar North',
             'fecha' => '2013-09-13', 
             'slug' => 'grand-theft-auto-v',
+            'url_imagen' => 'https://www.dropbox.com/s/h3yl93k5ulwmli6/8-grand-theft-auto-v.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -84,6 +92,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'From Software',
             'fecha' => '2015-03-24', 
             'slug' => 'bloodborne',
+            'url_imagen' => 'https://www.dropbox.com/s/kr5usqsz8rzogpe/9-bloodborne.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -92,6 +101,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Toys for Bob',
             'fecha' => '2018-11-13',
             'slug' => 'spyro-reignited-trilogy', 
+            'url_imagen' => 'https://www.dropbox.com/s/4q5iyvo8t9j4oi7/10-spyro-reignited-trilogy.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -100,6 +110,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Rebelion',
             'fecha' => '2015-03-15', 
             'slug' => 'zombie-army-trilogy',
+            'url_imagen' => 'https://www.dropbox.com/s/rgz928s5t8yzoue/11-zombie-army-trilogy.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -108,6 +119,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'StudioMDHR',
             'fecha' => '2017-09-29', 
             'slug' => 'cuphead',
+            'url_imagen' => 'https://www.dropbox.com/s/hyi4pzmnatyxh1r/12-cuphead.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -116,6 +128,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Bungie Studios',
             'fecha' => '2007-09-25', 
             'slug' => 'halo-3',
+            'url_imagen' => 'https://www.dropbox.com/s/z1cptroz4d5qzo8/13-halo-3.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -124,6 +137,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Other Ocean',
             'fecha' => '2019-10-25', 
             'slug' => 'medievil',
+            'url_imagen' => 'https://www.dropbox.com/s/3awo5d8u1anadn5/14-medievil.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -132,6 +146,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Radical Entertainment',
             'fecha' => '2003-09-16', 
             'slug' => 'the-simpsons-hit-run',
+            'url_imagen' => 'https://www.dropbox.com/s/buzvyafg2a2338h/15-the-simpsons-hit-run.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -140,6 +155,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'From Software',
             'fecha' => '2014-04-15', 
             'slug' => 'dark-souls-ii-scholar-of-the-first-sin',
+            'url_imagen' => 'https://www.dropbox.com/s/jsmj5vqao32hrd4/16-dark-souls-ii-scholar-of-the-first-sin.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -148,6 +164,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'From Software',
             'fecha' => '2017-04-21', 
             'slug' => 'dark-souls-iii-the-fire-fades-edition',
+            'url_imagen' => 'https://www.dropbox.com/s/218rjkp7e6s3fwp/17-dark-souls-iii-the-fire-fades-edition.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -156,6 +173,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Id Software',
             'fecha' => '2016-05-13', 
             'slug' => 'doom',
+            'url_imagen' => 'https://www.dropbox.com/s/9t6jl2vwhbwt73w/18-doom.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -164,6 +182,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Sant Monica Studio',
             'fecha' => '2018-04-20', 
             'slug' => 'god-of-war',
+            'url_imagen' => 'https://www.dropbox.com/s/rp84uex5arzynw0/19-god-of-war.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -172,6 +191,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Sucker Punch Productions',
             'fecha' => '2020-07-17', 
             'slug' => 'ghost-of-tsushima',
+            'url_imagen' => 'https://www.dropbox.com/s/zmxhzlmtvjbhreu/20-ghost-of-tsushima.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -180,6 +200,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Nintendo Entertainment',
             'fecha' => '1996-06-23', 
             'slug' => 'super-mario-64',
+            'url_imagen' => 'https://www.dropbox.com/s/s4es3c470pi1ef6/21-super-mario-64.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -188,6 +209,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Nintendo Entertainment',
             'fecha' => '2011-06-21', 
             'slug' => 'the-Legend-of-zelda-ocarina-of-time-3d',
+            'url_imagen' => 'https://www.dropbox.com/s/ld5whldgtv62zfp/22-the-Legend-of-zelda-ocarina-of-time-3d.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -196,6 +218,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Guerrilla Games',
             'fecha' => '2017-02-28', 
             'slug' => 'horizon-zero-dawn',
+            'url_imagen' => 'https://www.dropbox.com/s/83wjls0qaad6q8k/23-horizon-zero-dawn.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -204,6 +227,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Mojang Studios',
             'fecha' => '2011-11-28', 
             'slug' => 'minecraft',
+            'url_imagen' => 'https://www.dropbox.com/s/fckvytwabllm0xp/24-minecraft.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -212,6 +236,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Nintendo Entertainment',
             'fecha' => '2017-07-21', 
             'slug' => 'splatoon-2',
+            'url_imagen' => 'https://www.dropbox.com/s/vhy2r9ohixufgpx/25-splatoon-2.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -220,6 +245,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'CD Projekt RED',
             'fecha' => '2020-12-10', 
             'slug' => 'cyberpunk-2077',
+            'url_imagen' => 'https://www.dropbox.com/s/jdz0rirl6vv5uoc/26-cyberpunk-2077.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -228,6 +254,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Konami',
             'fecha' => '1998-09-03', 
             'slug' => 'metal-gear-solid',
+            'url_imagen' => 'https://www.dropbox.com/s/9exvdj7bwk5ptgi/27-metal-gear-solid.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -236,6 +263,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'The Coalition',
             'fecha' => '2019-09-10', 
             'slug' => 'gears-5',
+            'url_imagen' => 'https://www.dropbox.com/s/8yvcmhn8fz6rii5/28-gears-5.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -244,6 +272,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Rebellion Developments',
             'fecha' => '2020-02-04', 
             'slug' => 'zombie-army-4',
+            'url_imagen' => 'https://www.dropbox.com/s/lf8qsv6d8kx4n0s/29-zombie-army-4.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -252,6 +281,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Bethesda Game Studios',
             'fecha' => '2015-11-10', 
             'slug' => 'fallout-4',
+            'url_imagen' => 'https://www.dropbox.com/s/bj978fbgqsu310h/30-fallout-4.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -260,6 +290,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Electronic Arts',
             'fecha' => '2007-10-30', 
             'slug' => 'los-simpsons-el-videojuego',
+            'url_imagen' => 'https://www.dropbox.com/s/d1cs509vtceoirv/31-los-simpsons-el-videojuego.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -268,6 +299,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Retro Studios',
             'fecha' => '2005-05-16', 
             'slug' => 'metroid-prime-2-echoes',
+            'url_imagen' => 'https://www.dropbox.com/s/3l8c0xyx1y0hurl/32-metroid-prime-2-echoes.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -276,6 +308,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Ubisoft Montreal',
             'fecha' => '2012-11-29', 
             'slug' => 'far-cry-3',
+            'url_imagen' => 'https://www.dropbox.com/s/o8w8mj3v8l004my/33-far-cry-3.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -284,6 +317,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Nintendo EAD',
             'fecha' => '2014-05-29', 
             'slug' => 'mario-kart-8',
+            'url_imagen' => 'https://www.dropbox.com/s/4js23f8cv2kiscp/34-mario-kart-8.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -292,6 +326,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Square Enix',
             'fecha' => '2020-04-10', 
             'slug' => 'final-fantasy-vii-remake',
+            'url_imagen' => 'https://www.dropbox.com/s/x1kbg64j0823qpv/35-final-fantasy-vii-remake.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -300,6 +335,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Electronics Arts',
             'fecha' => '2018-03-23', 
             'slug' => 'a-way-out',
+            'url_imagen' => 'https://www.dropbox.com/s/qvtb87x1htefa9b/36-a-way-out.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -308,6 +344,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'CD Projekt Red',
             'fecha' => '2015-05-19', 
             'slug' => 'the-witcher-3-wild-hunt',
+            'url_imagen' => 'https://www.dropbox.com/s/g3qefs369xrr06t/37-the-witcher-3-wild-hunt.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -316,6 +353,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Rockstar Games',
             'fecha' => '2018-10-26', 
             'slug' => 'red-dead-redemption-2',
+            'url_imagen' => 'https://www.dropbox.com/s/8tvho16679skoc5/38-red-dead-redemption-2.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -324,6 +362,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Game Freak',
             'fecha' => '2018-11-16', 
             'slug' => 'pokemon-Lets-go-pikachu-eevee',
+            'url_imagen' => 'https://www.dropbox.com/s/078lgosbiffy6m2/39-pokemon-Lets-go-pikachu-eevee.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -332,6 +371,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Beenox',
             'fecha' => '2019-06-21', 
             'slug' => 'crash-team-racing-nitro-fueled',
+            'url_imagen' => 'https://www.dropbox.com/s/90hvimt5mmsj7ng/40-crash-team-racing-nitro-fueled.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -340,6 +380,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'genDesign',
             'fecha' => '2016-12-06', 
             'slug' => 'the-last-guardian',
+            'url_imagen' => 'https://www.dropbox.com/s/r6z3vsqjewlt56q/41-the-last-guardian.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -348,6 +389,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Capcom',
             'fecha' => '2018-01-26', 
             'slug' => 'monster-hunter-world',
+            'url_imagen' => 'https://www.dropbox.com/s/oh14odhtacu3ore/42-monster-hunter-world.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -356,6 +398,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Tripwire Interactive',
             'fecha' => '2016-11-18', 
             'slug' => 'killing-floor-2',
+            'url_imagen' => 'https://www.dropbox.com/s/00slom4pe5fd0pt/43-killing-floor-2.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -364,6 +407,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'From Software',
             'fecha' => '2019-03-22', 
             'slug' => 'sekiro-shadows-die-twice',
+            'url_imagen' => 'https://www.dropbox.com/s/ixiwrplywghkrft/44-sekiro-shadows-die-twice.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -372,6 +416,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Capcom',
             'fecha' => '2017-01-24', 
             'slug' => 'resident-evil-7-biohazard',
+            'url_imagen' => 'https://www.dropbox.com/s/j3co18leq3rn3w4/45-resident-evil-7-biohazard.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -380,6 +425,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Capcom',
             'fecha' => '2005-01-11', 
             'slug' => 'resident-evil-4',
+            'url_imagen' => 'https://www.dropbox.com/s/f3afzvksmjqwv28/46-resident-evil-4.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -388,6 +434,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Hangar 13',
             'fecha' => '2020-09-25', 
             'slug' => 'mafia-definitive-editon',
+            'url_imagen' => 'https://www.dropbox.com/s/nlfvkxsxep4pl5h/47-mafia-definitive-editon.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -396,6 +443,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Naughty Dog',
             'fecha' => '2020-06-19', 
             'slug' => 'the-last-of-us-part-2',
+            'url_imagen' => 'https://www.dropbox.com/s/zlu77u01qb7cm94/48-the-last-of-us-part-2.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -404,6 +452,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Warhorse Studios',
             'fecha' => '2018-02-13', 
             'slug' => 'kingdom-come-deliverance',
+            'url_imagen' => 'https://www.dropbox.com/s/51dhlr1l76yy104/49-kingdom-come-deliverance.png?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -412,6 +461,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Criterion Games',
             'fecha' => '2010-11-16', 
             'slug' => 'need-for-speed-hot-pursuit',
+            'url_imagen' => 'https://www.dropbox.com/s/r5t7y4qtgl09sjq/50-need-for-speed-hot-pursuit.png?raw=1',
         ]);
 
     }

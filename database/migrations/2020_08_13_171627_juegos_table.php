@@ -20,6 +20,7 @@ class JuegosTable extends Migration
             $table->string('desarrolladora');
             $table->date('fecha');
             $table->string('slug')->unique();
+            $table->string('url_imagen')->unique();
         });
     }
 

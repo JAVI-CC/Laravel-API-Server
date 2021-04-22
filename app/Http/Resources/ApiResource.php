@@ -20,7 +20,7 @@ class ApiResource extends JsonResource
             "desarrolladora" => $this->desarrolladora,
             "fecha" => $this->fecha,
             "slug" => $this->slug,
-            "imagen" => (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https://" : "http://") . $_SERVER['HTTP_HOST'] . '/media/juegos/' .$this->id. '-' .$this->slug. '.png',
+            "imagen" => $this->url_imagen,
         ];
     }
 }

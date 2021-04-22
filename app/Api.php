@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\File; 
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 
 /**
@@ -26,7 +27,7 @@ class Api extends Model
     public $timestamps = false;
     protected $table = 'juegos';
     protected $hidden = array('id');
-    protected $fillable = array('nombre', 'descripcion', 'desarrolladora', 'fecha', 'slug');
+    protected $fillable = array('nombre', 'descripcion', 'desarrolladora', 'fecha', 'url_imagen', 'slug');
 
     protected function convert_url($txt)
     {
@@ -83,9 +84,9 @@ class Api extends Model
     public function add_juego($request)
     {
         $slug = API::convert_url($request->nombre);
-        $request->request->add(['slug' => $slug]);
+        $url_imagen = API::upload_imagen($request->imagen);
+        $request->request->add(['slug' => $slug, 'url_imagen' => $url_imagen]);
         $juego = API::create(array_merge($request->all()));
-        API::upload_imagen($juego->id, $slug, $request->imagen);
         return $request->nombre;
     }
 
@@ -96,9 +97,9 @@ class Api extends Model
             return response()->json(['error' => 'Juego no encontrado']);
         } else {
             $slug = API::convert_url($request->nombre);
-            $request->request->add(['slug' => $slug]);
+            $url_imagen = API::update_imagen($id_juego['url_imagen'], $request->imagen);
+            $request->request->add(['slug' => $slug, 'url_imagen' => $url_imagen]);
             $id_juego->fill($request->all())->save();
-            API::update_imagen($id_juego['id'], $slug, $request->imagen);
             return response()->json(['success' => 'Se ha modificado correctamente el juego: ' . $id_juego->nombre]);
         }
     }
@@ -109,7 +110,7 @@ class Api extends Model
             return response()->json(['error' => 'Juego no encontrado']);
         } else {
             $id_juego->delete();
-            API::delete_imagen($id_juego['id']);
+            API::delete_imagen($id_juego['url_imagen']);
             return response()->json(['success' => 'Se ha eliminado correctamente el juego: ' . $id_juego->nombre]);
         }
     }
@@ -121,21 +122,30 @@ class Api extends Model
         return $juego;
     }
 
-    public function upload_imagen($id, $slug, $imagen) {
-        $filename = "eliminar." .$imagen->getClientOriginalExtension();
-        $filenamePNG = $id . "-" . $slug . ".png";
-        $imagen->move(public_path('media/juegos/'), $filename);
-        imagepng(imagecreatefromstring(file_get_contents(public_path('media/juegos/'.$filename))), public_path('media/juegos/'.$filenamePNG));
-        File::delete(File::glob(public_path('media/juegos/eliminar.*')));
+    public function upload_imagen($imagen) {
+        
+        $ruta_enlace = Storage::disk('dropbox')->put('/media/juegos', $imagen);
+
+        $dropbox = Storage::disk('dropbox')->getDriver()->getAdapter()->getClient();
+        
+        $response_enlace = $dropbox->createSharedLinkWithSettings($ruta_enlace, ["requested_visibility" => "public"]);
+
+        $url_enlace = str_replace('dl=0','raw=1',$response_enlace['url']);
+
+        return $url_enlace;
     }
 
-    public function update_imagen($id, $slug, $imagen) {
-        File::delete(File::glob(public_path('media/juegos/'.$id.'-*')));
-        API::upload_imagen($id, $slug, $imagen);
+    public function update_imagen($imagen, $imagen_nueva) {
+        API::delete_imagen($imagen);
+        $url_enlace = API::upload_imagen($imagen_nueva);
+        return $url_enlace;
     }
 
-    public function delete_imagen($id) {
-        File::delete(File::glob(public_path('media/juegos/'.$id.'-*')));
+    public function delete_imagen($imagen) {
+        $url_imagen = str_replace('?raw=1', '', $imagen);
+        $url_imagen = str_replace('https://www.dropbox.com/s/', '', $url_imagen);
+        $url_imagen = substr($url_imagen, 16);
+        Storage::disk('dropbox')->delete('media/juegos/'.$url_imagen);
     }
 
     public function search($request)
