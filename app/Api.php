@@ -84,7 +84,7 @@ class Api extends Model
     public function add_juego($request)
     {
         $slug = $this->convert_url($request->nombre);
-
+        $dropbox = new Dropbox();
         $url_imagen = $dropbox->upload_imagen($request->imagen);
         $request->request->add(['slug' => $slug, 'url_imagen' => $url_imagen]);
         $juego = $this->create(array_merge($request->all()));

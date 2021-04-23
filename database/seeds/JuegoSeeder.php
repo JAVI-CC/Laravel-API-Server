@@ -416,7 +416,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Capcom',
             'fecha' => '2017-01-24', 
             'slug' => 'resident-evil-7-biohazard',
-            'url_imagen' => 'https://www.dropbox.com/s/j3co18leq3rn3w4/45-resident-evil-7-biohazard.png?raw=1',
+            'url_imagen' => 'https://www.dropbox.com/s/lea09yl9vjchye8/45-resident-evil-7-biohazard.jpg?raw=1',
         ]);
 
         DB::table('juegos')->insert([
@@ -425,7 +425,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Capcom',
             'fecha' => '2005-01-11', 
             'slug' => 'resident-evil-4',
-            'url_imagen' => 'https://www.dropbox.com/s/f3afzvksmjqwv28/46-resident-evil-4.png?raw=1',
+            'url_imagen' => 'https://www.dropbox.com/s/mieljn30tv3ox6u/46-resident-evil-4.jpg?raw=1',
         ]);
 
         DB::table('juegos')->insert([
