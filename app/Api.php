@@ -2,10 +2,10 @@
 
 namespace App;
 
+use App\Dropbox;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\File; 
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Storage;
 
 
 /**
@@ -83,10 +83,11 @@ class Api extends Model
 
     public function add_juego($request)
     {
-        $slug = API::convert_url($request->nombre);
-        $url_imagen = API::upload_imagen($request->imagen);
+        $slug = $this->convert_url($request->nombre);
+
+        $url_imagen = $dropbox->upload_imagen($request->imagen);
         $request->request->add(['slug' => $slug, 'url_imagen' => $url_imagen]);
-        $juego = API::create(array_merge($request->all()));
+        $juego = $this->create(array_merge($request->all()));
         return $request->nombre;
     }
 
@@ -96,8 +97,9 @@ class Api extends Model
         if ($id_juego == null) {
             return response()->json(['error' => 'Juego no encontrado']);
         } else {
-            $slug = API::convert_url($request->nombre);
-            $url_imagen = API::update_imagen($id_juego['url_imagen'], $request->imagen);
+            $slug = $this->convert_url($request->nombre);
+            $dropbox = new Dropbox();
+            $url_imagen = $dropbox->update_imagen($id_juego['url_imagen'], $request->imagen);
             $request->request->add(['slug' => $slug, 'url_imagen' => $url_imagen]);
             $id_juego->fill($request->all())->save();
             return response()->json(['success' => 'Se ha modificado correctamente el juego: ' . $id_juego->nombre]);
@@ -110,42 +112,17 @@ class Api extends Model
             return response()->json(['error' => 'Juego no encontrado']);
         } else {
             $id_juego->delete();
-            API::delete_imagen($id_juego['url_imagen']);
+            $dropbox = new Dropbox();
+            $dropbox->delete_imagen($id_juego['url_imagen']);
             return response()->json(['success' => 'Se ha eliminado correctamente el juego: ' . $id_juego->nombre]);
         }
     }
 
     public function show_id($slug)
     {
-        $juego = Api::WHERE('slug', $slug)->first();
-        $juego = Api::exists_slug($juego);
+        $juego = $this->WHERE('slug', $slug)->first();
+        $juego = $this->exists_slug($juego);
         return $juego;
-    }
-
-    public function upload_imagen($imagen) {
-        
-        $ruta_enlace = Storage::disk('dropbox')->put('/media/juegos', $imagen);
-
-        $dropbox = Storage::disk('dropbox')->getDriver()->getAdapter()->getClient();
-        
-        $response_enlace = $dropbox->createSharedLinkWithSettings($ruta_enlace, ["requested_visibility" => "public"]);
-
-        $url_enlace = str_replace('dl=0','raw=1',$response_enlace['url']);
-
-        return $url_enlace;
-    }
-
-    public function update_imagen($imagen, $imagen_nueva) {
-        API::delete_imagen($imagen);
-        $url_enlace = API::upload_imagen($imagen_nueva);
-        return $url_enlace;
-    }
-
-    public function delete_imagen($imagen) {
-        $url_imagen = str_replace('?raw=1', '', $imagen);
-        $url_imagen = str_replace('https://www.dropbox.com/s/', '', $url_imagen);
-        $url_imagen = substr($url_imagen, 16);
-        Storage::disk('dropbox')->delete('media/juegos/'.$url_imagen);
     }
 
     public function search($request)
@@ -162,7 +139,7 @@ class Api extends Model
             $request->order = 'DESC';
         }
 
-        $juegos = Api::WHERE('nombre', 'LIKE', '%' . $request->search . '%')
+        $juegos = $this->WHERE('nombre', 'LIKE', '%' . $request->search . '%')
             ->OrWhere('desarrolladora', 'LIKE', '%' . $request->search . '%')
             ->OrWhere('descripcion', 'LIKE', '%' . $request->search . '%')
             ->OrWhere('fecha', 'LIKE', '%' . $request->search . '%')
