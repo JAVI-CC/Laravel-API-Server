@@ -173,7 +173,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Id Software',
             'fecha' => '2016-05-13', 
             'slug' => 'doom',
-            'url_imagen' => 'https://www.dropbox.com/s/9t6jl2vwhbwt73w/18-doom.png?raw=1',
+            'url_imagen' => 'https://www.dropbox.com/s/19bu1amafji4ftt/18-doom.jpg?raw=1',
         ]);
 
         DB::table('juegos')->insert([
