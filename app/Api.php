@@ -139,10 +139,10 @@ class Api extends Model
             $request->order = 'DESC';
         }
 
-        $juegos = $this->WHERE('nombre', 'LIKE', '%' . $request->search . '%')
-            ->OrWhere('desarrolladora', 'LIKE', '%' . $request->search . '%')
-            ->OrWhere('descripcion', 'LIKE', '%' . $request->search . '%')
-            ->OrWhere('fecha', 'LIKE', '%' . $request->search . '%')
+        $juegos = $this->WHERE('nombre', 'ILIKE', '%' . $request->search . '%')
+            ->OrWhere('desarrolladora', 'ILIKE', '%' . $request->search . '%')
+            ->OrWhere('descripcion', 'ILIKE', '%' . $request->search . '%')
+            ->OrWhere('fecha', 'ILIKE', '%' . $request->search . '%')
             ->orderBy($request->filter, $request->order)->get();
 
 
