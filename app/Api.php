@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\File; 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -71,6 +72,25 @@ class Api extends Model
         return $validator;
     }
 
+    public function validation_update_without_image($request, $nombre)
+    {
+
+        if ($request->nombre == $nombre) {
+            $exp = '';
+        } else {
+            $exp = '|unique:juegos';
+        }
+
+        $validator = Validator::make($request->all(), [
+            'nombre' => 'required|min:2|max:255' . $exp,
+            'descripcion' => 'required|min:10|max:255',
+            'desarrolladora' => 'required|min:2|max:255',
+            'fecha' => 'required|date_format:Y-m-d',
+        ]);
+
+        return $validator;
+    }
+
     public function exists_slug($id_juego)
     {
         if ($id_juego == null) {
@@ -82,10 +102,10 @@ class Api extends Model
 
     public function add_juego($request)
     {
-        $slug = API::convert_url($request->nombre);
+        $slug = $this->convert_url($request->nombre);
         $request->request->add(['slug' => $slug]);
-        $juego = API::create(array_merge($request->all()));
-        API::upload_imagen($juego->id, $slug, $request->imagen);
+        $juego = $this->create(array_merge($request->all()));
+        $this->upload_imagen($juego->id, $slug, $request->imagen);
         return $request->nombre;
     }
 
@@ -95,10 +115,29 @@ class Api extends Model
         if ($id_juego == null) {
             return response()->json(['error' => 'Juego no encontrado']);
         } else {
-            $slug = API::convert_url($request->nombre);
+            $slug = $this->convert_url($request->nombre);
             $request->request->add(['slug' => $slug]);
             $id_juego->fill($request->all())->save();
-            API::update_imagen($id_juego['id'], $slug, $request->imagen);
+            $this->update_imagen($id_juego['id'], $slug, $request->imagen);
+            return response()->json(['success' => 'Se ha modificado correctamente el juego: ' . $id_juego->nombre]);
+        }
+    }
+
+    public function exists_id_update_without_image($id_juego, $request)
+    {
+
+        if ($id_juego == null) {
+            return response()->json(['error' => 'Juego no encontrado']);
+        } else {
+            $slug = $this->convert_url($request->nombre);
+            $slug_antiguo = $request->input('slug');
+            $request->request->add(['slug' => $slug]);
+            $id_juego->fill($request->all())->save();
+
+            //Cambiar el nombre del archivo
+            $id = $this->where('slug', $request->input('slug'))->first()->id;
+            FILE::move(public_path('media/juegos/'.$id.'-'.$slug_antiguo.'.png'), public_path('media/juegos/'.$id.'-'.$slug.'.png'));
+
             return response()->json(['success' => 'Se ha modificado correctamente el juego: ' . $id_juego->nombre]);
         }
     }
@@ -109,15 +148,15 @@ class Api extends Model
             return response()->json(['error' => 'Juego no encontrado']);
         } else {
             $id_juego->delete();
-            API::delete_imagen($id_juego['id']);
+            $this->delete_imagen($id_juego['id']);
             return response()->json(['success' => 'Se ha eliminado correctamente el juego: ' . $id_juego->nombre]);
         }
     }
 
     public function show_id($slug)
     {
-        $juego = Api::WHERE('slug', $slug)->first();
-        $juego = Api::exists_slug($juego);
+        $juego = $this->WHERE('slug', $slug)->first();
+        $juego = $this->exists_slug($juego);
         return $juego;
     }
 
@@ -131,7 +170,7 @@ class Api extends Model
 
     public function update_imagen($id, $slug, $imagen) {
         File::delete(File::glob(public_path('media/juegos/'.$id.'-*')));
-        API::upload_imagen($id, $slug, $imagen);
+        $this->upload_imagen($id, $slug, $imagen);
     }
 
     public function delete_imagen($id) {

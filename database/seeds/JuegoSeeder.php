@@ -323,7 +323,7 @@ class JuegoSeeder extends Seeder
             'descripcion' => 'Los juegos se desarrollan en la región de Kanto. Cuenta con los elementos comunes de la franquicia, como entrenadores pokémon y combates de gimnasio.',
             'desarrolladora' => 'Game Freak',
             'fecha' => '2018-11-16', 
-            'slug' => 'pokemon-Lets-go-pikachu-eevee',
+            'slug' => 'pokemon-lets-go-pikachu-eevee',
         ]);
 
         DB::table('juegos')->insert([
