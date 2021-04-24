@@ -135,8 +135,8 @@ class ApiController extends Controller
      * @OA\Post(
      *   path="/api/juegos/edit",
      *   tags={"Juegos"},
-     *   summary="Actualizar un juego",
-     *   description="Actulizar un juego ya existente con parametros.",
+     *   summary="Actualizar un juego con la imagen incluida",
+     *   description="Actulizar un juego ya existente con parametros con la imagen incluida.",
      *   operationId="editJuego",
      *   security={ * {"API-KEY": {}}, * },
      *   @OA\Parameter(
@@ -184,6 +184,50 @@ class ApiController extends Controller
                 return response()->json($validator->errors(), 220);
             } else {
                 $juego = $this->api->exists_id_update($juego, $request);
+                return $juego;
+            }
+        }
+    }
+
+        /**
+     * @OA\Put(
+     *   path="/api/juegos/edit",
+     *   tags={"Juegos"},
+     *   summary="Actualizar un juego sin subir la imagen",
+     *   description="Actulizar un juego ya existente con parametros sin la necesidad de subir la imagen.",
+     *   operationId="editJuegoWithoutImage",
+     *   security={ * {"API-KEY": {}}, * },
+     *   @OA\RequestBody(
+     *     required=true,
+     *     description="{nombre, descripcion, desarrolladora, fecha, slug}",
+     *     @OA\JsonContent(
+     *       required={"nombre", "descripcion", "desarrolladora", "fecha"},
+     *       @OA\Property(property="nombre", ref="#/components/schemas/Api/properties/nombre"),
+     *       @OA\Property(property="descripcion", ref="#/components/schemas/Api/properties/descripcion"),
+     *       @OA\Property(property="desarrolladora", ref="#/components/schemas/Api/properties/desarrolladora"),
+     *       @OA\Property(property="fecha", ref="#/components/schemas/Api/properties/fecha"),
+     *       @OA\Property(property="slug", ref="#/components/schemas/Api/properties/slug")
+     *    ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=220, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=401, description="No autorizado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function updatewithoutimage(Request $request)
+    {    
+        $juego = $this->api->show_id($request->input('slug'));
+
+        if (isset($juego->original['error'])) {
+            return $juego;
+        } else {
+            $validator = $this->api->validation_update_without_image($request, $juego->nombre);
+            if ($validator->fails()) {
+                return response()->json($validator->errors(), 220);
+            } else {
+                $juego = $this->api->exists_id_update_without_image($juego, $request);
                 return $juego;
             }
         }

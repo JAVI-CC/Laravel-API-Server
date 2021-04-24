@@ -72,6 +72,25 @@ class Api extends Model
         return $validator;
     }
 
+    public function validation_update_without_image($request, $nombre)
+    {
+
+        if ($request->nombre == $nombre) {
+            $exp = '';
+        } else {
+            $exp = '|unique:juegos';
+        }
+
+        $validator = Validator::make($request->all(), [
+            'nombre' => 'required|min:2|max:255' . $exp,
+            'descripcion' => 'required|min:10|max:255',
+            'desarrolladora' => 'required|min:2|max:255',
+            'fecha' => 'required|date_format:Y-m-d',
+        ]);
+
+        return $validator;
+    }
+
     public function exists_slug($id_juego)
     {
         if ($id_juego == null) {
@@ -101,6 +120,19 @@ class Api extends Model
             $dropbox = new Dropbox();
             $url_imagen = $dropbox->update_imagen($id_juego['url_imagen'], $request->imagen);
             $request->request->add(['slug' => $slug, 'url_imagen' => $url_imagen]);
+            $id_juego->fill($request->all())->save();
+            return response()->json(['success' => 'Se ha modificado correctamente el juego: ' . $id_juego->nombre]);
+        }
+    }
+
+    public function exists_id_update_without_image($id_juego, $request)
+    {
+
+        if ($id_juego == null) {
+            return response()->json(['error' => 'Juego no encontrado']);
+        } else {
+            $slug = $this->convert_url($request->nombre);
+            $request->request->add(['slug' => $slug]);
             $id_juego->fill($request->all())->save();
             return response()->json(['success' => 'Se ha modificado correctamente el juego: ' . $id_juego->nombre]);
         }

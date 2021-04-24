@@ -22,6 +22,7 @@ Route::prefix('juegos')->group(function () {
   Route::post('/', 'ApiController@store')->name('addJuego');
   Route::get('{slug}', 'ApiController@show')->name('getJuego');
   Route::post('/edit', 'ApiController@update')->name('editJuego');
+  Route::put('/edit', 'ApiController@updatewithoutimage')->name('editJuegoWithoutImage');
   Route::delete('/delete/{slug}', 'ApiController@delete')->name('deleteJuego');
   Route::post('/filter/search/', 'ApiController@filter')->name('filterJuego');
 });

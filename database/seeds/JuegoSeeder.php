@@ -361,7 +361,7 @@ class JuegoSeeder extends Seeder
             'descripcion' => 'Los juegos se desarrollan en la región de Kanto. Cuenta con los elementos comunes de la franquicia, como entrenadores pokémon y combates de gimnasio.',
             'desarrolladora' => 'Game Freak',
             'fecha' => '2018-11-16', 
-            'slug' => 'pokemon-Lets-go-pikachu-eevee',
+            'slug' => 'pokemon-lets-go-pikachu-eevee',
             'url_imagen' => 'https://www.dropbox.com/s/078lgosbiffy6m2/39-pokemon-Lets-go-pikachu-eevee.png?raw=1',
         ]);
 
@@ -461,7 +461,7 @@ class JuegoSeeder extends Seeder
             'desarrolladora' => 'Criterion Games',
             'fecha' => '2010-11-16', 
             'slug' => 'need-for-speed-hot-pursuit',
-            'url_imagen' => 'https://www.dropbox.com/s/r5t7y4qtgl09sjq/50-need-for-speed-hot-pursuit.png?raw=1',
+            'url_imagen' => 'https://www.dropbox.com/s/msfca8taoaqjomo/50-need-for-speed-hot-pursuit.jpg?raw=1',
         ]);
 
     }
