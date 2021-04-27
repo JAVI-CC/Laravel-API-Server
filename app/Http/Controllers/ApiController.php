@@ -10,7 +10,12 @@ use Illuminate\Http\Request;
 /**
  * @OA\Info(
  *    title="Laravel Api Juegos",
- *    version="1.0.0",
+ *    version="1.0.1",
+ *    description="Documentación de todos los endpoints de un aplicación que consiste en un CRUD de Juegos donde se trabaja con el envió de archivos y también contiene filtros de búsqueda sobre resultados de los juegos que existen insertados, se puede registrar usuarios y también contiene autenticación por SANCTUM para poder realizar algunos endpoints.<br><br>https://github.com/JAVI-CC/Laravel-API-Server<br><br>https://github.com/JAVI-CC/Laravel-API-Client",
+ *  @OA\ExternalDocumentation(
+ *    description="Mas informacion",
+ *    url="https://github.com/JAVI-CC/Laravel-API-Server",
+ *  ),
  * )
  */
 class ApiController extends Controller
@@ -31,7 +36,6 @@ class ApiController extends Controller
      *   summary="Obtener todos los juegos",
      *   description="Muestra todos los registros de juegos en formato JSON",
      *   operationId="getAllJuegos",
-     *   security={ * {"API-KEY": {}}, * },
      *   @OA\Response(response=200, description="Success"),
      *   @OA\Response(response=401, description="No autorizado"),
      *   @OA\Response(response=500, description="Error interno del servidor")
@@ -51,7 +55,6 @@ class ApiController extends Controller
      *   summary="Insertar un juego",
      *   description="Insertar el registro de un juego nuevo con parametros.",
      *   operationId="addJuego",
-     *   security={ * {"API-KEY": {}}, * },
      *   @OA\Parameter(
      *     name="Juego",
      *     in="query",
@@ -78,6 +81,7 @@ class ApiController extends Controller
      *       ),
      *     ), 
      *   ),
+     *   security={ * {"SANCTUM": {}}, * },
      *   @OA\Response(response=201, description="Se ha creado correctamente"),
      *   @OA\Response(response=220, description="No se cumple todos los requisitos"),
      *   @OA\Response(response=401, description="No autorizado"),
@@ -105,7 +109,6 @@ class ApiController extends Controller
      *   summary="Obtener un juego",
      *   description="Muestra la información de un juego especifico segun el valor del parametro slug.",
      *   operationId="getJuego",
-     *   security={ * {"API-KEY": {}}, * },
      *   @OA\Parameter(
      *     name="slug",
      *     description="Url del nombre del juego",
@@ -138,7 +141,6 @@ class ApiController extends Controller
      *   summary="Actualizar un juego con la imagen incluida",
      *   description="Actulizar un juego ya existente con parametros con la imagen incluida.",
      *   operationId="editJuego",
-     *   security={ * {"API-KEY": {}}, * },
      *   @OA\Parameter(
      *     name="Juego",
      *     in="query",
@@ -166,6 +168,7 @@ class ApiController extends Controller
      *       ),
      *     ), 
      *   ),
+     *   security={ * {"SANCTUM": {}}, * },
      *   @OA\Response(response=200, description="Success"),
      *   @OA\Response(response=220, description="No se cumple todos los requisitos"),
      *   @OA\Response(response=401, description="No autorizado"),
@@ -196,7 +199,6 @@ class ApiController extends Controller
      *   summary="Actualizar un juego sin subir la imagen",
      *   description="Actulizar un juego ya existente con parametros sin la necesidad de subir la imagen.",
      *   operationId="editJuegoWithoutImage",
-     *   security={ * {"API-KEY": {}}, * },
      *   @OA\RequestBody(
      *     required=true,
      *     description="{nombre, descripcion, desarrolladora, fecha, slug}",
@@ -209,6 +211,7 @@ class ApiController extends Controller
      *       @OA\Property(property="slug", ref="#/components/schemas/Api/properties/slug")
      *    ),
      *   ),
+     *   security={ * {"SANCTUM": {}}, * },
      *   @OA\Response(response=200, description="Success"),
      *   @OA\Response(response=220, description="No se cumple todos los requisitos"),
      *   @OA\Response(response=401, description="No autorizado"),
@@ -217,9 +220,9 @@ class ApiController extends Controller
      *
      */
     public function updatewithoutimage(Request $request)
-    {    
+    {
         $juego = $this->api->show_id($request->input('slug'));
-        
+
         if (isset($juego->original['error'])) {
             return $juego;
         } else {
@@ -240,7 +243,6 @@ class ApiController extends Controller
      *   summary="Eliminar un juego",
      *   description="Elimina un juego especifico segun el valor del parametro slug.",
      *   operationId="deleteJuego",
-     *   security={ * {"API-KEY": {}}, * },
      *   @OA\Parameter(
      *     name="slug",
      *     description="Url del nombre del juego",
@@ -251,6 +253,7 @@ class ApiController extends Controller
      *       example="test123"
      *     ),
      *   ),
+     *   security={ * {"SANCTUM": {}}, * },
      *   @OA\Response(response=200, description="Success"),
      *   @OA\Response(response=401, description="No autorizado"),
      *   @OA\Response(response=500, description="Error interno del servidor")
@@ -271,7 +274,6 @@ class ApiController extends Controller
      *   summary="Busqueda",
      *   description="Busqueda por nombres de juegos y también ordena el resultado de distintas maneras.",
      *   operationId="filterJuego",
-     *   security={ * {"API-KEY": {}}, * },
      *   @OA\Parameter(
      *     name="search",
      *     description="Nombre del juego que quieres buscar",
@@ -313,11 +315,11 @@ class ApiController extends Controller
     public function filter(Request $request)
     {
         $juegos = $this->api->search($request);
-        
+
         if (isset($juegos->original)) {
-          return $juegos;
+            return $juegos;
         } else {
-          return response()->json(ApiResource::collection(($juegos)), 200);
+            return response()->json(ApiResource::collection(($juegos)), 200);
         }
     }
 }

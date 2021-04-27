@@ -2,7 +2,8 @@
     "openapi": "3.0.0",
     "info": {
         "title": "Laravel Api Juegos",
-        "version": "1.0.0"
+        "description": "Documentación de todos los endpoints de un aplicación que consiste en un CRUD de Juegos donde se trabaja con el envió de archivos y también contiene filtros de búsqueda sobre resultados de los juegos que existen insertados, se puede registrar usuarios y también contiene autenticación por SANCTUM para poder realizar algunos endpoints.<br><br>https://github.com/JAVI-CC/Laravel-API-Server<br><br>https://github.com/JAVI-CC/Laravel-API-Client",
+        "version": "1.0.1"
     },
     "paths": {
         "/api/juegos": {
@@ -23,12 +24,7 @@
                     "500": {
                         "description": "Error interno del servidor"
                     }
-                },
-                "security": [
-                    {
-                        "API-KEY": []
-                    }
-                ]
+                }
             },
             "post": {
                 "tags": [
@@ -98,7 +94,7 @@
                 },
                 "security": [
                     {
-                        "API-KEY": []
+                        "SANCTUM": []
                     }
                 ]
             }
@@ -133,12 +129,7 @@
                     "500": {
                         "description": "Error interno del servidor"
                     }
-                },
-                "security": [
-                    {
-                        "API-KEY": []
-                    }
-                ]
+                }
             }
         },
         "/api/juegos/edit": {
@@ -199,7 +190,7 @@
                 },
                 "security": [
                     {
-                        "API-KEY": []
+                        "SANCTUM": []
                     }
                 ]
             },
@@ -274,7 +265,7 @@
                 },
                 "security": [
                     {
-                        "API-KEY": []
+                        "SANCTUM": []
                     }
                 ]
             }
@@ -312,7 +303,7 @@
                 },
                 "security": [
                     {
-                        "API-KEY": []
+                        "SANCTUM": []
                     }
                 ]
             }
@@ -370,10 +361,153 @@
                     "500": {
                         "description": "Error interno del servidor"
                     }
+                }
+            }
+        },
+        "/api/auth/register": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Registrar un usuario",
+                "description": "Registrar un usuario para que pueda insertar, actualizar y eliminar cualquier juego",
+                "operationId": "register",
+                "requestBody": {
+                    "description": "{name, email, password, password_confirmation}",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "password",
+                                    "password_confirmation"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "$ref": "#/components/schemas/User/properties/name"
+                                    },
+                                    "email": {
+                                        "$ref": "#/components/schemas/User/properties/email"
+                                    },
+                                    "password": {
+                                        "$ref": "#/components/schemas/User/properties/password"
+                                    },
+                                    "password_confirmation": {
+                                        "$ref": "#/components/schemas/User/properties/password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "220": {
+                        "description": "No se cumple todos los requisitos"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                }
+            }
+        },
+        "/api/auth/login": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Iniciar session un usuario",
+                "description": "Iniciar session con un usuario ya existente en la base de datos",
+                "operationId": "login",
+                "requestBody": {
+                    "description": "{email, password}",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "$ref": "#/components/schemas/User/properties/email"
+                                    },
+                                    "password": {
+                                        "$ref": "#/components/schemas/User/properties/password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "220": {
+                        "description": "No se cumple todos los requisitos"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                }
+            }
+        },
+        "/api/auth/userinfo": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Para ver la informacion de un usuario",
+                "description": "Para ver iformacion adicional del usuario autenticado",
+                "operationId": "userinfo",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "220": {
+                        "description": "No se cumple todos los requisitos"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
                 },
                 "security": [
                     {
-                        "API-KEY": []
+                        "SANCTUM": []
+                    }
+                ]
+            }
+        },
+        "/api/auth/logout": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Cerrar session un usuario",
+                "description": "Cerrar session con un usuario ya existente en la base de datos",
+                "operationId": "logout",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "220": {
+                        "description": "No se cumple todos los requisitos"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "SANCTUM": []
                     }
                 ]
             }
@@ -413,13 +547,36 @@
                 "xml": {
                     "name": "Api"
                 }
+            },
+            "User": {
+                "properties": {
+                    "name": {
+                        "description": "Nombre del usuario",
+                        "type": "string",
+                        "example": "prueba"
+                    },
+                    "email": {
+                        "description": "Email del usuario",
+                        "type": "string",
+                        "example": "prueba@email.com"
+                    },
+                    "password": {
+                        "description": "Password del usuario",
+                        "type": "string",
+                        "example": "12345678"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "User"
+                }
             }
         },
         "securitySchemes": {
-            "API-KEY": {
+            "SANCTUM": {
                 "type": "apiKey",
-                "description": "Token para poder enviar y recibir datos de la api.",
-                "name": "API-KEY",
+                "description": "Clave API de tipo Bearer Token para poder utilizar todas las peticiones.",
+                "name": "Authorization",
                 "in": "header"
             }
         }

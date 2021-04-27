@@ -9,6 +9,15 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
+/**
+ * @OA\Schema(
+ *   @OA\Xml(name="User"),
+ *   @OA\Property(property="name", description="Nombre del usuario", type="string", example="prueba"),
+ *   @OA\Property(property="email", description="Email del usuario", type="string", example="prueba@email.com"),
+ *   @OA\Property(property="password", description="Password del usuario", type="string", example="12345678"),
+ * )
+ * 
+ **/
 class User extends Authenticatable
 {
     use Notifiable, HasApiTokens;
@@ -28,7 +37,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'id', 'password', 'remember_token',
     ];
 
     /**
