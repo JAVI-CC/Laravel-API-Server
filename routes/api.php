@@ -19,10 +19,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::prefix('juegos')->group(function () {
   Route::get('/', 'ApiController@index')->name('getAllJuegos');
-  Route::post('/', 'ApiController@store')->name('addJuego');
+  Route::post('/', 'ApiController@store')->name('addJuego')->middleware('auth:sanctum');
   Route::get('{slug}', 'ApiController@show')->name('getJuego');
-  Route::post('/edit', 'ApiController@update')->name('editJuego');
-  Route::put('/edit', 'ApiController@updatewithoutimage')->name('editJuegoWithoutImage');
-  Route::delete('/delete/{slug}', 'ApiController@delete')->name('deleteJuego');
+  Route::post('/edit', 'ApiController@update')->name('editJuego')->middleware('auth:sanctum');
+  Route::put('/edit', 'ApiController@updatewithoutimage')->name('editJuegoWithoutImage')->middleware('auth:sanctum');
+  Route::delete('/delete/{slug}', 'ApiController@delete')->name('deleteJuego')->middleware('auth:sanctum');
   Route::post('/filter/search/', 'ApiController@filter')->name('filterJuego');
+});
+
+Route::prefix('auth')->group(function () {
+  Route::post('register', 'AuthController@register')->name('register');
+  Route::post('login', 'AuthController@login')->name('login');
+  Route::get('userinfo', 'AuthController@userinfo')->name('userinfo')->middleware('auth:sanctum');
+  Route::post('logout', 'AuthController@logout')->name('logout')->middleware('auth:sanctum');
 });
