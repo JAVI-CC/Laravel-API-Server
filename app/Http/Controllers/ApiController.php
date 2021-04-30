@@ -98,7 +98,7 @@ class ApiController extends Controller
             return response()->json($validator->errors(), 220);
         } else {
             $juego = $this->api->add_juego($request);
-            return response()->json(['success' => 'Se ha insertado correctamente el juego: ' . $juego], 201);
+            return response()->json($juego, 201);
         }
     }
 
@@ -187,7 +187,7 @@ class ApiController extends Controller
                 return response()->json($validator->errors(), 220);
             } else {
                 $juego = $this->api->exists_id_update($juego, $request);
-                return $juego;
+                return response()->json(new ApiResource($juego), 200);
             }
         }
     }
@@ -231,7 +231,7 @@ class ApiController extends Controller
                 return response()->json($validator->errors(), 220);
             } else {
                 $juego = $this->api->exists_id_update_without_image($juego, $request);
-                return $juego;
+                return response()->json(new ApiResource($juego), 200);
             }
         }
     }

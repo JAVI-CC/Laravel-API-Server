@@ -107,7 +107,7 @@ class Api extends Model
         $url_imagen = $dropbox->upload_imagen($request->imagen);
         $request->request->add(['slug' => $slug, 'url_imagen' => $url_imagen]);
         $juego = $this->create(array_merge($request->all()));
-        return $request->nombre;
+        return $juego;
     }
 
     public function exists_id_update($id_juego, $request)
@@ -121,7 +121,7 @@ class Api extends Model
             $url_imagen = $dropbox->update_imagen($id_juego['url_imagen'], $request->imagen);
             $request->request->add(['slug' => $slug, 'url_imagen' => $url_imagen]);
             $id_juego->fill($request->all())->save();
-            return response()->json(['success' => 'Se ha modificado correctamente el juego: ' . $id_juego->nombre]);
+            return $id_juego;
         }
     }
 
@@ -134,7 +134,7 @@ class Api extends Model
             $slug = $this->convert_url($request->nombre);
             $request->request->add(['slug' => $slug]);
             $id_juego->fill($request->all())->save();
-            return response()->json(['success' => 'Se ha modificado correctamente el juego: ' . $id_juego->nombre]);
+            return $id_juego;
         }
     }
 
