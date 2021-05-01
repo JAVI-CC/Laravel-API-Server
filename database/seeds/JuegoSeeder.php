@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Schema;
 
 class JuegoSeeder extends Seeder
 {
@@ -13,8 +12,7 @@ class JuegoSeeder extends Seeder
     public function run()
     {
         //DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
-        Schema::disableForeignKeyConstraints();
-
+        
         DB::table('juegos')->truncate();
 
         DB::table('juegos')->insert([
