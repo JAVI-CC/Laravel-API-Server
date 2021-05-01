@@ -12,7 +12,7 @@ class DesarrolladoraSeeder extends Seeder
     public function run()
     {
         //DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
-        DB::statement("TRUNCATE TABLE desarrolladoras RESTART IDENTITY CASCADE");
+        DB::statement("TRUNCATE TABLE desarrolladoras CASCADE");
 
         DB::table('desarrolladoras')->truncate();
 
