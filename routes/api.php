@@ -25,6 +25,7 @@ Route::prefix('juegos')->group(function () {
   Route::put('/edit', 'ApiController@updatewithoutimage')->name('editJuegoWithoutImage')->middleware('auth:sanctum');
   Route::delete('/delete/{slug}', 'ApiController@delete')->name('deleteJuego')->middleware('auth:sanctum');
   Route::post('/filter/search/', 'ApiController@filter')->name('filterJuego');
+  Route::get('/desarrolladoras/{slug}', 'DesarrolladoraController@show')->name('getJuegoDesarrolladora');
 });
 
 Route::prefix('auth')->group(function () {

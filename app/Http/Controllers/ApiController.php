@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
  * @OA\Info(
  *   title="Laravel Api Juegos",
  *   version="1.0.1",
- *   description="Documentación de todos los endpoints de un aplicación que consiste en un CRUD de Juegos donde se trabaja con el envió de archivos y también contiene filtros de búsqueda sobre resultados de los juegos que existen insertados, se puede registrar usuarios y también contiene autenticación por SANCTUM para poder realizar algunos endpoints.<br><br>https://github.com/JAVI-CC/Laravel-API-Server<br><br>https://github.com/JAVI-CC/Laravel-API-Client",
+ *   description="Documentación de todos los endpoints de un aplicación que consiste en un CRUD de Juegos que contiene relaciones, donde se trabaja con el envió de archivos y también contiene filtros de búsqueda sobre resultados de los juegos que existen insertados, se puede registrar usuarios y también contiene autenticación por SANCTUM para poder realizar la acción de algunos endpoints.<br><br><a href='https://github.com/JAVI-CC/Laravel-API-Server' target='_blank'>https://github.com/JAVI-CC/Laravel-API-Server</a><br><br><a href='https://github.com/JAVI-CC/Laravel-API-Client' target='_blank'>https://github.com/JAVI-CC/Laravel-API-Client</a>",
  *   @OA\ExternalDocumentation(
  *     description="Mas informacion",
  *     url="https://github.com/JAVI-CC/Laravel-API-Server",
@@ -98,7 +98,7 @@ class ApiController extends Controller
             return response()->json($validator->errors(), 220);
         } else {
             $juego = $this->api->add_juego($request);
-            return response()->json($juego, 201);
+            return response()->json(new ApiResource($juego), 201);
         }
     }
 
@@ -129,6 +129,9 @@ class ApiController extends Controller
     {
         $juego = Api::WHERE('slug', $slug)->first();
         $juego = $this->api->exists_slug($juego);
+        if (isset($juego->original['error'])) {
+            return $juego;
+        }
         //return $juego;
         return response()->json(new ApiResource($juego), 200);
     }
