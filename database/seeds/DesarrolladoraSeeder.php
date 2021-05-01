@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
 
 class DesarrolladoraSeeder extends Seeder
 {
@@ -12,7 +13,9 @@ class DesarrolladoraSeeder extends Seeder
     public function run()
     {
         //DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
-        //DB::table('desarrolladoras')->truncate();
+        Schema::disableForeignKeyConstraints();
+
+        DB::table('desarrolladoras')->truncate();
 
         DB::table('desarrolladoras')->insert([
             'id' => '1',
