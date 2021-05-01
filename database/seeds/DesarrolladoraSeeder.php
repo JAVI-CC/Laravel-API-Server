@@ -11,9 +11,8 @@ class DesarrolladoraSeeder extends Seeder
      */
     public function run()
     {
-        //DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
-        DB::statement("TRUNCATE TABLE juegos");
-        DB::statement("TRUNCATE TABLE desarrolladoras CASCADE");
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
+        DB::table('desarrolladoras')->truncate();
 
         DB::table('desarrolladoras')->truncate();
 
