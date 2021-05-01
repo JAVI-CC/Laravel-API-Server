@@ -2,7 +2,7 @@
     "openapi": "3.0.0",
     "info": {
         "title": "Laravel Api Juegos",
-        "description": "Documentación de todos los endpoints de un aplicación que consiste en un CRUD de Juegos que contiene relaciones, donde se trabaja con el envió de archivos y también contiene filtros de búsqueda sobre resultados de los juegos que existen insertados, se puede registrar usuarios y también contiene autenticación por SANCTUM para poder realizar la acción de algunos endpoints.<br><br>https://github.com/JAVI-CC/Laravel-API-Server<br><br>https://github.com/JAVI-CC/Laravel-API-Client",
+        "description": "Documentación de todos los endpoints de un aplicación que consiste en un CRUD de Juegos que contiene relaciones, donde se trabaja con el envió de archivos y también contiene filtros de búsqueda sobre resultados de los juegos que existen insertados, se puede registrar usuarios y también contiene autenticación por SANCTUM para poder realizar la acción de algunos endpoints.<br><br><a href='https://github.com/JAVI-CC/Laravel-API-Server' target='_blank'>https://github.com/JAVI-CC/Laravel-API-Server</a><br><br><a href='https://github.com/JAVI-CC/Laravel-API-Client' target='_blank'>https://github.com/JAVI-CC/Laravel-API-Client</a>",
         "version": "1.0.1"
     },
     "paths": {
