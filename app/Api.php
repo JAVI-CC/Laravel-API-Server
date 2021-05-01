@@ -2,8 +2,9 @@
 
 namespace App;
 
+use App\Desarrolladora;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\File; 
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -13,7 +14,7 @@ use Illuminate\Support\Facades\Validator;
  *   @OA\Xml(name="Api"),
  *   @OA\Property(property="nombre", description="Nombre del juego", type="string", example="Test123"),
  *   @OA\Property(property="descripcion", description="descripción del juego", type="string", example="insertando juego de prueba..."),
- *   @OA\Property(property="desarrolladora", description="nombre de la desarrolladora que pertenece al juego", type="string", example="Test Software"),
+ *   @OA\Property(property="desarrolladora", description="nombre de la desarrolladora que pertenece al juego", type="string", example="Test123 Studios"),
  *   @OA\Property(property="fecha", type="string", description="fecha de salida de lanzamiento del juego", example="2021-01-01"),
  *   @OA\Property(property="slug", type="string", description="Url amigable del nombre del juego", example="test123")
  * )
@@ -36,6 +37,17 @@ class Api extends Model
         $txt = strtolower($txt);
         $txt = preg_replace("/[^a-z0-9\-.]/", "", $txt);
         return str_replace("--", "-", $txt);
+    }
+
+    //Relacion de uno a muchos (inversa)
+    public function desarrolladoras()
+    {
+        return $this->belongsTo(Desarrolladora::class);
+    }
+
+    public function findByIdDesarrolladora($id) {
+        $value = Desarrolladora::where('id', $id)->first();
+        return $value;
     }
 
     public function validation_add($request)
@@ -104,6 +116,11 @@ class Api extends Model
     {
         $slug = $this->convert_url($request->nombre);
         $request->request->add(['slug' => $slug]);
+        
+        $desarrolladora = new Desarrolladora();
+        $desarrolladora_id = $desarrolladora->similar_name($request->input('desarrolladora'));
+        $request->merge(['desarrolladora' => $desarrolladora_id]);
+        
         $juego = $this->create(array_merge($request->all()));
         $this->upload_imagen($juego->id, $slug, $request->imagen);
         return $juego;
@@ -117,6 +134,11 @@ class Api extends Model
         } else {
             $slug = $this->convert_url($request->nombre);
             $request->request->add(['slug' => $slug]);
+
+            $desarrolladora = new Desarrolladora();
+            $desarrolladora_id = $desarrolladora->similar_name($request->input('desarrolladora'));
+            $request->merge(['desarrolladora' => $desarrolladora_id]);
+
             $id_juego->fill($request->all())->save();
             $this->update_imagen($id_juego['id'], $slug, $request->imagen);
             return $id_juego;
@@ -131,13 +153,17 @@ class Api extends Model
         } else {
             $slug = $this->convert_url($request->nombre);
             $slug_antiguo = $request->input('slug');
+
+            $desarrolladora = new Desarrolladora();
+            $desarrolladora_id = $desarrolladora->similar_name($request->input('desarrolladora'));
+            $request->merge(['desarrolladora' => $desarrolladora_id]);
+
             $request->request->add(['slug' => $slug]);
             $id_juego->fill($request->all())->save();
 
             //Cambiar el nombre del archivo
             $id = $this->where('slug', $request->input('slug'))->first()->id;
-            FILE::move(public_path('media/juegos/'.$id.'-'.$slug_antiguo.'.png'), public_path('media/juegos/'.$id.'-'.$slug.'.png'));
-
+            FILE::move(public_path('media/juegos/' . $id . '-' . $slug_antiguo . '.png'), public_path('media/juegos/' . $id . '-' . $slug . '.png'));
             return $id_juego;
         }
     }
@@ -160,21 +186,24 @@ class Api extends Model
         return $juego;
     }
 
-    public function upload_imagen($id, $slug, $imagen) {
-        $filename = "eliminar." .$imagen->getClientOriginalExtension();
+    public function upload_imagen($id, $slug, $imagen)
+    {
+        $filename = "eliminar." . $imagen->getClientOriginalExtension();
         $filenamePNG = $id . "-" . $slug . ".png";
         $imagen->move(public_path('media/juegos/'), $filename);
-        imagepng(imagecreatefromstring(file_get_contents(public_path('media/juegos/'.$filename))), public_path('media/juegos/'.$filenamePNG));
+        imagepng(imagecreatefromstring(file_get_contents(public_path('media/juegos/' . $filename))), public_path('media/juegos/' . $filenamePNG));
         File::delete(File::glob(public_path('media/juegos/eliminar.*')));
     }
 
-    public function update_imagen($id, $slug, $imagen) {
-        File::delete(File::glob(public_path('media/juegos/'.$id.'-*')));
+    public function update_imagen($id, $slug, $imagen)
+    {
+        File::delete(File::glob(public_path('media/juegos/' . $id . '-*')));
         $this->upload_imagen($id, $slug, $imagen);
     }
 
-    public function delete_imagen($id) {
-        File::delete(File::glob(public_path('media/juegos/'.$id.'-*')));
+    public function delete_imagen($id)
+    {
+        File::delete(File::glob(public_path('media/juegos/' . $id . '-*')));
     }
 
     public function search($request)
