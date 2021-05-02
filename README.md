@@ -162,7 +162,6 @@
 <code>$ git clone https://github.com/JAVI-CC/Laravel-API-Server.git
 $ cd Laravel-API-Server-master
 $ cp .env.example .env
-$ docker-compose build app
 $ docker-compose up -d
 $ docker-compose exec app composer install
 $ docker-compose exec app php artisan key:generate
