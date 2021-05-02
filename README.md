@@ -172,3 +172,5 @@ $ docker-compose exec app php artisan db:seed --class=JuegoSeeder
 $ docker-compose exec app php artisan db:seed --class=UserSeeder</code>
 </pre>
 </ul>
+
+<p>Once you have the containers deployed, you can access the API at http: // localhost: 8000</p>
