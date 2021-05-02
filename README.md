@@ -7,29 +7,166 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
+<span>Application made with Laravel 7 that consists of the creation of a CRUD of a games api that contains the following functionalities:</span>
+<ul>
+  <li>Relations between different models.</li>
+  <li>Contains endpoints of type GET, POST, PUT and DELETE</li>
+  <li>Some endpoints contain the function of sending files and the files are stored locally.</li>
+  <li>Implementation of API Dropbox in the <a href="https://github.com/JAVI-CC/Laravel-API-Server/tree/dropbox">dropbox</a> branch the difference with the master branch is that in the dropbox branch it is configured so that the files that are sent through the api are saved in a shared Dropbox directory.</li>
+  <li>Postman collection.json file to import and create use endpoints.</li>
+  <li>Resource file to show the values of some endpoints in a personalized way.</li>
+  <li>Requests validations.</li>
+  <li>Migration file to create all the tables in the database.</li>
+  <li>File seeder with 50 games to insert the data into the database.</li>
+  <li>Search filters of the games that are inserted in the database.</li>
+  <li>Documentation of all the api enpoints with the Laravel Swagger 3.0.</li>
+  <li>Users can be registered through the Api and it contains authentication by Sanctum to be able to carry out the action of some endpoints.</li>
+  <li>The Api is uploaded in heroku <a href="https://laravelapijuegos.herokuapp.com" target="_blank">https://laravelapijuegos.herokuapp.com</a> so that users can use the endpoints without having to download the project.</li>
+  <li>The project contains the files to deploy it in Docker.</li>
+  <li>Demonstration of a Laravel project on the client side using this api <a href="https://github.com/JAVI-CC/Laravel-API-Client" target="_blank">https://github.com/JAVI-CC/Laravel-API-Client</a>.</li>
+</ul> 
+
 <h3>Demo API</h3>
 <p>https://laravelapijuegos.herokuapp.com</p>
 
 <h3>Documentation API SWAGGER 3.0</h3>
 <p>http://laravelapijuegos.herokuapp.com/api/documentation</p>
-<p>Authorize API-KEY: $2y$10$f01jcbsMhFuNif8yHAotQuGr4OaqwfXi6g96Y4DHVIkw3HjQgMwMu</p>
-
-<h3>.env</h3>
-<p>API_KEY=$2y$10$f01jcbsMhFuNif8yHAotQuGr4OaqwfXi6g96Y4DHVIkw3HjQgMwMu</p>
 
 <h3>HEADERS</h3>
-<p>api-key=$2y$10$f01jcbsMhFuNif8yHAotQuGr4OaqwfXi6g96Y4DHVIkw3HjQgMwMu</p>
-
-<h3>Requests API</h3>
-<p>-Get all games: <strong>$this->client->request('GET', '/api/juegos')</strong> </p>
-<p>-Get game: <strong>$this->client->request('GET', '/api/juegos/' . $slug)</strong></p>
-<p>-Add game: <strong>$this->client->request('POST', '/api/juegos', ['form_params' => ['nombre' => $request->input('nombre'), 'desarrolladora' => $request->input('desarrolladora'), 'fecha' => $request->input('fecha'), 'descripcion' => $request->input('descripcion'),]]);</strong></p>
-<p>-Update game: <strong>$this->client->request('PUT', '/api/juegos/' . $slug, ['form_params' => ['nombre' => $request->input('nombre'), 'desarrolladora' => $request->input('desarrolladora'), 'fecha' => $request->input('fecha'), 'descripcion' => $request->input('descripcion'),]]);</strong></p>
-<p>-Delete game: <strong>$this->client->request('DELETE', '/api/juegos/delete/' . $slug);</strong></p>
-<p>-Search game: <strong>$this->client->request('POST', '/api/juegos/filter/search', ['form_params' => ['search' => $search, 'filter' => $filter, 'order' => $order,]]);</strong></p>
-
-<span>$search = 'name_game1';</span>
-<span>$filter = 'nombre' or 'descripcion' or 'desarolladora' or 'fecha'</span>
-<span>$order = 'ASC' or 'DESC'</span>
+<p><strong>Authorization:</strong> {Token provided by Sanctum}</p>
+<p><strong>Content-Type:</strong> application/json</p>
+<p><strong>Accept:</strong> application/json</p>
 <hr>
 
+<h3>Endpoints Games:</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+<th>Auth</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td>/api/juegos</td>
+<td>Get all the games</td>
+<td>No</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/api/juegos/</td>
+<td>Add a game</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/api/juegos/{slug}</td>
+<td>Get a game</td>
+<td>No</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>/api/juegos/edit</td>
+<td>Update game without uploading the image</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/api/juegos/edit</td>
+<td>Update a game with the included image</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>/api/juegos/delete/{slug}</td>
+<td>Delete a game</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/api/juegos/filter/search</td>
+<td>Search games</td>
+<td>No</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/api/juegos/desarrolladoras/{slug}</td>
+<td>Get games from a developer</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Endpoints User:</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+<th>Auth</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td>/api/auth/register</td>
+<td>Register a user</td>
+<td>No</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/api/auth/login</td>
+<td>Login a user</td>
+<td>No</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/api/auth/userinfo</td>
+<td>To view a user information</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/api/auth/logout</td>
+<td>Log out a user</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+
+<br><br>
+
+<h2>Deploy to Docker <g-emoji class="g-emoji" alias="whale" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f433.png">🐳</g-emoji></h2>
+<hr>
+
+<h4>Containers:</h4>
+<ul>
+<li><span>nginx:alpine</span> - <code>:8000->80/tcp</code></li>
+<li><span>mariadb:latest</span> - <code>:3306</code></li>
+<li><span>php:7.4-fpm</span> - <code>:9000</code></li>
+</ul>
+
+<h4>Containers structure:</h4>
+<div class="highlight highlight-source-shell"><pre>├── laravel-api-server-app
+├── laravel-api-server-web
+└── laravel-api-server-db</pre></div>
+
+<h4>Setup:</h4>
+<pre>
+<code>$ git clone https://github.com/JAVI-CC/Laravel-API-Server.git
+$ cd Laravel-API-Server-master
+$ cp .env.example .env
+$ docker-compose build app
+$ docker-compose up -d
+$ docker-compose exec app composer install
+$ docker-compose exec app php artisan key:generate
+$ docker-compose exec app php artisan migrate
+$ docker-compose exec app php artisan db:seed --class=DesarrolladoraSeeder
+$ docker-compose exec app php artisan db:seed --class=JuegoSeeder
+$ docker-compose exec app php artisan db:seed --class=UserSeeder</code>
+</pre>
+</ul>
