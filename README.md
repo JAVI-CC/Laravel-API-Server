@@ -41,6 +41,11 @@
 <p><strong>Accept:</strong> application/json</p>
 <hr>
 
+<h3>Setup</h3>
+<pre>
+<code>$ composer install && php artisan key:generate && php artisan migrate && php artisan db:seed --class=DesarrolladoraSeeder && php artisan db:seed --class=JuegoSeeder && php artisan db:seed --class=UserSeeder</code>
+</pre>
+
 <h3>Endpoints Games:</h3>
 <table>
 <thead>
