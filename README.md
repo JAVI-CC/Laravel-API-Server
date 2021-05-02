@@ -173,4 +173,4 @@ $ docker-compose exec app php artisan db:seed --class=UserSeeder</code>
 </pre>
 </ul>
 
-<p>Once you have the containers deployed, you can access the API at <a href="http://localhost:8000" target="_blank">http://localhost:8000</a></p>
+Once you have the containers deployed, you can access the API at <a href="http://localhost:8000" target="_blank">http://localhost:8000</a>
