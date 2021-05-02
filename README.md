@@ -36,15 +36,35 @@
 <p><a href="https://github.com/JAVI-CC/Laravel-API-Client" target="_blank">https://github.com/JAVI-CC/Laravel-API-Client</a></p>
 
 <h3>Headers</h3>
-<p><strong>Authorization:</strong> {Token provided by Sanctum}</p>
-<p><strong>Content-Type:</strong> application/json</p>
-<p><strong>Accept:</strong> application/json</p>
-<hr>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Authorization</td>
+<td>{Token provided by Sanctum}</td>
+</tr>
+<tr>
+<td>Accept</td>
+<td>application/json</td>
+</tr>
+<tr>
+<td>Content-Type</td>
+<td>application/json</td>
+</tr>
+</tbody>
+</table>
 
 <h3>Setup</h3>
 <pre>
 <code>$ composer install && php artisan key:generate && php artisan migrate && php artisan db:seed --class=DesarrolladoraSeeder && php artisan db:seed --class=JuegoSeeder && php artisan db:seed --class=UserSeeder</code>
 </pre>
+
+<hr>
 
 <h3>Endpoints Games:</h3>
 <table>
