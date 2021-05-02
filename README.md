@@ -166,6 +166,8 @@
 </tbody>
 </table>
 
+<a href="http://laravelapijuegos.herokuapp.com/api/documentation" target="_blank">- Attributes</a>
+
 <br>
 
 <h2>Deploy to Docker <g-emoji class="g-emoji" alias="whale" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f433.png">🐳</g-emoji></h2>
