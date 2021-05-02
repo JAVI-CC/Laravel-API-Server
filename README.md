@@ -33,7 +33,7 @@
 <p><a href="http://laravelapijuegos.herokuapp.com/api/documentation" target="_blank">http://laravelapijuegos.herokuapp.com/api/documentation</p>
 
 <h3>Laravel Api client interface</h3>
-<p><a href="https://github.com/JAVI-CC/Laravel-API-Client" target="_blank">https://github.com/JAVI-CC/Laravel-API-Client</p>
+<p><a href="https://github.com/JAVI-CC/Laravel-API-Client" target="_blank">https://github.com/JAVI-CC/Laravel-API-Client</a></p>
 
 <h3>Headers</h3>
 <p><strong>Authorization:</strong> {Token provided by Sanctum}</p>
@@ -172,4 +172,4 @@ $ docker-compose exec app php artisan db:seed --class=JuegoSeeder
 $ docker-compose exec app php artisan db:seed --class=UserSeeder</code>
 </pre>
 
-<span>Once you have the containers deployed, you can access the API at </span> http://localhost:8000
+<span>Once you have the containers deployed, you can access the API at </span> <a href="http://localhost:8000" target="_blank">http://localhost:8000</a>
