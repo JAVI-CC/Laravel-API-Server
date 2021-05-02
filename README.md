@@ -166,7 +166,7 @@
 </tbody>
 </table>
 
-<a href="http://laravelapijuegos.herokuapp.com/api/documentation" target="_blank">- Attributes</a>
+<h4><a href="http://laravelapijuegos.herokuapp.com/api/documentation" target="_blank">Attributes</a></h4>
 
 <br>
 
