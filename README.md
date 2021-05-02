@@ -35,6 +35,9 @@
 <h3>Laravel Api client interface</h3>
 <p><a href="https://github.com/JAVI-CC/Laravel-API-Client" target="_blank">https://github.com/JAVI-CC/Laravel-API-Client</a></p>
 
+<h3>.env</h3>
+<strong>DROPBOX_AUTH_TOKEN = </strong><span>{Dropbox_token}</span>
+
 <h3>Headers</h3>
 <table>
 <thead>
