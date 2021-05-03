@@ -64,7 +64,7 @@
 
 <h3>Setup</h3>
 <pre>
-<code>$ composer install && php artisan key:generate && php artisan migrate && php artisan db:seed --class=DesarrolladoraSeeder && php artisan db:seed --class=JuegoSeeder && php artisan db:seed --class=UserSeeder</code>
+<code>$ composer install && php artisan key:generate && php artisan migrate --seed</code>
 </pre>
 
 <hr>
@@ -195,10 +195,7 @@ $ cp .env.example .env
 $ docker-compose up -d
 $ docker-compose exec app composer install
 $ docker-compose exec app php artisan key:generate
-$ docker-compose exec app php artisan migrate
-$ docker-compose exec app php artisan db:seed --class=DesarrolladoraSeeder
-$ docker-compose exec app php artisan db:seed --class=JuegoSeeder
-$ docker-compose exec app php artisan db:seed --class=UserSeeder</code>
+$ docker-compose exec app php artisan migrate --seed</code>
 </pre>
 
 <span>Once you have the containers deployed, you can access the API at </span> <a href="http://localhost:8000" target="_blank">http://localhost:8000</a>
