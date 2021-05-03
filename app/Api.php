@@ -5,6 +5,7 @@ namespace App;
 use App\Desarrolladora;
 use App\Dropbox;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
@@ -199,10 +200,16 @@ class Api extends Model
             $request->order = 'DESC';
         }
 
-        $juegos = $this->WHERE('nombre', 'ILIKE', '%' . $request->search . '%')
-            ->OrWhere('desarrolladora', 'ILIKE', '%' . $request->search . '%')
-            ->OrWhere('descripcion', 'ILIKE', '%' . $request->search . '%')
-            ->OrWhere('fecha', 'ILIKE', '%' . $request->search . '%')
+        if (DB::getDriverName() === 'mysql' || DB::getDriverName() === 'sqlite') {
+            $like = 'like';
+        } else if (DB::getDriverName() === 'pgsql') {
+            $like = 'ilike';
+        }
+
+        $juegos = $this->WHERE('nombre', "'.$like.'", '%' . $request->search . '%')
+            ->OrWhere('desarrolladora', "'.$like.'", '%' . $request->search . '%')
+            ->OrWhere('descripcion', "'.$like.'", '%' . $request->search . '%')
+            ->OrWhere('fecha', "'.$like.'", '%' . $request->search . '%')
             ->orderBy($request->filter, $request->order)->get();
 
 

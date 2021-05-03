@@ -28,7 +28,6 @@ class DatabaseSeeder extends Seeder
                 DB::statement('PRAGMA foreign_keys = OFF');
                 break;
             case 'pgsql':
-
                 break;
         }
     }
@@ -42,7 +41,6 @@ class DatabaseSeeder extends Seeder
                 DB::statement('PRAGMA foreign_keys = ON');
                 break;
             case 'pgsql':
-
                 break;
         }
     }
