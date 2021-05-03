@@ -206,10 +206,10 @@ class Api extends Model
             $like = 'ilike';
         }
 
-        $juegos = $this->WHERE('nombre', "'.$like.'", '%' . $request->search . '%')
-            ->OrWhere('desarrolladora', "'.$like.'", '%' . $request->search . '%')
-            ->OrWhere('descripcion', "'.$like.'", '%' . $request->search . '%')
-            ->OrWhere('fecha', "'.$like.'", '%' . $request->search . '%')
+        $juegos = $this->WHERE('nombre', $like, '%' . $request->search . '%')
+            ->OrWhere('desarrolladora', $like, '%' . $request->search . '%')
+            ->OrWhere('descripcion', $like, '%' . $request->search . '%')
+            ->OrWhere('fecha', $like, '%' . $request->search . '%')
             ->orderBy($request->filter, $request->order)->get();
 
 
