@@ -4,6 +4,7 @@ namespace App;
 
 use App\Desarrolladora;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -220,10 +221,16 @@ class Api extends Model
             $request->order = 'DESC';
         }
 
-        $juegos = Api::WHERE('nombre', 'LIKE', '%' . $request->search . '%')
-            ->OrWhere('desarrolladora', 'LIKE', '%' . $request->search . '%')
-            ->OrWhere('descripcion', 'LIKE', '%' . $request->search . '%')
-            ->OrWhere('fecha', 'LIKE', '%' . $request->search . '%')
+        if (DB::getDriverName() === 'mysql' || DB::getDriverName() === 'sqlite') {
+            $like = 'like';
+        } else if (DB::getDriverName() === 'pgsql') {
+            $like = 'ilike';
+        }
+
+        $juegos = $this->WHERE('nombre', $like, '%' . $request->search . '%')
+            ->OrWhere('desarrolladora', $like, '%' . $request->search . '%')
+            ->OrWhere('descripcion', $like, '%' . $request->search . '%')
+            ->OrWhere('fecha', $like, '%' . $request->search . '%')
             ->orderBy($request->filter, $request->order)->get();
 
 
