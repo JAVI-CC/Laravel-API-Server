@@ -1,9 +1,9 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use App\Desarrolladora;
-use App\Dropbox;
+use App\Models\Desarrolladora;
+use App\Models\Dropbox;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Api;
-use App\Desarrolladora;
+use App\Models\Api;
+use App\Models\Desarrolladora;
 use App\Http\Resources\ApiResource;
 use Illuminate\Http\Request;
 
