@@ -203,7 +203,9 @@ class Api extends Model
         if (DB::getDriverName() === 'mysql' || DB::getDriverName() === 'sqlite') {
             $like = 'LIKE';
         } else if (DB::getDriverName() === 'pgsql') {
-            $like = 'ILIKE';
+            $like = 'ilike';
+        } else {
+            $like = 'like';
         }
 
         $juegos = $this->WHERE('nombre', $like, '%' . $request->search . '%')
