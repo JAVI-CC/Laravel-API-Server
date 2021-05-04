@@ -225,6 +225,8 @@ class Api extends Model
             $like = 'like';
         } else if (DB::getDriverName() === 'pgsql') {
             $like = 'ilike';
+        } else {
+            $like = 'like';
         }
 
         $juegos = $this->WHERE('nombre', $like, '%' . $request->search . '%')
