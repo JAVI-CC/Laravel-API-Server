@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->setFKCheckOff();
         $this->call(DesarrolladoraSeeder::class);
+        $this->call(GeneroSeeder::class);
         $this->call(JuegoSeeder::class);
         $this->call(UserSeeder::class);
         $this->setFKCheckON();
