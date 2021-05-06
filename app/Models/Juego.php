@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Validator;
 
 /**
  * @OA\Schema(
- *   @OA\Xml(name="Api"),
+ *   @OA\Xml(name="Juego"),
  *   @OA\Property(property="nombre", description="Nombre del juego", type="string", example="Test123"),
  *   @OA\Property(property="descripcion", description="descripción del juego", type="string", example="insertando juego de prueba..."),
  *   @OA\Property(property="desarrolladora", description="nombre de la desarrolladora que pertenece al juego", type="string", example="Test123 Studios"),
@@ -24,21 +24,12 @@ use Illuminate\Support\Facades\Validator;
  * 
  * @package App\Models
  */
-class Api extends Model
+class Juego extends Model
 {
     public $timestamps = false;
     protected $table = 'juegos';
     protected $hidden = array('id');
     protected $fillable = array('nombre', 'descripcion', 'desarrolladora', 'fecha', 'url_imagen', 'slug');
-
-    protected function convert_url($txt)
-    {
-        $txt = substr($txt, 0, 140);
-        $txt = strtr($txt, " _ÀÁÂÃÄÅÆàáâãäåæÒÓÔÕÕÖØòóôõöøÈÉÊËèéêëðÇçÐÌÍÎÏìíîïÙÚÛÜùúûüÑñÞßÿý",  "--aaaaaaaaaaaaaaoooooooooooooeeeeeeeeecceiiiiiiiiuuuuuuuunntsyy");
-        $txt = strtolower($txt);
-        $txt = preg_replace("/[^a-z0-9\-.]/", "", $txt);
-        return str_replace("--", "-", $txt);
-    }
 
     //Relacion de uno a muchos (inversa)
     public function desarrolladoras()
@@ -116,7 +107,7 @@ class Api extends Model
 
     public function add_juego($request)
     {
-        $slug = $this->convert_url($request->nombre);
+        $slug = $this->sluggable($request->nombre);
         $dropbox = new Dropbox();
         $url_imagen = $dropbox->upload_imagen($request->imagen);
         $request->request->add(['slug' => $slug, 'url_imagen' => $url_imagen]);
@@ -135,7 +126,7 @@ class Api extends Model
         if ($id_juego == null) {
             return response()->json(['error' => 'Juego no encontrado']);
         } else {
-            $slug = $this->convert_url($request->nombre);
+            $slug = $this->sluggable($request->nombre);
             $dropbox = new Dropbox();
             $url_imagen = $dropbox->update_imagen($id_juego['url_imagen'], $request->imagen);
             $request->request->add(['slug' => $slug, 'url_imagen' => $url_imagen]);
@@ -155,7 +146,7 @@ class Api extends Model
         if ($id_juego == null) {
             return response()->json(['error' => 'Juego no encontrado']);
         } else {
-            $slug = $this->convert_url($request->nombre);
+            $slug = $this->sluggable($request->nombre);
             $request->request->add(['slug' => $slug]);
 
             $desarrolladora = new Desarrolladora();

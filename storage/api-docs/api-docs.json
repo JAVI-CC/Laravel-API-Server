@@ -6,364 +6,6 @@
         "version": "1.0.1"
     },
     "paths": {
-        "/api/juegos": {
-            "get": {
-                "tags": [
-                    "Juegos"
-                ],
-                "summary": "Obtener todos los juegos",
-                "description": "Muestra todos los registros de juegos en formato JSON",
-                "operationId": "getAllJuegos",
-                "responses": {
-                    "200": {
-                        "description": "Success"
-                    },
-                    "401": {
-                        "description": "No autorizado"
-                    },
-                    "500": {
-                        "description": "Error interno del servidor"
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "Juegos"
-                ],
-                "summary": "Insertar un juego",
-                "description": "Insertar el registro de un juego nuevo con parametros.",
-                "operationId": "addJuego",
-                "parameters": [
-                    {
-                        "name": "Juego",
-                        "in": "query",
-                        "description": "{nombre, descripcion, desarrolladora, fecha, imagen}",
-                        "required": true,
-                        "schema": {
-                            "properties": {
-                                "nombre": {
-                                    "$ref": "#/components/schemas/Api/properties/nombre"
-                                },
-                                "descripcion": {
-                                    "$ref": "#/components/schemas/Api/properties/descripcion"
-                                },
-                                "desarrolladora": {
-                                    "$ref": "#/components/schemas/Api/properties/desarrolladora"
-                                },
-                                "fecha": {
-                                    "$ref": "#/components/schemas/Api/properties/fecha"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "multipart/form-data": {
-                            "schema": {
-                                "properties": {
-                                    "imagen": {
-                                        "description": "imagen del juego",
-                                        "type": "file",
-                                        "items": {
-                                            "type": "string",
-                                            "format": "binary"
-                                        }
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "201": {
-                        "description": "Se ha creado correctamente"
-                    },
-                    "220": {
-                        "description": "No se cumple todos los requisitos"
-                    },
-                    "401": {
-                        "description": "No autorizado"
-                    },
-                    "500": {
-                        "description": "Error interno del servidor"
-                    }
-                },
-                "security": [
-                    {
-                        "SANCTUM": []
-                    }
-                ]
-            }
-        },
-        "/api/juegos/{slug}": {
-            "get": {
-                "tags": [
-                    "Juegos"
-                ],
-                "summary": "Obtener un juego",
-                "description": "Muestra la información de un juego especifico segun el valor del parametro slug.",
-                "operationId": "getJuego",
-                "parameters": [
-                    {
-                        "name": "slug",
-                        "in": "path",
-                        "description": "Url del nombre del juego",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": "test123"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success"
-                    },
-                    "401": {
-                        "description": "No autorizado"
-                    },
-                    "500": {
-                        "description": "Error interno del servidor"
-                    }
-                }
-            }
-        },
-        "/api/juegos/edit": {
-            "put": {
-                "tags": [
-                    "Juegos"
-                ],
-                "summary": "Actualizar un juego sin subir la imagen",
-                "description": "Actulizar un juego ya existente con parametros sin la necesidad de subir la imagen.",
-                "operationId": "editJuegoWithoutImage",
-                "requestBody": {
-                    "description": "{nombre, descripcion, desarrolladora, fecha, slug}",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "nombre",
-                                    "descripcion",
-                                    "desarrolladora",
-                                    "fecha"
-                                ],
-                                "properties": {
-                                    "nombre": {
-                                        "$ref": "#/components/schemas/Api/properties/nombre"
-                                    },
-                                    "descripcion": {
-                                        "$ref": "#/components/schemas/Api/properties/descripcion"
-                                    },
-                                    "desarrolladora": {
-                                        "$ref": "#/components/schemas/Api/properties/desarrolladora"
-                                    },
-                                    "fecha": {
-                                        "$ref": "#/components/schemas/Api/properties/fecha"
-                                    },
-                                    "slug": {
-                                        "$ref": "#/components/schemas/Api/properties/slug"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Success"
-                    },
-                    "220": {
-                        "description": "No se cumple todos los requisitos"
-                    },
-                    "401": {
-                        "description": "No autorizado"
-                    },
-                    "500": {
-                        "description": "Error interno del servidor"
-                    }
-                },
-                "security": [
-                    {
-                        "SANCTUM": []
-                    }
-                ]
-            },
-            "post": {
-                "tags": [
-                    "Juegos"
-                ],
-                "summary": "Actualizar un juego con la imagen incluida",
-                "description": "Actulizar un juego ya existente con parametros con la imagen incluida.",
-                "operationId": "editJuego",
-                "parameters": [
-                    {
-                        "name": "Juego",
-                        "in": "query",
-                        "description": "{nombre, descripcion, desarrolladora, fecha, slug, imagen}",
-                        "required": true,
-                        "schema": {
-                            "properties": {
-                                "nombre": {
-                                    "$ref": "#/components/schemas/Api/properties/nombre"
-                                },
-                                "descripcion": {
-                                    "$ref": "#/components/schemas/Api/properties/descripcion"
-                                },
-                                "desarrolladora": {
-                                    "$ref": "#/components/schemas/Api/properties/desarrolladora"
-                                },
-                                "fecha": {
-                                    "$ref": "#/components/schemas/Api/properties/fecha"
-                                },
-                                "slug": {
-                                    "$ref": "#/components/schemas/Api/properties/slug"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "multipart/form-data": {
-                            "schema": {
-                                "properties": {
-                                    "imagen": {
-                                        "description": "imagen del juego",
-                                        "type": "file",
-                                        "items": {
-                                            "type": "string",
-                                            "format": "binary"
-                                        }
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Success"
-                    },
-                    "220": {
-                        "description": "No se cumple todos los requisitos"
-                    },
-                    "401": {
-                        "description": "No autorizado"
-                    },
-                    "500": {
-                        "description": "Error interno del servidor"
-                    }
-                },
-                "security": [
-                    {
-                        "SANCTUM": []
-                    }
-                ]
-            }
-        },
-        "/api/juegos/delete/{slug}": {
-            "delete": {
-                "tags": [
-                    "Juegos"
-                ],
-                "summary": "Eliminar un juego",
-                "description": "Elimina un juego especifico segun el valor del parametro slug.",
-                "operationId": "deleteJuego",
-                "parameters": [
-                    {
-                        "name": "slug",
-                        "in": "path",
-                        "description": "Url del nombre del juego",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": "test123"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success"
-                    },
-                    "401": {
-                        "description": "No autorizado"
-                    },
-                    "500": {
-                        "description": "Error interno del servidor"
-                    }
-                },
-                "security": [
-                    {
-                        "SANCTUM": []
-                    }
-                ]
-            }
-        },
-        "/api/juegos/filter/search": {
-            "post": {
-                "tags": [
-                    "Juegos"
-                ],
-                "summary": "Busqueda",
-                "description": "Busqueda por nombres de juegos y también ordena el resultado de distintas maneras.",
-                "operationId": "filterJuego",
-                "parameters": [
-                    {
-                        "name": "search",
-                        "in": "query",
-                        "description": "Nombre del juego que quieres buscar",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": "dark"
-                        }
-                    },
-                    {
-                        "name": "filter",
-                        "in": "query",
-                        "description": "Ordenar por diferente tipo. Ejemplos ['nombre', 'descripcion', 'desarolladora', 'fecha'] ",
-                        "required": false,
-                        "schema": {
-                            "type": "string",
-                            "example": "fecha"
-                        }
-                    },
-                    {
-                        "name": "order",
-                        "in": "query",
-                        "description": "ordenar de forma 'ASC' o 'DESC'",
-                        "required": false,
-                        "schema": {
-                            "type": "string",
-                            "example": "DESC"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success"
-                    },
-                    "220": {
-                        "description": "No se cumple todos los requisitos"
-                    },
-                    "401": {
-                        "description": "No autorizado"
-                    },
-                    "500": {
-                        "description": "Error interno del servidor"
-                    }
-                }
-            }
-        },
         "/api/auth/register": {
             "post": {
                 "tags": [
@@ -544,11 +186,387 @@
                     }
                 }
             }
+        },
+        "/api/juegos": {
+            "get": {
+                "tags": [
+                    "Juegos"
+                ],
+                "summary": "Obtener todos los juegos",
+                "description": "Muestra todos los registros de juegos en formato JSON",
+                "operationId": "getAllJuegos",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "No autorizado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Juegos"
+                ],
+                "summary": "Insertar un juego",
+                "description": "Insertar el registro de un juego nuevo con parametros.",
+                "operationId": "addJuego",
+                "parameters": [
+                    {
+                        "name": "Juego",
+                        "in": "query",
+                        "description": "{nombre, descripcion, desarrolladora, fecha, imagen}",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "nombre": {
+                                    "$ref": "#/components/schemas/Juego/properties/nombre"
+                                },
+                                "descripcion": {
+                                    "$ref": "#/components/schemas/Juego/properties/descripcion"
+                                },
+                                "desarrolladora": {
+                                    "$ref": "#/components/schemas/Juego/properties/desarrolladora"
+                                },
+                                "fecha": {
+                                    "$ref": "#/components/schemas/Juego/properties/fecha"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "imagen": {
+                                        "description": "imagen del juego",
+                                        "type": "file",
+                                        "items": {
+                                            "type": "string",
+                                            "format": "binary"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Se ha creado correctamente"
+                    },
+                    "220": {
+                        "description": "No se cumple todos los requisitos"
+                    },
+                    "401": {
+                        "description": "No autorizado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "SANCTUM": []
+                    }
+                ]
+            }
+        },
+        "/api/juegos/{slug}": {
+            "get": {
+                "tags": [
+                    "Juegos"
+                ],
+                "summary": "Obtener un juego",
+                "description": "Muestra la información de un juego especifico segun el valor del parametro slug.",
+                "operationId": "getJuego",
+                "parameters": [
+                    {
+                        "name": "slug",
+                        "in": "path",
+                        "description": "Url del nombre del juego",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "test123"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "No autorizado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                }
+            }
+        },
+        "/api/juegos/edit": {
+            "put": {
+                "tags": [
+                    "Juegos"
+                ],
+                "summary": "Actualizar un juego sin subir la imagen",
+                "description": "Actulizar un juego ya existente con parametros sin la necesidad de subir la imagen.",
+                "operationId": "editJuegoWithoutImage",
+                "requestBody": {
+                    "description": "{nombre, descripcion, desarrolladora, fecha, slug}",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nombre",
+                                    "descripcion",
+                                    "desarrolladora",
+                                    "fecha"
+                                ],
+                                "properties": {
+                                    "nombre": {
+                                        "$ref": "#/components/schemas/Juego/properties/nombre"
+                                    },
+                                    "descripcion": {
+                                        "$ref": "#/components/schemas/Juego/properties/descripcion"
+                                    },
+                                    "desarrolladora": {
+                                        "$ref": "#/components/schemas/Juego/properties/desarrolladora"
+                                    },
+                                    "fecha": {
+                                        "$ref": "#/components/schemas/Juego/properties/fecha"
+                                    },
+                                    "slug": {
+                                        "$ref": "#/components/schemas/Juego/properties/slug"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "220": {
+                        "description": "No se cumple todos los requisitos"
+                    },
+                    "401": {
+                        "description": "No autorizado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "SANCTUM": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Juegos"
+                ],
+                "summary": "Actualizar un juego con la imagen incluida",
+                "description": "Actulizar un juego ya existente con parametros con la imagen incluida.",
+                "operationId": "editJuego",
+                "parameters": [
+                    {
+                        "name": "Juego",
+                        "in": "query",
+                        "description": "{nombre, descripcion, desarrolladora, fecha, slug, imagen}",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "nombre": {
+                                    "$ref": "#/components/schemas/Juego/properties/nombre"
+                                },
+                                "descripcion": {
+                                    "$ref": "#/components/schemas/Juego/properties/descripcion"
+                                },
+                                "desarrolladora": {
+                                    "$ref": "#/components/schemas/Juego/properties/desarrolladora"
+                                },
+                                "fecha": {
+                                    "$ref": "#/components/schemas/Juego/properties/fecha"
+                                },
+                                "slug": {
+                                    "$ref": "#/components/schemas/Juego/properties/slug"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "imagen": {
+                                        "description": "imagen del juego",
+                                        "type": "file",
+                                        "items": {
+                                            "type": "string",
+                                            "format": "binary"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "220": {
+                        "description": "No se cumple todos los requisitos"
+                    },
+                    "401": {
+                        "description": "No autorizado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "SANCTUM": []
+                    }
+                ]
+            }
+        },
+        "/api/juegos/delete/{slug}": {
+            "delete": {
+                "tags": [
+                    "Juegos"
+                ],
+                "summary": "Eliminar un juego",
+                "description": "Elimina un juego especifico segun el valor del parametro slug.",
+                "operationId": "deleteJuego",
+                "parameters": [
+                    {
+                        "name": "slug",
+                        "in": "path",
+                        "description": "Url del nombre del juego",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "test123"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "No autorizado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "SANCTUM": []
+                    }
+                ]
+            }
+        },
+        "/api/juegos/filter/search": {
+            "post": {
+                "tags": [
+                    "Juegos"
+                ],
+                "summary": "Busqueda",
+                "description": "Busqueda por nombres de juegos y también ordena el resultado de distintas maneras.",
+                "operationId": "filterJuego",
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Nombre del juego que quieres buscar",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "dark"
+                        }
+                    },
+                    {
+                        "name": "filter",
+                        "in": "query",
+                        "description": "Ordenar por diferente tipo. Ejemplos ['nombre', 'descripcion', 'desarolladora', 'fecha'] ",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "fecha"
+                        }
+                    },
+                    {
+                        "name": "order",
+                        "in": "query",
+                        "description": "ordenar de forma 'ASC' o 'DESC'",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "DESC"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "220": {
+                        "description": "No se cumple todos los requisitos"
+                    },
+                    "401": {
+                        "description": "No autorizado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                }
+            }
         }
     },
     "components": {
         "schemas": {
-            "Api": {
+            "Desarrolladora": {
+                "properties": {
+                    "nombre": {
+                        "description": "Nombre de la desarrolladora",
+                        "type": "string",
+                        "example": "Test123 Studios"
+                    },
+                    "slug": {
+                        "description": "Url amigable del nombre de la desarrolladora",
+                        "type": "string",
+                        "example": "test123-studios"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Desarrolladora"
+                }
+            },
+            "Juego": {
                 "properties": {
                     "nombre": {
                         "description": "Nombre del juego",
@@ -578,25 +596,7 @@
                 },
                 "type": "object",
                 "xml": {
-                    "name": "Api"
-                }
-            },
-            "Desarrolladora": {
-                "properties": {
-                    "nombre": {
-                        "description": "Nombre de la desarrolladora",
-                        "type": "string",
-                        "example": "Test123 Studios"
-                    },
-                    "slug": {
-                        "description": "Url amigable del nombre de la desarrolladora",
-                        "type": "string",
-                        "example": "test123-studios"
-                    }
-                },
-                "type": "object",
-                "xml": {
-                    "name": "Desarrolladora"
+                    "name": "Juego"
                 }
             },
             "User": {

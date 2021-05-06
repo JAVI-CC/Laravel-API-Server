@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Api;
+use App\Models\Juego;
 use App\Models\Desarrolladora;
-use App\Http\Resources\ApiResource;
+use App\Http\Resources\JuegoResource;
 use Illuminate\Http\Request;
 
 class DesarrolladoraController extends Controller
@@ -45,7 +45,7 @@ class DesarrolladoraController extends Controller
         if (isset($id_des->original['error'])) {
             return $id_des;
         }
-        $juegos = Api::where('desarrolladora', $id_des)->orderBy('fecha', 'DESC')->get();
-        return response()->json(ApiResource::collection(($juegos)), 200);
+        $juegos = Juego::where('desarrolladora', $id_des)->orderBy('fecha', 'DESC')->get();
+        return response()->json(JuegoResource::collection(($juegos)), 200);
     }
 }

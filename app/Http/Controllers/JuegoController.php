@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Api;
-use App\Http\Resources\ApiResource;
-use App\Http\Resources\ApiResourcePrivate;
+use App\Models\Juego;
+use App\Http\Resources\JuegoResource;
 use Illuminate\Http\Request;
 
 /**
@@ -18,14 +17,14 @@ use Illuminate\Http\Request;
  *   ),
  * )
  */
-class ApiController extends Controller
+class JuegoController extends Controller
 {
 
-    protected $api;
+    protected $juego;
 
-    public function __construct(Api $api)
+    public function __construct(Juego $juego)
     {
-        $this->api = $api;
+        $this->juego = $juego;
     }
 
 
@@ -44,8 +43,8 @@ class ApiController extends Controller
      */
     public function index()
     {
-        $juegos = Api::orderBy('id', 'DESC')->get();
-        return response()->json(ApiResource::collection(($juegos)), 200);
+        $juegos = Juego::orderBy('id', 'DESC')->get();
+        return response()->json(JuegoResource::collection(($juegos)), 200);
     }
 
     /**
@@ -62,10 +61,10 @@ class ApiController extends Controller
      *     required=true,
      *     description="{nombre, descripcion, desarrolladora, fecha, imagen}",
      *     @OA\Schema(
-     *       @OA\Property(property="nombre", ref="#/components/schemas/Api/properties/nombre"),
-     *       @OA\Property(property="descripcion", ref="#/components/schemas/Api/properties/descripcion"),
-     *       @OA\Property(property="desarrolladora", ref="#/components/schemas/Api/properties/desarrolladora"),
-     *       @OA\Property(property="fecha", ref="#/components/schemas/Api/properties/fecha"),
+     *       @OA\Property(property="nombre", ref="#/components/schemas/Juego/properties/nombre"),
+     *       @OA\Property(property="descripcion", ref="#/components/schemas/Juego/properties/descripcion"),
+     *       @OA\Property(property="desarrolladora", ref="#/components/schemas/Juego/properties/desarrolladora"),
+     *       @OA\Property(property="fecha", ref="#/components/schemas/Juego/properties/fecha"),
      *     ),
      *   ),
      *   @OA\RequestBody(
@@ -92,13 +91,13 @@ class ApiController extends Controller
     public function store(Request $request)
     {
 
-        $validator = $this->api->validation_add($request);
+        $validator = $this->juego->validation_add($request);
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 220);
         } else {
-            $juego = $this->api->add_juego($request);
-            return response()->json(new ApiResource($juego), 201);
+            $juego = $this->juego->add_juego($request);
+            return response()->json(new JuegoResource($juego), 201);
         }
     }
 
@@ -127,13 +126,13 @@ class ApiController extends Controller
      */
     public function show($slug)
     {
-        $juego = Api::WHERE('slug', $slug)->first();
-        $juego = $this->api->exists_slug($juego);
+        $juego = Juego::WHERE('slug', $slug)->first();
+        $juego = $this->juego->exists_slug($juego);
         if (isset($juego->original['error'])) {
             return $juego;
         }
         //return $juego;
-        return response()->json(new ApiResource($juego), 200);
+        return response()->json(new JuegoResource($juego), 200);
     }
 
 
@@ -151,11 +150,11 @@ class ApiController extends Controller
      *     required=true,
      *     description="{nombre, descripcion, desarrolladora, fecha, slug, imagen}",
      *     @OA\Schema(
-     *       @OA\Property(property="nombre", ref="#/components/schemas/Api/properties/nombre"),
-     *       @OA\Property(property="descripcion", ref="#/components/schemas/Api/properties/descripcion"),
-     *       @OA\Property(property="desarrolladora", ref="#/components/schemas/Api/properties/desarrolladora"),
-     *       @OA\Property(property="fecha", ref="#/components/schemas/Api/properties/fecha"),
-     *       @OA\Property(property="slug", ref="#/components/schemas/Api/properties/slug"),
+     *       @OA\Property(property="nombre", ref="#/components/schemas/Juego/properties/nombre"),
+     *       @OA\Property(property="descripcion", ref="#/components/schemas/Juego/properties/descripcion"),
+     *       @OA\Property(property="desarrolladora", ref="#/components/schemas/Juego/properties/desarrolladora"),
+     *       @OA\Property(property="fecha", ref="#/components/schemas/Juego/properties/fecha"),
+     *       @OA\Property(property="slug", ref="#/components/schemas/Juego/properties/slug"),
      *     ),
      *   ),
      *   @OA\RequestBody(
@@ -181,16 +180,16 @@ class ApiController extends Controller
      */
     public function update(Request $request)
     {
-        $juego = $this->api->show_id($request->input('slug'));
+        $juego = $this->juego->show_id($request->input('slug'));
         if (isset($juego->original['error'])) {
             return $juego;
         } else {
-            $validator = $this->api->validation_update($request, $juego->nombre);
+            $validator = $this->juego->validation_update($request, $juego->nombre);
             if ($validator->fails()) {
                 return response()->json($validator->errors(), 220);
             } else {
-                $juego = $this->api->exists_id_update($juego, $request);
-                return response()->json(new ApiResource($juego), 200);
+                $juego = $this->juego->exists_id_update($juego, $request);
+                return response()->json(new JuegoResource($juego), 200);
             }
         }
     }
@@ -208,11 +207,11 @@ class ApiController extends Controller
      *     description="{nombre, descripcion, desarrolladora, fecha, slug}",
      *     @OA\JsonContent(
      *       required={"nombre", "descripcion", "desarrolladora", "fecha"},
-     *       @OA\Property(property="nombre", ref="#/components/schemas/Api/properties/nombre"),
-     *       @OA\Property(property="descripcion", ref="#/components/schemas/Api/properties/descripcion"),
-     *       @OA\Property(property="desarrolladora", ref="#/components/schemas/Api/properties/desarrolladora"),
-     *       @OA\Property(property="fecha", ref="#/components/schemas/Api/properties/fecha"),
-     *       @OA\Property(property="slug", ref="#/components/schemas/Api/properties/slug")
+     *       @OA\Property(property="nombre", ref="#/components/schemas/Juego/properties/nombre"),
+     *       @OA\Property(property="descripcion", ref="#/components/schemas/Juego/properties/descripcion"),
+     *       @OA\Property(property="desarrolladora", ref="#/components/schemas/Juego/properties/desarrolladora"),
+     *       @OA\Property(property="fecha", ref="#/components/schemas/Juego/properties/fecha"),
+     *       @OA\Property(property="slug", ref="#/components/schemas/Juego/properties/slug")
      *    ),
      *   ),
      *   @OA\Response(response=200, description="Success"),
@@ -224,17 +223,17 @@ class ApiController extends Controller
      */
     public function updatewithoutimage(Request $request)
     {
-        $juego = $this->api->show_id($request->input('slug'));
+        $juego = $this->juego->show_id($request->input('slug'));
 
         if (isset($juego->original['error'])) {
             return $juego;
         } else {
-            $validator = $this->api->validation_update_without_image($request, $juego->nombre);
+            $validator = $this->juego->validation_update_without_image($request, $juego->nombre);
             if ($validator->fails()) {
                 return response()->json($validator->errors(), 220);
             } else {
-                $juego = $this->api->exists_id_update_without_image($juego, $request);
-                return response()->json(new ApiResource($juego), 200);
+                $juego = $this->juego->exists_id_update_without_image($juego, $request);
+                return response()->json(new JuegoResource($juego), 200);
             }
         }
     }
@@ -265,8 +264,8 @@ class ApiController extends Controller
      */
     public function delete($slug)
     {
-        $id_juego = $this->api->show_id($slug);
-        $juego = $this->api->exists_id_delete($id_juego);
+        $id_juego = $this->juego->show_id($slug);
+        $juego = $this->juego->exists_id_delete($id_juego);
         return $juego;
     }
 
@@ -317,12 +316,12 @@ class ApiController extends Controller
      */
     public function filter(Request $request)
     {
-        $juegos = $this->api->search($request);
+        $juegos = $this->juego->search($request);
 
         if (isset($juegos->original)) {
             return $juegos;
         } else {
-            return response()->json(ApiResource::collection(($juegos)), 200);
+            return response()->json(JuegoResource::collection(($juegos)), 200);
         }
     }
 }
