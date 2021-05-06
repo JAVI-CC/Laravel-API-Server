@@ -17,8 +17,6 @@ class JuegosTable extends Migration
             $table->bigIncrements('id');
             $table->string('nombre')->unique();
             $table->string('descripcion');
-            $table->unsignedBigInteger('desarrolladora')->nullable();
-            $table->foreign('desarrolladora')->references('id')->on('desarrolladoras')->onDelete('set null');
             $table->date('fecha');
             $table->string('slug')->unique();
         });

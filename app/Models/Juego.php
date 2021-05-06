@@ -40,15 +40,10 @@ class Juego extends Model
         return str_replace("--", "-", $txt);
     }
 
-    //Relacion de uno a muchos (inversa)
+    //Relacion de muchos a muchos inversa polimorfica
     public function desarrolladoras()
     {
-        return $this->belongsTo(Desarrolladora::class);
-    }
-
-    public function findByIdDesarrolladora($id) {
-        $value = Desarrolladora::where('id', $id)->first();
-        return $value;
+        return $this->morphedByMany(Desarrolladora::class, 'juegable');
     }
 
     public function validation_add($request)
@@ -117,12 +112,13 @@ class Juego extends Model
     {
         $slug = $this->convert_url($request->nombre);
         $request->request->add(['slug' => $slug]);
-        
+
         $desarrolladora = new Desarrolladora();
-        $desarrolladora_id = $desarrolladora->similar_name($request->input('desarrolladora'));
-        $request->merge(['desarrolladora' => $desarrolladora_id]);
-        
+        $desarrolladora = $desarrolladora->similar_name($request->input('desarrolladora'));
+        $request->merge(['desarrolladora' => $desarrolladora->id]);
+
         $juego = $this->create(array_merge($request->all()));
+        $desarrolladora->juegables()->attach($juego->id);
         $this->upload_imagen($juego->id, $slug, $request->imagen);
         return $juego;
     }
@@ -137,10 +133,12 @@ class Juego extends Model
             $request->request->add(['slug' => $slug]);
 
             $desarrolladora = new Desarrolladora();
-            $desarrolladora_id = $desarrolladora->similar_name($request->input('desarrolladora'));
-            $request->merge(['desarrolladora' => $desarrolladora_id]);
+            $desarrolladora = $desarrolladora->similar_name($request->input('desarrolladora'));
+            $request->merge(['desarrolladora' => $desarrolladora->id]);
 
             $id_juego->fill($request->all())->save();
+            $id_juego->desarrolladoras()->update(['juegable_id' => $desarrolladora->id]);
+
             $this->update_imagen($id_juego['id'], $slug, $request->imagen);
             return $id_juego;
         }
@@ -156,12 +154,13 @@ class Juego extends Model
             $slug_antiguo = $request->input('slug');
 
             $desarrolladora = new Desarrolladora();
-            $desarrolladora_id = $desarrolladora->similar_name($request->input('desarrolladora'));
-            $request->merge(['desarrolladora' => $desarrolladora_id]);
+            $desarrolladora = $desarrolladora->similar_name($request->input('desarrolladora'));
+            $request->merge(['desarrolladora' => $desarrolladora->id]);
 
             $request->request->add(['slug' => $slug]);
             $id_juego->fill($request->all())->save();
-
+            $id_juego->desarrolladoras()->update(['juegable_id' => $desarrolladora->id]);
+            
             //Cambiar el nombre del archivo
             $id = $this->where('slug', $request->input('slug'))->first()->id;
             FILE::move(public_path('media/juegos/' . $id . '-' . $slug_antiguo . '.png'), public_path('media/juegos/' . $id . '-' . $slug . '.png'));
@@ -175,6 +174,7 @@ class Juego extends Model
             return response()->json(['error' => 'Juego no encontrado']);
         } else {
             $id_juego->delete();
+            $id_juego->desarrolladoras()->detach();
             $this->delete_imagen($id_juego['id']);
             return response()->json(['success' => 'Se ha eliminado correctamente el juego: ' . $id_juego->nombre]);
         }

@@ -25,10 +25,10 @@ class Desarrolladora extends Model
         return str_replace("--", "-", $txt);
     }
 
-    //Relacion de uno a muchos
-    public function juegos()
+    //Relacion de muchos a muchos polimorfica
+    public function juegables()
     {
-        return $this->hasMany(Juego::class, 'desarrolladora');
+        return $this->morphToMany(Juego::class, 'juegable');
     }
 
     public function findById($id) {
@@ -39,9 +39,9 @@ class Desarrolladora extends Model
     public function findBySlug($slug) {
         $value = Desarrolladora::select('id')->where('slug', $slug)->first();
         if($value == null) {
-            return response()->json(['error' => 'Desarrolladora no encontrada']);
+            return ['error' => 'Desarrolladora no encontrada'];
         }
-        return $value->id;
+        return $value->juegables;
     }
 
     public function showNames()
@@ -58,7 +58,7 @@ class Desarrolladora extends Model
             if (similar_text(strtolower($value), strtolower($compare), $calculated_percentage)) {
                 if ($percentage <= $calculated_percentage) {
                     $value = Desarrolladora::select('id')->where('nombre', $value)->first();
-                    return $value->id;
+                    return $value;
                     continue;
                 }
             }
@@ -67,7 +67,7 @@ class Desarrolladora extends Model
         //En caso de que el nombre de la desarrolladora no coincida con ningún otro nombre
         $slug = $this->convert_url($compare);
         $des = Desarrolladora::create(['nombre' => $compare, 'slug' => $slug]);
-        return $des->id;
+        return $des;
     }
 
 }
