@@ -29,7 +29,7 @@ class Juego extends Model
     public $timestamps = false;
     protected $table = 'juegos';
     protected $hidden = array('id');
-    protected $fillable = array('nombre', 'descripcion', 'desarrolladora', 'fecha', 'slug');
+    protected $fillable = array('nombre', 'descripcion', 'fecha', 'slug');
 
     protected function convert_url($txt)
     {
@@ -230,7 +230,6 @@ class Juego extends Model
         }
 
         $juegos = $this->WHERE('nombre', $like, '%' . $request->search . '%')
-            ->OrWhere('desarrolladora', $like, '%' . $request->search . '%')
             ->OrWhere('descripcion', $like, '%' . $request->search . '%')
             ->OrWhere('fecha', $like, '%' . $request->search . '%')
             ->orderBy($request->filter, $request->order)->get();

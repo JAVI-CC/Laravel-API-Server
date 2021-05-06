@@ -30,6 +30,6 @@ class CreateJuegablesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('recursos');
+        Schema::dropIfExists('juegables');
     }
 }
