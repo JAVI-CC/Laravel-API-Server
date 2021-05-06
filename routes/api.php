@@ -18,13 +18,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::prefix('juegos')->group(function () {
-  Route::get('/', 'ApiController@index')->name('getAllJuegos');
-  Route::post('/', 'ApiController@store')->name('addJuego')->middleware('auth:sanctum');
-  Route::get('{slug}', 'ApiController@show')->name('getJuego');
-  Route::post('/edit', 'ApiController@update')->name('editJuego')->middleware('auth:sanctum');
-  Route::put('/edit', 'ApiController@updatewithoutimage')->name('editJuegoWithoutImage')->middleware('auth:sanctum');
-  Route::delete('/delete/{slug}', 'ApiController@delete')->name('deleteJuego')->middleware('auth:sanctum');
-  Route::post('/filter/search/', 'ApiController@filter')->name('filterJuego');
+  Route::get('/', 'JuegoController@index')->name('getAllJuegos');
+  Route::post('/', 'JuegoController@store')->name('addJuego')->middleware('auth:sanctum');
+  Route::get('{slug}', 'JuegoController@show')->name('getJuego');
+  Route::post('/edit', 'JuegoController@update')->name('editJuego')->middleware('auth:sanctum');
+  Route::put('/edit', 'JuegoController@updatewithoutimage')->name('editJuegoWithoutImage')->middleware('auth:sanctum');
+  Route::delete('/delete/{slug}', 'JuegoController@delete')->name('deleteJuego')->middleware('auth:sanctum');
+  Route::post('/filter/search/', 'JuegoController@filter')->name('filterJuego');
   Route::get('/desarrolladoras/{slug}', 'DesarrolladoraController@show')->name('getJuegoDesarrolladora');
 
 });

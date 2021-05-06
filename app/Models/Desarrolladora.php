@@ -28,7 +28,7 @@ class Desarrolladora extends Model
     //Relacion de uno a muchos
     public function juegos()
     {
-        return $this->hasMany(API::class, 'desarrolladora');
+        return $this->hasMany(Juego::class, 'desarrolladora');
     }
 
     public function findById($id) {

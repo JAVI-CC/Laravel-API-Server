@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Validator;
 
 /**
  * @OA\Schema(
- *   @OA\Xml(name="Api"),
+ *   @OA\Xml(name="Juego"),
  *   @OA\Property(property="nombre", description="Nombre del juego", type="string", example="Test123"),
  *   @OA\Property(property="descripcion", description="descripción del juego", type="string", example="insertando juego de prueba..."),
  *   @OA\Property(property="desarrolladora", description="nombre de la desarrolladora que pertenece al juego", type="string", example="Test123 Studios"),
@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Validator;
  * 
  * @package App\Models
  */
-class Api extends Model
+class Juego extends Model
 {
     public $timestamps = false;
     protected $table = 'juegos';
