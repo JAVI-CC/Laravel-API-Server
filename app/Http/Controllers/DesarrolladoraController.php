@@ -42,10 +42,9 @@ class DesarrolladoraController extends Controller
     public function show($slug)
     {
         $id_des = $this->desarrolladora->findBySlug($slug);
-        if (isset($id_des->original['error'])) {
+        if (isset($id_des['error'])) {
             return $id_des;
         }
-        $juegos = Juego::where('desarrolladora', $id_des)->orderBy('fecha', 'DESC')->get();
-        return response()->json(JuegoResource::collection(($juegos)), 200);
+        return response()->json(JuegoResource::collection(($id_des)), 200);
     }
 }

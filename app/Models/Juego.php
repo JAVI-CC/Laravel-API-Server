@@ -29,18 +29,12 @@ class Juego extends Model
     public $timestamps = false;
     protected $table = 'juegos';
     protected $hidden = array('id');
-    protected $fillable = array('nombre', 'descripcion', 'desarrolladora', 'fecha', 'url_imagen', 'slug');
+    protected $fillable = array('nombre', 'descripcion', 'fecha', 'url_imagen', 'slug');
 
-    //Relacion de uno a muchos (inversa)
+    //Relacion de muchos a muchos inversa polimorfica
     public function desarrolladoras()
     {
-        return $this->belongsTo(Desarrolladora::class);
-    }
-
-    public function findByIdDesarrolladora($id)
-    {
-        $value = Desarrolladora::where('id', $id)->first();
-        return $value;
+        return $this->morphedByMany(Desarrolladora::class, 'juegable');
     }
 
     public function validation_add($request)
@@ -113,10 +107,11 @@ class Juego extends Model
         $request->request->add(['slug' => $slug, 'url_imagen' => $url_imagen]);
 
         $desarrolladora = new Desarrolladora();
-        $desarrolladora_id = $desarrolladora->similar_name($request->input('desarrolladora'));
-        $request->merge(['desarrolladora' => $desarrolladora_id]);
+        $desarrolladora = $desarrolladora->similar_name($request->input('desarrolladora'));
+        $request->merge(['desarrolladorssa' => $desarrolladora->id]);
 
         $juego = $this->create(array_merge($request->all()));
+        $desarrolladora->juegables()->attach($juego->id);
         return $juego;
     }
 
@@ -132,10 +127,11 @@ class Juego extends Model
             $request->request->add(['slug' => $slug, 'url_imagen' => $url_imagen]);
 
             $desarrolladora = new Desarrolladora();
-            $desarrolladora_id = $desarrolladora->similar_name($request->input('desarrolladora'));
-            $request->merge(['desarrolladora' => $desarrolladora_id]);
+            $desarrolladora = $desarrolladora->similar_name($request->input('desarrolladora'));
+            $request->merge(['desarrolladora' => $desarrolladora->id]);
 
             $id_juego->fill($request->all())->save();
+            $id_juego->desarrolladoras()->update(['juegable_id' => $desarrolladora->id]);
             return $id_juego;
         }
     }
@@ -150,10 +146,11 @@ class Juego extends Model
             $request->request->add(['slug' => $slug]);
 
             $desarrolladora = new Desarrolladora();
-            $desarrolladora_id = $desarrolladora->similar_name($request->input('desarrolladora'));
-            $request->merge(['desarrolladora' => $desarrolladora_id]);
+            $desarrolladora = $desarrolladora->similar_name($request->input('desarrolladora'));
+            $request->merge(['desarrolladora' => $desarrolladora->id]);
             
             $id_juego->fill($request->all())->save();
+            $id_juego->desarrolladoras()->update(['juegable_id' => $desarrolladora->id]);
             return $id_juego;
         }
     }
@@ -164,6 +161,7 @@ class Juego extends Model
             return response()->json(['error' => 'Juego no encontrado']);
         } else {
             $id_juego->delete();
+            $id_juego->desarrolladoras()->detach();
             $dropbox = new Dropbox();
             $dropbox->delete_imagen($id_juego['url_imagen']);
             return response()->json(['success' => 'Se ha eliminado correctamente el juego: ' . $id_juego->nombre]);
@@ -200,7 +198,6 @@ class Juego extends Model
         }
 
         $juegos = $this->WHERE('nombre', $like, '%' . $request->search . '%')
-            ->OrWhere('desarrolladora', $like, '%' . $request->search . '%')
             ->OrWhere('descripcion', $like, '%' . $request->search . '%')
             ->OrWhere('fecha', $like, '%' . $request->search . '%')
             ->orderBy($request->filter, $request->order)->get();
