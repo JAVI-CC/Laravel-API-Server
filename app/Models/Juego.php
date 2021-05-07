@@ -117,7 +117,7 @@ class Juego extends Model
 
         $desarrolladora = new Desarrolladora();
         $desarrolladora = $desarrolladora->similar_name($request->input('desarrolladora'));
-        $request->merge(['desarrolladorssa' => $desarrolladora->id]);
+        //$request->merge(['desarrolladorssa' => $desarrolladora->id]);
 
         $juego = $this->create(array_merge($request->all()));
         $desarrolladora->juegables()->attach($juego->id);
