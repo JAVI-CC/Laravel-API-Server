@@ -11,7 +11,7 @@ class JuegableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('juegables')->truncate();
+        //DB::table('juegables')->truncate();
 
         DB::table('juegables')->insert([
             'juego_id' => '1',

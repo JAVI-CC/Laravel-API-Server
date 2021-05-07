@@ -12,7 +12,7 @@ class JuegoSeeder extends Seeder
     public function run()
     {
         
-        DB::table('juegos')->truncate();
+        //DB::table('juegos')->truncate();
 
         DB::table('juegos')->insert([
             'nombre' => 'Rainbow Six: Siege',

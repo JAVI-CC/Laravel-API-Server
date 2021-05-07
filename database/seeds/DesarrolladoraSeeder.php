@@ -12,7 +12,7 @@ class DesarrolladoraSeeder extends Seeder
     public function run()
     {
 
-        DB::table('desarrolladoras')->truncate();
+        //DB::table('desarrolladoras')->truncate();
 
         DB::table('desarrolladoras')->insert([
             //'id' => '1',
