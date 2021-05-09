@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  *   @OA\Property(property="slug", type="string", description="Url amigable del nombre de la desarrolladora", example="test123-studios")
  * )
  **/
-class Desarrolladora extends Model
+class Desarrolladora extends Base
 {
     public $timestamps = false;
     protected $fillable = ['nombre', 'slug'];

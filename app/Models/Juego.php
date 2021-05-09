@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Validator;
  * 
  * @package App\Models
  */
-class Juego extends Model
+class Juego extends Base
 {
     public $timestamps = false;
     protected $table = 'juegos';
