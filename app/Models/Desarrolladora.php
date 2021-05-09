@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  *   @OA\Property(property="slug", type="string", description="Url amigable del nombre de la desarrolladora", example="test123-studios")
  * )
  **/
-class Desarrolladora extends Model
+class Desarrolladora extends Base
 {
     public $timestamps = false;
     protected $fillable = ['nombre', 'slug'];
@@ -20,15 +20,6 @@ class Desarrolladora extends Model
     public function juegables()
     {
         return $this->morphToMany(Juego::class, 'juegable');
-    }
-
-    protected function sluggable($string)
-    {
-        $slug = substr($string, 0, 140);
-        $slug = strtr($slug, " _ÀÁÂÃÄÅÆàáâãäåæÒÓÔÕÕÖØòóôõöøÈÉÊËèéêëðÇçÐÌÍÎÏìíîïÙÚÛÜùúûüÑñÞßÿý",  "--aaaaaaaaaaaaaaoooooooooooooeeeeeeeeecceiiiiiiiiuuuuuuuunntsyy");
-        $slug = strtolower($slug);
-        $slug = preg_replace("/[^a-z0-9\-.]/", "", $slug);
-        return str_replace("--", "-", $slug);
     }
 
     public function findById($id)
