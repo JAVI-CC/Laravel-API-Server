@@ -229,6 +229,11 @@ class GeneroSeeder extends Seeder
         ]);
 
         DB::table('generos')->insert([
+            'nombre' => 'Multijugador',
+            'slug' => 'multijugador',
+        ]);
+
+        DB::table('generos')->insert([
             'nombre' => 'Musical',
             'slug' => 'musical',
         ]);
