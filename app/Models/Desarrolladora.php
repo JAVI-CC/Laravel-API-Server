@@ -22,21 +22,6 @@ class Desarrolladora extends Base
         return $this->morphToMany(Juego::class, 'juegable');
     }
 
-    public function findById($id)
-    {
-        $value = Desarrolladora::select('nombre')->where('id', $id)->first();
-        return $value->nombre;
-    }
-
-    public function findBySlug($slug)
-    {
-        $value = Desarrolladora::select('id')->where('slug', $slug)->first();
-        if ($value == null) {
-            return ['error' => 'Desarrolladora no encontrada'];
-        }
-        return $value->juegables;
-    }
-
     public function showNames()
     {
         $desarrolladoras = Desarrolladora::select('nombre')->orderBy('nombre', 'ASC')->get()->toArray();
