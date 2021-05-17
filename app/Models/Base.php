@@ -14,4 +14,20 @@ class Base extends Model
         $slug = preg_replace("/[^a-z0-9\-.]/", "", $slug);
         return str_replace("--", "-", $slug);
     }
+
+    public function findById($id) {
+        $value = self::where('id', $id)->first();
+        if($value == null) {
+            return ['error' => 'No encontrado'];
+        }
+        return $value->nombre;
+    }
+
+    public function findBySlug($slug) {
+        $value = self::where('slug', $slug)->first();
+        if($value == null) {
+            return ['error' => 'No encontrado'];
+        }
+        return $value->juegables;
+    }
 }
