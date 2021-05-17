@@ -31,15 +31,6 @@ class Juego extends Base
     protected $hidden = array('id');
     protected $fillable = array('nombre', 'descripcion', 'fecha', 'slug');
 
-    protected function convert_url($txt)
-    {
-        $txt = substr($txt, 0, 140);
-        $txt = strtr($txt, " _ÀÁÂÃÄÅÆàáâãäåæÒÓÔÕÕÖØòóôõöøÈÉÊËèéêëðÇçÐÌÍÎÏìíîïÙÚÛÜùúûüÑñÞßÿý",  "--aaaaaaaaaaaaaaoooooooooooooeeeeeeeeecceiiiiiiiiuuuuuuuunntsyy");
-        $txt = strtolower($txt);
-        $txt = preg_replace("/[^a-z0-9\-.]/", "", $txt);
-        return str_replace("--", "-", $txt);
-    }
-
     //Relacion de muchos a muchos inversa polimorfica
     public function desarrolladoras()
     {
@@ -110,7 +101,7 @@ class Juego extends Base
 
     public function add_juego($request)
     {
-        $slug = $this->convert_url($request->nombre);
+        $slug = $this->sluggable($request->nombre);
         $request->request->add(['slug' => $slug]);
 
         $desarrolladora = new Desarrolladora();
@@ -129,7 +120,7 @@ class Juego extends Base
         if ($id_juego == null) {
             return response()->json(['error' => 'Juego no encontrado']);
         } else {
-            $slug = $this->convert_url($request->nombre);
+            $slug = $this->sluggable($request->nombre);
             $request->request->add(['slug' => $slug]);
 
             $desarrolladora = new Desarrolladora();
@@ -150,7 +141,7 @@ class Juego extends Base
         if ($id_juego == null) {
             return response()->json(['error' => 'Juego no encontrado']);
         } else {
-            $slug = $this->convert_url($request->nombre);
+            $slug = $this->sluggable($request->nombre);
             $slug_antiguo = $request->input('slug');
 
             $desarrolladora = new Desarrolladora();

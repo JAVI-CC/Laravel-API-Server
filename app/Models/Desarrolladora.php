@@ -16,32 +16,10 @@ class Desarrolladora extends Base
     public $timestamps = false;
     protected $fillable = ['nombre', 'slug'];
 
-    protected function convert_url($txt)
-    {
-        $txt = substr($txt, 0, 140);
-        $txt = strtr($txt, " _ÀÁÂÃÄÅÆàáâãäåæÒÓÔÕÕÖØòóôõöøÈÉÊËèéêëðÇçÐÌÍÎÏìíîïÙÚÛÜùúûüÑñÞßÿý",  "--aaaaaaaaaaaaaaoooooooooooooeeeeeeeeecceiiiiiiiiuuuuuuuunntsyy");
-        $txt = strtolower($txt);
-        $txt = preg_replace("/[^a-z0-9\-.]/", "", $txt);
-        return str_replace("--", "-", $txt);
-    }
-
     //Relacion de muchos a muchos polimorfica
     public function juegables()
     {
         return $this->morphToMany(Juego::class, 'juegable');
-    }
-
-    public function findById($id) {
-        $value = Desarrolladora::select('nombre')->where('id', $id)->first();
-        return $value->nombre;
-    }
-
-    public function findBySlug($slug) {
-        $value = Desarrolladora::select('id')->where('slug', $slug)->first();
-        if($value == null) {
-            return ['error' => 'Desarrolladora no encontrada'];
-        }
-        return $value->juegables;
     }
 
     public function showNames()
@@ -65,7 +43,7 @@ class Desarrolladora extends Base
         }
 
         //En caso de que el nombre de la desarrolladora no coincida con ningún otro nombre
-        $slug = $this->convert_url($compare);
+        $slug = $this->sluggable($compare);
         $des = Desarrolladora::create(['nombre' => $compare, 'slug' => $slug]);
         return $des;
     }
