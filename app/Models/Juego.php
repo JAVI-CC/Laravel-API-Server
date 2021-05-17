@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use App\Models\Desarrolladora;
+use App\Models\Imagen;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -110,7 +110,9 @@ class Juego extends Base
 
         $juego = $this->create(array_merge($request->all()));
         $desarrolladora->juegables()->attach($juego->id);
-        $this->upload_imagen($juego->id, $slug, $request->imagen);
+
+        $class_imagen = new Imagen();
+        $class_imagen->upload($juego->id, $slug, $request->imagen, 'juegos');
         return $juego;
     }
 
@@ -130,7 +132,8 @@ class Juego extends Base
             $id_juego->fill($request->all())->save();
             $id_juego->desarrolladoras()->update(['juegable_id' => $desarrolladora->id]);
 
-            $this->update_imagen($id_juego['id'], $slug, $request->imagen);
+            $class_imagen = new Imagen();
+            $class_imagen->updati($id_juego['id'], $slug, $request->imagen, 'juegos');
             return $id_juego;
         }
     }
@@ -154,7 +157,10 @@ class Juego extends Base
             
             //Cambiar el nombre del archivo
             $id = $this->where('slug', $request->input('slug'))->first()->id;
-            FILE::move(public_path('media/juegos/' . $id . '-' . $slug_antiguo . '.png'), public_path('media/juegos/' . $id . '-' . $slug . '.png'));
+
+            $class_imagen = new Imagen();
+            $class_imagen->rename($id, $slug_antiguo, $slug, 'juegos');
+
             return $id_juego;
         }
     }
@@ -166,7 +172,9 @@ class Juego extends Base
         } else {
             $id_juego->delete();
             $id_juego->desarrolladoras()->detach();
-            $this->delete_imagen($id_juego['id']);
+
+            $class_imagen = new Imagen();
+            $class_imagen->deleti($id_juego['id'], 'juegos');
             return response()->json(['success' => 'Se ha eliminado correctamente el juego: ' . $id_juego->nombre]);
         }
     }
@@ -178,25 +186,6 @@ class Juego extends Base
         return $juego;
     }
 
-    public function upload_imagen($id, $slug, $imagen)
-    {
-        $filename = "eliminar." . $imagen->getClientOriginalExtension();
-        $filenamePNG = $id . "-" . $slug . ".png";
-        $imagen->move(public_path('media/juegos/'), $filename);
-        imagepng(imagecreatefromstring(file_get_contents(public_path('media/juegos/' . $filename))), public_path('media/juegos/' . $filenamePNG));
-        File::delete(File::glob(public_path('media/juegos/eliminar.*')));
-    }
-
-    public function update_imagen($id, $slug, $imagen)
-    {
-        File::delete(File::glob(public_path('media/juegos/' . $id . '-*')));
-        $this->upload_imagen($id, $slug, $imagen);
-    }
-
-    public function delete_imagen($id)
-    {
-        File::delete(File::glob(public_path('media/juegos/' . $id . '-*')));
-    }
 
     public function search($request)
     {
