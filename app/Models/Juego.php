@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Desarrolladora;
+use App\Models\Genero;
 use App\Models\Imagen;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -31,10 +32,15 @@ class Juego extends Base
     protected $hidden = array('id');
     protected $fillable = array('nombre', 'descripcion', 'fecha', 'slug');
 
-    //Relacion de muchos a muchos inversa polimorfica
+    //Relaciones de muchos a muchos inversa polimorfica
     public function desarrolladoras()
     {
         return $this->morphedByMany(Desarrolladora::class, 'juegable');
+    }
+
+    public function generos()
+    {
+        return $this->morphedByMany(Genero::class, 'juegable');
     }
 
     public function validation_add($request)
