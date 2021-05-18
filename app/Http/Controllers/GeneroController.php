@@ -62,7 +62,7 @@ class GeneroController extends Controller
     {
         $id_gen = $this->genero->findBySlug($slug);
         if (isset($id_gen['error'])) {
-            return $id_gen;
+            return response()->json(['error' => 'Genero no encontrado'], 200);
         }
         return response()->json(JuegoResource::collection(($id_gen)), 200);
     }
