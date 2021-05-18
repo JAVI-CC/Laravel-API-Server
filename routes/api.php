@@ -26,6 +26,8 @@ Route::prefix('juegos')->group(function () {
   Route::delete('/delete/{slug}', 'JuegoController@delete')->name('deleteJuego')->middleware('auth:sanctum');
   Route::post('/filter/search/', 'JuegoController@filter')->name('filterJuego');
   Route::get('/desarrolladoras/{slug}', 'DesarrolladoraController@show')->name('getJuegoDesarrolladora');
+  Route::get('/generos/show/all', 'GeneroController@index')->name('getAllGeneros');
+  Route::get('/generos/{slug}', 'GeneroController@show')->name('getJuegosGenero');
 });
 
 Route::prefix('auth')->group(function () {
