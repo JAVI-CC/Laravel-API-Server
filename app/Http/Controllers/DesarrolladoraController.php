@@ -43,7 +43,7 @@ class DesarrolladoraController extends Controller
     {
         $id_des = $this->desarrolladora->findBySlug($slug);
         if (isset($id_des['error'])) {
-            return $id_des;
+            return response()->json(['error' => 'Desarrolladora no encontrada'], 200);
         }
         return response()->json(JuegoResource::collection(($id_des)), 200);
     }
