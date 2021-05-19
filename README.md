@@ -21,13 +21,13 @@
   <li>Search filters of the games that are inserted in the database.</li>
   <li>Documentation of all the api enpoints with the Laravel Swagger 3.0.</li>
   <li>Users can be registered through the Api and it contains authentication by Sanctum to be able to carry out the action of some endpoints.</li>
-  <li>The Api is uploaded in heroku <a href="https://laravelapijuegos.herokuapp.com" target="_blank">https://laravelapijuegos.herokuapp.com</a> so that users can use the endpoints without having to download the project.</li>
+  <li>The Api is uploaded in heroku <a href="https://laravelapijuegos.herokuapp.com/api/juegos" target="_blank">https://laravelapijuegos.herokuapp.com</a> so that users can use the endpoints without having to download the project.</li>
   <li>The project contains the files to deploy it in Docker.</li>
   <li>Demonstration of a Laravel project on the client interface side using this api <a href="https://github.com/JAVI-CC/Laravel-API-Client" target="_blank">https://github.com/JAVI-CC/Laravel-API-Client</a>.</li>
 </ul> 
 
 <h3>Demo API</h3>
-<p><a href="https://laravelapijuegos.herokuapp.com" target="_blank">https://laravelapijuegos.herokuapp.com</p>
+<p><a href="https://laravelapijuegos.herokuapp.com/api/juegos" target="_blank">https://laravelapijuegos.herokuapp.com</p>
 
 <h3>Documentation API SWAGGER 3.0</h3>
 <p><a href="http://laravelapijuegos.herokuapp.com/api/documentation" target="_blank">http://laravelapijuegos.herokuapp.com/api/documentation</p>
