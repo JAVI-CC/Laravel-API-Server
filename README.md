@@ -12,7 +12,7 @@
   <li>Relationships between different models with polymorphic tables.</li>
   <li>Contains endpoints of type GET, POST, PUT and DELETE</li>
   <li>Some endpoints contain the function of sending files and the files are stored locally.</li>
-  <li>Implementation of API Dropbox in the <a href="https://github.com/JAVI-CC/Laravel-API-Server/tree/dropbox">dropbox</a> branch the difference with the master branch is that in the dropbox branch it is configured so that the files that are sent through the api are saved in a shared Dropbox directory.</li>
+  <li>Implementation of API Dropbox in the <a href="https://github.com/JAVI-CC/Laravel-API-Server/tree/dropbox">dropbox</a> branch the difference with the master branch is that in the dropbox branch it is configured so that the files that are sent through the api are saved in a shared Dropbox directory instead of a local directory of the project.</li>
   <li>Postman collection.json file to import and create use endpoints.</li>
   <li>Resource file to show the values of some endpoints in a personalized way.</li>
   <li>Requests validations.</li>
