@@ -95,7 +95,7 @@ class JuegoSeeder extends Seeder
 
         DB::table('juegos')->insert([
             'nombre' => 'Zombie Army Trilogy',
-            'descripcion' => 'Zombie Army Trilogy para PS4 es un recopilatorio de todos los juegos de Sniper Elite: Nazi Zombie Army. En ellos nos sumergimos en el inframundo con la obligación de hacer frente a oleadas de zombis nazis comandadas por un Hitler zombificado. Incluye campaña para un solo jugador y cooperativa.',
+            'descripcion' => 'Zombie Army Trilogy es un recopilatorio de todos los juegos de Sniper Elite: Nazi Zombie Army. En ellos nos sumergimos en el inframundo con la obligación de hacer frente a oleadas de zombis nazis comandadas por un Hitler zombificado. Incluye campaña para un solo jugador y cooperativa.',
             //'desarrolladora' => '10',
             'fecha' => '2015-03-15', 
             'slug' => 'zombie-army-trilogy',
@@ -223,7 +223,7 @@ class JuegoSeeder extends Seeder
 
         DB::table('juegos')->insert([
             'nombre' => 'Metal Gear Solid',
-            'descripcion' => 'Metal Gear Solid para PSN es la reedición del clásico de Hideo Kojima para PlayStation One. el juego se recupera para convertirlo en un título de descarga digital para PlayStation Network haciéndolo compatible tanto para PS3 como para PSP. MGS cuenta con más de 10 horas de juego en las que contaremos con diferentes finales según la toma de decisiones. Enfúndate el uniforme de Solid Snake y revive aquellas misiones donde la infiltración y la acción son inherentes al juego.',
+            'descripcion' => 'Metal Gear Solid para PSN es la reedición del clásico de Hideo Kojima para PlayStation One. MGS cuenta con más de 10 horas de juego en las que contaremos con diferentes finales según la toma de decisiones. Enfúndate el uniforme de Solid Snake y revive aquellas misiones donde la infiltración y la acción son inherentes al juego.',
             //'desarrolladora' => '21',
             'fecha' => '1998-09-03', 
             'slug' => 'metal-gear-solid',
