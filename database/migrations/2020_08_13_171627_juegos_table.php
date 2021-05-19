@@ -16,7 +16,7 @@ class JuegosTable extends Migration
         Schema::create('juegos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre')->unique();
-            $table->string('descripcion');
+            $table->text('descripcion');
             $table->date('fecha');
             $table->string('slug')->unique();
             $table->string('url_imagen')->unique();
