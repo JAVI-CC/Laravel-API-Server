@@ -18,4 +18,10 @@ class Genero extends Base
     {
         return $this->morphToMany(Juego::class, 'juegable');
     }
+
+    public static function attachArray(array $generos){
+        foreach($generos as $genero) {
+            $new_genero = self::firstOrCreate();
+        }
+    }
 }

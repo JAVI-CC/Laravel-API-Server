@@ -60,7 +60,7 @@ class GeneroController extends Controller
      */
     public function show($slug)
     {
-        $id_gen = $this->genero->findBySlug($slug);
+        $id_gen = $this->genero->findBySlug($slug)->juegables;
         if (isset($id_gen['error'])) {
             return response()->json(['error' => 'Genero no encontrado'], 200);
         }
