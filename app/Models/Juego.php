@@ -51,6 +51,8 @@ class Juego extends Base
             'descripcion' => 'required|min:10|max:255',
             'desarrolladora' => 'required|min:2|max:255',
             'fecha' => 'required|date_format:Y-m-d',
+            'generos' => 'required|array|between:1,5',
+            'generos.*' => 'required|distinct|exists:generos,slug',
             'imagen' => 'required|mimes:jpg,jpeg,png|max:1024|',
         ]);
 
@@ -71,6 +73,8 @@ class Juego extends Base
             'descripcion' => 'required|min:10|max:255',
             'desarrolladora' => 'required|min:2|max:255',
             'fecha' => 'required|date_format:Y-m-d',
+            'generos' => 'required|array|between:1,5',
+            'generos.*' => 'required|distinct|exists:generos,slug',
             'imagen' => 'required|mimes:jpg,jpeg,png|max:1024|',
         ]);
 
@@ -90,6 +94,8 @@ class Juego extends Base
             'nombre' => 'required|min:2|max:255' . $exp,
             'descripcion' => 'required|min:10|max:255',
             'desarrolladora' => 'required|min:2|max:255',
+            'generos' => 'required|array|between:1,5',
+            'generos.*' => 'required|distinct|exists:generos,slug',
             'fecha' => 'required|date_format:Y-m-d',
         ]);
 
@@ -118,6 +124,12 @@ class Juego extends Base
 
         $juego = $this->create(array_merge($request->all()));
         $desarrolladora->juegables()->attach($juego->id);
+
+        $class_genero = new Genero();
+        foreach($request->input('generos') as $genero) {
+          $class_genero->findBySlug($genero)->juegables()->attach($juego->id);
+        }
+
         return $juego;
     }
 
@@ -138,6 +150,14 @@ class Juego extends Base
 
             $id_juego->fill($request->all())->save();
             $id_juego->desarrolladoras()->update(['juegable_id' => $desarrolladora->id]);
+
+            $class_genero = new Genero();
+            $id_juego->generos()->detach();
+            foreach($request->input('generos') as $genero) {
+              $class_genero->findBySlug($genero);
+              $id_juego->generos()->syncWithoutDetaching($class_genero->findBySlug($genero)->id);
+            }
+            
             return $id_juego;
         }
     }
@@ -157,6 +177,14 @@ class Juego extends Base
             
             $id_juego->fill($request->all())->save();
             $id_juego->desarrolladoras()->update(['juegable_id' => $desarrolladora->id]);
+
+            $class_genero = new Genero();
+            $id_juego->generos()->detach();
+            foreach($request->input('generos') as $genero) {
+              $class_genero->findBySlug($genero);
+              $id_juego->generos()->syncWithoutDetaching($class_genero->findBySlug($genero)->id);
+            }
+
             return $id_juego;
         }
     }
@@ -167,7 +195,6 @@ class Juego extends Base
             return response()->json(['error' => 'Juego no encontrado']);
         } else {
             $id_juego->delete();
-            $id_juego->desarrolladoras()->detach();
             $dropbox = new Dropbox();
             $dropbox->delete_imagen($id_juego['url_imagen']);
             return response()->json(['success' => 'Se ha eliminado correctamente el juego: ' . $id_juego->nombre]);

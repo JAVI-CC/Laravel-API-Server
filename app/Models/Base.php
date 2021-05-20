@@ -20,7 +20,7 @@ class Base extends Model
         if($value == null) {
             return ['error' => 'No encontrado'];
         }
-        return $value->nombre;
+        return $value;
     }
 
     public function findBySlug($slug) {
@@ -28,6 +28,6 @@ class Base extends Model
         if($value == null) {
             return ['error' => 'No encontrado'];
         }
-        return $value->juegables;
+        return $value;
     }
 }
