@@ -394,10 +394,7 @@
                         "application/json": {
                             "schema": {
                                 "required": [
-                                    "nombre",
-                                    "descripcion",
-                                    "desarrolladora",
-                                    "fecha"
+                                    "slug"
                                 ],
                                 "properties": {
                                     "nombre": {
@@ -473,11 +470,11 @@
                                 },
                                 "generos[0]": {
                                     "type": "string",
-                                    "example": "accion"
+                                    "example": "aventura"
                                 },
                                 "generos[1]": {
                                     "type": "string",
-                                    "example": "first-person-shooter"
+                                    "example": "rpg-de-accion"
                                 },
                                 "generos[2]": {
                                     "type": "string",
@@ -691,8 +688,8 @@
                         "description": "Slugs de generos ya existentes en la base de datos de tipo array (No se puede insertar generos que no esten registrado en la base de datos).",
                         "type": "string",
                         "example": [
-                            "accion",
-                            "first-person-shooter",
+                            "aventura",
+                            "rpg-de-accion",
                             "multijugador"
                         ]
                     },
