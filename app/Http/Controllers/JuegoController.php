@@ -59,12 +59,15 @@ class JuegoController extends Controller
      *     name="Juego",
      *     in="query",
      *     required=true,
-     *     description="{nombre, descripcion, desarrolladora, fecha, imagen}",
+     *     description="{nombre, descripcion, desarrolladora, fecha, generos, imagen}",
      *     @OA\Schema(
      *       @OA\Property(property="nombre", ref="#/components/schemas/Juego/properties/nombre"),
      *       @OA\Property(property="descripcion", ref="#/components/schemas/Juego/properties/descripcion"),
      *       @OA\Property(property="desarrolladora", ref="#/components/schemas/Juego/properties/desarrolladora"),
      *       @OA\Property(property="fecha", ref="#/components/schemas/Juego/properties/fecha"),
+     *       @OA\Property(property="generos[0]", type="string", example="accion"),
+     *       @OA\Property(property="generos[1]", type="string", example="first-person-shooter"),
+     *       @OA\Property(property="generos[2]", type="string", example="multijugador"),
      *     ),
      *   ),
      *   @OA\RequestBody(
@@ -148,13 +151,16 @@ class JuegoController extends Controller
      *     name="Juego",
      *     in="query",
      *     required=true,
-     *     description="{nombre, descripcion, desarrolladora, fecha, slug, imagen}",
+     *     description="{nombre, descripcion, desarrolladora, fecha, generos, slug, imagen}",
      *     @OA\Schema(
      *       @OA\Property(property="nombre", ref="#/components/schemas/Juego/properties/nombre"),
      *       @OA\Property(property="descripcion", ref="#/components/schemas/Juego/properties/descripcion"),
      *       @OA\Property(property="desarrolladora", ref="#/components/schemas/Juego/properties/desarrolladora"),
      *       @OA\Property(property="fecha", ref="#/components/schemas/Juego/properties/fecha"),
      *       @OA\Property(property="slug", ref="#/components/schemas/Juego/properties/slug"),
+     *       @OA\Property(property="generos[0]", type="string", example="aventura"),
+     *       @OA\Property(property="generos[1]", type="string", example="rpg-de-accion"),
+     *       @OA\Property(property="generos[2]", type="string", example="multijugador"),
      *     ),
      *   ),
      *   @OA\RequestBody(
@@ -204,13 +210,14 @@ class JuegoController extends Controller
      *   security={ * {"SANCTUM": {}}, * },
      *   @OA\RequestBody(
      *     required=true,
-     *     description="{nombre, descripcion, desarrolladora, fecha, slug}",
+     *     description="{nombre, descripcion, desarrolladora, fecha, generos, slug}",
      *     @OA\JsonContent(
      *       required={"nombre", "descripcion", "desarrolladora", "fecha"},
      *       @OA\Property(property="nombre", ref="#/components/schemas/Juego/properties/nombre"),
      *       @OA\Property(property="descripcion", ref="#/components/schemas/Juego/properties/descripcion"),
      *       @OA\Property(property="desarrolladora", ref="#/components/schemas/Juego/properties/desarrolladora"),
      *       @OA\Property(property="fecha", ref="#/components/schemas/Juego/properties/fecha"),
+     *       @OA\Property(property="generos", ref="#/components/schemas/Juego/properties/generos"),
      *       @OA\Property(property="slug", ref="#/components/schemas/Juego/properties/slug")
      *    ),
      *   ),
