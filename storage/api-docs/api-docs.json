@@ -394,10 +394,7 @@
                         "application/json": {
                             "schema": {
                                 "required": [
-                                    "nombre",
-                                    "descripcion",
-                                    "desarrolladora",
-                                    "fecha"
+                                    "slug"
                                 ],
                                 "properties": {
                                     "nombre": {

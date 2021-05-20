@@ -70,12 +70,12 @@ class Juego extends Base
         }
 
         $validator = Validator::make($request->all(), [
-            'nombre' => 'required|min:2|max:255' . $exp,
-            'descripcion' => 'required|min:10|max:255',
-            'desarrolladora' => 'required|min:2|max:255',
-            'fecha' => 'required|date_format:Y-m-d',
-            'generos' => 'required|array|between:1,5',
-            'generos.*' => 'required|distinct|exists:generos,slug',
+            'nombre' => 'nullable|min:2|max:255' . $exp,
+            'descripcion' => 'nullable|min:10|max:255',
+            'desarrolladora' => 'nullable|min:2|max:255',
+            'fecha' => 'nullable|date_format:Y-m-d',
+            'generos' => 'nullable|array|between:1,5',
+            'generos.*' => 'nullable|distinct|exists:generos,slug',
             'imagen' => 'required|mimes:jpg,jpeg,png|max:1024|',
         ]);
 
@@ -92,12 +92,12 @@ class Juego extends Base
         }
 
         $validator = Validator::make($request->all(), [
-            'nombre' => 'required|min:2|max:255' . $exp,
-            'descripcion' => 'required|min:10|max:255',
-            'desarrolladora' => 'required|min:2|max:255',
-            'generos' => 'required|array|between:1,5',
-            'generos.*' => 'required|distinct|exists:generos,slug',
-            'fecha' => 'required|date_format:Y-m-d',
+            'nombre' => 'nullable|min:2|max:255' . $exp,
+            'descripcion' => 'nullable|min:10|max:255',
+            'desarrolladora' => 'nullable|min:2|max:255',
+            'generos' => 'nullable|array|between:1,5',
+            'generos.*' => 'nullable|distinct|exists:generos,slug',
+            'fecha' => 'nullable|date_format:Y-m-d',
         ]);
 
         return $validator;
@@ -140,23 +140,44 @@ class Juego extends Base
         if ($id_juego == null) {
             return response()->json(['error' => 'Juego no encontrado']);
         } else {
-            $slug = $this->sluggable($request->nombre);
+
+            if($request->input('nombre') != null) {
+              $slug = $this->sluggable($request->nombre);
+            } else {
+              $slug = $request->input('slug');
+            }
+
             $dropbox = new Dropbox();
             $url_imagen = $dropbox->update_imagen($id_juego['url_imagen'], $request->imagen);
             $request->request->add(['slug' => $slug, 'url_imagen' => $url_imagen]);
+            
+            if($request->input('desarrolladora') != null) {
+              $desarrolladora = new Desarrolladora();
+              $desarrolladora = $desarrolladora->similar_name($request->input('desarrolladora'));
+              $request->merge(['desarrolladora' => $desarrolladora->id]);
+            }
 
-            $desarrolladora = new Desarrolladora();
-            $desarrolladora = $desarrolladora->similar_name($request->input('desarrolladora'));
-            $request->merge(['desarrolladora' => $desarrolladora->id]);
+            $id_juego->update($request->only([
+                'nombre',
+                'descripcion',
+                'desarrolladora',
+                'fecha',
+                'generos',
+                'slug',
+                'url_imagen'
+            ]));
 
-            $id_juego->fill($request->all())->save();
-            $id_juego->desarrolladoras()->update(['juegable_id' => $desarrolladora->id]);
+            if($request->input('desarrolladora') != null) {
+              $id_juego->desarrolladoras()->update(['juegable_id' => $desarrolladora->id]);
+            }
 
-            $class_genero = new Genero();
-            $id_juego->generos()->detach();
-            foreach($request->input('generos') as $genero) {
-              $class_genero->findBySlug($genero);
-              $id_juego->generos()->syncWithoutDetaching($class_genero->findBySlug($genero)->id);
+            if($request->input('generos') != null) {
+              $class_genero = new Genero();
+              $id_juego->generos()->detach();
+              foreach($request->input('generos') as $genero) {
+                $class_genero->findBySlug($genero);
+                $id_juego->generos()->syncWithoutDetaching($class_genero->findBySlug($genero)->id);
+              }
             }
             
             return $id_juego;
@@ -169,21 +190,41 @@ class Juego extends Base
         if ($id_juego == null) {
             return response()->json(['error' => 'Juego no encontrado']);
         } else {
-            $slug = $this->sluggable($request->nombre);
-            $request->request->add(['slug' => $slug]);
 
-            $desarrolladora = new Desarrolladora();
-            $desarrolladora = $desarrolladora->similar_name($request->input('desarrolladora'));
-            $request->merge(['desarrolladora' => $desarrolladora->id]);
+            if($request->input('nombre') != null) {
+                $slug = $this->sluggable($request->nombre);
+                $request->request->add(['slug' => $slug]);
+              } else {
+                $slug = $request->input('slug');
+              }
+
+            if($request->input('desarrolladora') != null) {
+              $desarrolladora = new Desarrolladora();
+              $desarrolladora = $desarrolladora->similar_name($request->input('desarrolladora'));
+              $request->merge(['desarrolladora' => $desarrolladora->id]);
+            }
             
-            $id_juego->fill($request->all())->save();
-            $id_juego->desarrolladoras()->update(['juegable_id' => $desarrolladora->id]);
+            $id_juego->update($request->only([
+                'nombre',
+                'descripcion',
+                'desarrolladora',
+                'fecha',
+                'generos',
+                'slug',
+                'url_imagen'
+            ]));
+            
+            if($request->input('desarrolladora') != null) {
+              $id_juego->desarrolladoras()->update(['juegable_id' => $desarrolladora->id]);
+            }
 
-            $class_genero = new Genero();
-            $id_juego->generos()->detach();
-            foreach($request->input('generos') as $genero) {
-              $class_genero->findBySlug($genero);
-              $id_juego->generos()->syncWithoutDetaching($class_genero->findBySlug($genero)->id);
+            if($request->input('generos') != null) {
+              $class_genero = new Genero();
+              $id_juego->generos()->detach();
+              foreach($request->input('generos') as $genero) {
+                $class_genero->findBySlug($genero);
+                $id_juego->generos()->syncWithoutDetaching($class_genero->findBySlug($genero)->id);
+              }
             }
 
             return $id_juego;

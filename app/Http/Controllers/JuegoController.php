@@ -212,7 +212,7 @@ class JuegoController extends Controller
      *     required=true,
      *     description="{nombre, descripcion, desarrolladora, fecha, generos, slug}",
      *     @OA\JsonContent(
-     *       required={"nombre", "descripcion", "desarrolladora", "fecha"},
+     *       required={"slug"},
      *       @OA\Property(property="nombre", ref="#/components/schemas/Juego/properties/nombre"),
      *       @OA\Property(property="descripcion", ref="#/components/schemas/Juego/properties/descripcion"),
      *       @OA\Property(property="desarrolladora", ref="#/components/schemas/Juego/properties/desarrolladora"),
