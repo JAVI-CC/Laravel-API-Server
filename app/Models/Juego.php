@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Validator;
  *   @OA\Property(property="descripcion", description="descripción del juego", type="string", example="insertando juego de prueba..."),
  *   @OA\Property(property="desarrolladora", description="nombre de la desarrolladora que pertenece al juego", type="string", example="Test123 Studios"),
  *   @OA\Property(property="fecha", type="string", description="fecha de salida de lanzamiento del juego", example="2021-01-01"),
+ *   @OA\Property(property="generos", type="string", description="Slugs de generos ya existentes en la base de datos de tipo array (No se puede insertar generos que no esten registrado en la base de datos).", example={"accion", "first-person-shooter", "multijugador"}),
  *   @OA\Property(property="slug", type="string", description="Url amigable del nombre del juego", example="test123")
  * )
  * Class BaseModel

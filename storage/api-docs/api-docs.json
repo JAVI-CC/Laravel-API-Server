@@ -272,7 +272,7 @@
                     {
                         "name": "Juego",
                         "in": "query",
-                        "description": "{nombre, descripcion, desarrolladora, fecha, imagen}",
+                        "description": "{nombre, descripcion, desarrolladora, fecha, imagen, generos}",
                         "required": true,
                         "schema": {
                             "properties": {
@@ -287,6 +287,18 @@
                                 },
                                 "fecha": {
                                     "$ref": "#/components/schemas/Juego/properties/fecha"
+                                },
+                                "generos[0]": {
+                                    "type": "string",
+                                    "example": "accion"
+                                },
+                                "generos[1]": {
+                                    "type": "string",
+                                    "example": "first-person-shooter"
+                                },
+                                "generos[2]": {
+                                    "type": "string",
+                                    "example": "multijugador"
                                 }
                             },
                             "type": "object"
@@ -376,7 +388,7 @@
                 "description": "Actulizar un juego ya existente con parametros sin la necesidad de subir la imagen.",
                 "operationId": "editJuegoWithoutImage",
                 "requestBody": {
-                    "description": "{nombre, descripcion, desarrolladora, fecha, slug}",
+                    "description": "{nombre, descripcion, desarrolladora, fecha, generos, slug}",
                     "required": true,
                     "content": {
                         "application/json": {
@@ -399,6 +411,9 @@
                                     },
                                     "fecha": {
                                         "$ref": "#/components/schemas/Juego/properties/fecha"
+                                    },
+                                    "generos": {
+                                        "$ref": "#/components/schemas/Juego/properties/generos"
                                     },
                                     "slug": {
                                         "$ref": "#/components/schemas/Juego/properties/slug"
@@ -440,7 +455,7 @@
                     {
                         "name": "Juego",
                         "in": "query",
-                        "description": "{nombre, descripcion, desarrolladora, fecha, slug, imagen}",
+                        "description": "{nombre, descripcion, desarrolladora, fecha, generos, slug, imagen}",
                         "required": true,
                         "schema": {
                             "properties": {
@@ -455,6 +470,18 @@
                                 },
                                 "fecha": {
                                     "$ref": "#/components/schemas/Juego/properties/fecha"
+                                },
+                                "generos[0]": {
+                                    "type": "string",
+                                    "example": "accion"
+                                },
+                                "generos[1]": {
+                                    "type": "string",
+                                    "example": "first-person-shooter"
+                                },
+                                "generos[2]": {
+                                    "type": "string",
+                                    "example": "multijugador"
                                 },
                                 "slug": {
                                     "$ref": "#/components/schemas/Juego/properties/slug"
@@ -659,6 +686,15 @@
                         "description": "fecha de salida de lanzamiento del juego",
                         "type": "string",
                         "example": "2021-01-01"
+                    },
+                    "generos": {
+                        "description": "Slugs de generos ya existentes en la base de datos de tipo array (No se puede insertar generos que no esten registrado en la base de datos).",
+                        "type": "string",
+                        "example": [
+                            "accion",
+                            "first-person-shooter",
+                            "multijugador"
+                        ]
                     },
                     "slug": {
                         "description": "Url amigable del nombre del juego",
