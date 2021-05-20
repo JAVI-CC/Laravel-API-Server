@@ -58,7 +58,7 @@ class JuegoController extends Controller
      *     name="Juego",
      *     in="query",
      *     required=true,
-     *     description="{nombre, descripcion, desarrolladora, fecha, imagen, generos}",
+     *     description="{nombre, descripcion, desarrolladora, fecha, generos, imagen}",
      *     @OA\Schema(
      *       @OA\Property(property="nombre", ref="#/components/schemas/Juego/properties/nombre"),
      *       @OA\Property(property="descripcion", ref="#/components/schemas/Juego/properties/descripcion"),
