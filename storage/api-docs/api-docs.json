@@ -272,7 +272,7 @@
                     {
                         "name": "Juego",
                         "in": "query",
-                        "description": "{nombre, descripcion, desarrolladora, fecha, imagen, generos}",
+                        "description": "{nombre, descripcion, desarrolladora, fecha, generos, imagen}",
                         "required": true,
                         "schema": {
                             "properties": {
