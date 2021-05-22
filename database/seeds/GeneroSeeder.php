@@ -385,7 +385,7 @@ class GeneroSeeder extends Seeder
 
         DB::table('generos')->insert([
             'nombre' => 'Survival Horror',
-            'slug' => 'Survival Horror',
+            'slug' => 'survival Horror',
         ]);
 
         DB::table('generos')->insert([
