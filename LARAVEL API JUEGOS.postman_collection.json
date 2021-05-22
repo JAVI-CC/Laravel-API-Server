@@ -517,6 +517,72 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Generos",
+			"item": [
+				{
+					"name": "Get all generos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://laravelapijuegos.herokuapp.com/api/juegos/generos/show/all",
+							"protocol": "https",
+							"host": [
+								"laravelapijuegos",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"juegos",
+								"generos",
+								"show",
+								"all"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get juegos generos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://laravelapijuegos.herokuapp.com/api/juegos/generos/carreras",
+							"protocol": "https",
+							"host": [
+								"laravelapijuegos",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"juegos",
+								"generos",
+								"carreras"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
