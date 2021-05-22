@@ -187,6 +187,60 @@
                 }
             }
         },
+        "/api/juegos/generos/show/all": {
+            "get": {
+                "tags": [
+                    "Generos"
+                ],
+                "summary": "Obtener todos los generos",
+                "description": "Muestra la información de todos los generos que se encuentran insertados en la base de datos.",
+                "operationId": "getAllGeneros",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "No autorizado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                }
+            }
+        },
+        "/api/juegos/generos/{slug}": {
+            "get": {
+                "tags": [
+                    "Generos"
+                ],
+                "summary": "Obtener los juegos de un genero",
+                "description": "Muestra la información de los juegos que pertenece a un genero en especifico segun el valor del parametro slug.",
+                "operationId": "getGenero",
+                "parameters": [
+                    {
+                        "name": "slug",
+                        "in": "path",
+                        "description": "Url del nombre del genero",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "carreras"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "No autorizado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                }
+            }
+        },
         "/api/juegos": {
             "get": {
                 "tags": [
@@ -218,7 +272,7 @@
                     {
                         "name": "Juego",
                         "in": "query",
-                        "description": "{nombre, descripcion, desarrolladora, fecha, imagen}",
+                        "description": "{nombre, descripcion, desarrolladora, fecha, generos, imagen}",
                         "required": true,
                         "schema": {
                             "properties": {
@@ -233,6 +287,18 @@
                                 },
                                 "fecha": {
                                     "$ref": "#/components/schemas/Juego/properties/fecha"
+                                },
+                                "generos[0]": {
+                                    "type": "string",
+                                    "example": "accion"
+                                },
+                                "generos[1]": {
+                                    "type": "string",
+                                    "example": "first-person-shooter"
+                                },
+                                "generos[2]": {
+                                    "type": "string",
+                                    "example": "multijugador"
                                 }
                             },
                             "type": "object"
@@ -322,16 +388,13 @@
                 "description": "Actulizar un juego ya existente con parametros sin la necesidad de subir la imagen.",
                 "operationId": "editJuegoWithoutImage",
                 "requestBody": {
-                    "description": "{nombre, descripcion, desarrolladora, fecha, slug}",
+                    "description": "{nombre, descripcion, desarrolladora, fecha, generos, slug}",
                     "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
                                 "required": [
-                                    "nombre",
-                                    "descripcion",
-                                    "desarrolladora",
-                                    "fecha"
+                                    "slug"
                                 ],
                                 "properties": {
                                     "nombre": {
@@ -345,6 +408,9 @@
                                     },
                                     "fecha": {
                                         "$ref": "#/components/schemas/Juego/properties/fecha"
+                                    },
+                                    "generos": {
+                                        "$ref": "#/components/schemas/Juego/properties/generos"
                                     },
                                     "slug": {
                                         "$ref": "#/components/schemas/Juego/properties/slug"
@@ -386,7 +452,7 @@
                     {
                         "name": "Juego",
                         "in": "query",
-                        "description": "{nombre, descripcion, desarrolladora, fecha, slug, imagen}",
+                        "description": "{nombre, descripcion, desarrolladora, fecha, generos, slug, imagen}",
                         "required": true,
                         "schema": {
                             "properties": {
@@ -401,6 +467,18 @@
                                 },
                                 "fecha": {
                                     "$ref": "#/components/schemas/Juego/properties/fecha"
+                                },
+                                "generos[0]": {
+                                    "type": "string",
+                                    "example": "aventura"
+                                },
+                                "generos[1]": {
+                                    "type": "string",
+                                    "example": "rpg-de-accion"
+                                },
+                                "generos[2]": {
+                                    "type": "string",
+                                    "example": "multijugador"
                                 },
                                 "slug": {
                                     "$ref": "#/components/schemas/Juego/properties/slug"
@@ -566,6 +644,24 @@
                     "name": "Desarrolladora"
                 }
             },
+            "Genero": {
+                "properties": {
+                    "nombre": {
+                        "description": "Nombre del genero",
+                        "type": "string",
+                        "example": "Rpg de Acción"
+                    },
+                    "slug": {
+                        "description": "Url amigable del nombre del genero",
+                        "type": "string",
+                        "example": "rpg-de-accion"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Genero"
+                }
+            },
             "Juego": {
                 "properties": {
                     "nombre": {
@@ -587,6 +683,15 @@
                         "description": "fecha de salida de lanzamiento del juego",
                         "type": "string",
                         "example": "2021-01-01"
+                    },
+                    "generos": {
+                        "description": "Slugs de generos ya existentes en la base de datos de tipo array (No se puede insertar generos que no esten registrado en la base de datos).",
+                        "type": "string",
+                        "example": [
+                            "aventura",
+                            "rpg-de-accion",
+                            "multijugador"
+                        ]
                     },
                     "slug": {
                         "description": "Url amigable del nombre del juego",

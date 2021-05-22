@@ -18,6 +18,7 @@ class JuegoResource extends JsonResource
             "nombre" => $this->nombre,
             "descripcion" => $this->descripcion,
             "desarrolladora" => new DesarrolladoraResource($this->desarrolladoras[0]),
+            "generos" => GeneroResource::collection($this->generos),
             "fecha" => $this->fecha,
             "slug" => $this->slug,
             "imagen" => (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https://" : "http://") . $_SERVER['HTTP_HOST'] . '/media/juegos/' .$this->id. '-' .$this->slug. '.png',
