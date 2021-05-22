@@ -250,6 +250,21 @@
 									"key": "imagen",
 									"type": "file",
 									"src": []
+								},
+								{
+									"key": "generos[]",
+									"value": "aventura-grafica",
+									"type": "text"
+								},
+								{
+									"key": "generos[]",
+									"value": "plataformas",
+									"type": "text"
+								},
+								{
+									"key": "generos[]",
+									"value": "simulacion",
+									"type": "text"
 								}
 							]
 						},
@@ -417,6 +432,21 @@
 									"key": "slug",
 									"value": "test123",
 									"type": "text"
+								},
+								{
+									"key": "generos[]",
+									"value": "rpg-de-accion",
+									"type": "text"
+								},
+								{
+									"key": "generos[]",
+									"value": "plataformas",
+									"type": "text"
+								},
+								{
+									"key": "generos[]",
+									"value": "cartas",
+									"type": "text"
 								}
 							]
 						},
@@ -432,6 +462,13 @@
 								"api",
 								"juegos",
 								"edit"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -449,7 +486,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://laravelapijuegos.herokuapp.com/api/juegos/edit?nombre=test123&descripcion=escribiendo...&desarrolladora=test123 Studios&fecha=2020-08-01&slug=test123",
+							"raw": "https://laravelapijuegos.herokuapp.com/api/juegos/edit?nombre=test123&descripcion=escribiendo...&desarrolladora=test123 Studios&fecha=2020-08-01&slug=test123&generos[]=rpg-de-accion&generos[]=plataformas&generos[]=cartas",
 							"protocol": "https",
 							"host": [
 								"laravelapijuegos",
@@ -481,6 +518,18 @@
 								{
 									"key": "slug",
 									"value": "test123"
+								},
+								{
+									"key": "generos[]",
+									"value": "rpg-de-accion"
+								},
+								{
+									"key": "generos[]",
+									"value": "plataformas"
+								},
+								{
+									"key": "generos[]",
+									"value": "cartas"
 								}
 							]
 						}
