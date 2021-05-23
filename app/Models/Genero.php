@@ -19,4 +19,16 @@ class Genero extends Base
         return $this->morphToMany(Juego::class, 'juegable');
     }
 
+    public function search_genero($juegos, $nombre)
+    {
+        $generos = $this->findByNombre($nombre);
+        if(!isset($generos['error'])){
+          $generos = $generos->juegables;
+          $juegos = $juegos->merge($generos);
+          return $juegos;
+        }
+
+        return $juegos;
+    }
+
 }
