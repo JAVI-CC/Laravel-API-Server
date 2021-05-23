@@ -47,4 +47,17 @@ class Desarrolladora extends Base
         $des = Desarrolladora::create(['nombre' => $compare, 'slug' => $slug]);
         return $des;
     }
+
+    public function search_desarrolladora($juegos, $nombre)
+    {
+        $desarrolladoras = $this->findByNombre($nombre);
+
+        if(!isset($desarrolladoras['error'])){
+          $desarrolladoras = $desarrolladoras->juegables;
+          $juegos = $juegos->merge($desarrolladoras);
+          return $juegos;
+        }
+
+        return $juegos;
+    }
 }

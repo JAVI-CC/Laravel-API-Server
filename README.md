@@ -124,7 +124,7 @@
 <td>No</td>
 </tr>
 <tr>
-<td>POST</td>
+<td>GET</td>
 <td>/api/juegos/desarrolladoras/{slug}</td>
 <td>Get games from a developer</td>
 <td>No</td>

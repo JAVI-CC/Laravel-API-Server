@@ -277,6 +277,11 @@ class Juego extends Base
             ->OrWhere('fecha', $like, '%' . $request->search . '%')
             ->orderBy($request->filter, $request->order)->get();
 
+        $desarrolladora = new Desarrolladora();
+        $juegos = $desarrolladora->search_desarrolladora($juegos, $request->search);
+    
+        $genero = new Genero();
+        $juegos = $genero->search_genero($juegos, $request->search);
 
         if ($juegos == '[]') {
             return response()->json(['error' => 'La búsqueda de ' . $request->search . ' no obtuvo ningún resultado'], 221);
