@@ -2,6 +2,10 @@
 
 use Illuminate\Database\Seeder;
 
+use App\Models\Genero;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+
 class GeneroSeeder extends Seeder
 {
     /**
@@ -13,7 +17,18 @@ class GeneroSeeder extends Seeder
     {
         DB::table('generos')->truncate();
 
-        DB::table('generos')->insert([
+        //FILE JSON
+        $json = File::get("database/data/generos.json");
+        $data = json_decode($json);
+        foreach ($data as $obj) {
+          Genero::create(array(
+            'nombre' => $obj->nombre,
+            'slug' => $obj->slug,
+          ));
+        }
+
+        //SEEDER
+        /*DB::table('generos')->insert([
             'nombre' => '4X',
             'slug' => '4x',
         ]);
@@ -421,7 +436,7 @@ class GeneroSeeder extends Seeder
         DB::table('generos')->insert([
             'nombre' => 'WarGame',
             'slug' => 'wargame',
-        ]);
+        ]);*/
 
     }
 }
