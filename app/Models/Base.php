@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class Base extends Model
@@ -27,4 +28,20 @@ class Base extends Model
         }
         return $value;
     }
+
+    public function findByNombre($nombre) {
+
+        if (DB::getDriverName() === 'pgsql') {
+            $like = 'ilike';
+        } else {
+            $like = 'like';
+        }
+
+        $value = self::where('nombre', $like, '%' . $nombre . '%')->first();
+        if($value == null) {
+            return ['error' => 'No encontrado'];
+        }
+        return $value;
+    }
+    
 }
