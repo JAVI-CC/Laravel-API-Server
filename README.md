@@ -121,10 +121,22 @@
 <td>No</td>
 </tr>
 <tr>
-<td>POST</td>
+<td>GET</td>
 <td>/api/juegos/desarrolladoras/{slug}</td>
 <td>Get games from a developer</td>
 <td>No</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/api/juegos/generos/{slug}</td>
+<td>Get games from a genere</td>
+<td>No</td>
+<tr>
+<td>GET</td>
+<td>/api/juegos/generos/show/all</td>
+<td>Get list all generes</td>
+<td>No</td>
+</tr>
 </tr>
 </tbody>
 </table>
