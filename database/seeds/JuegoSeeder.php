@@ -2,6 +2,10 @@
 
 use Illuminate\Database\Seeder;
 
+use App\Models\Juego;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+
 class JuegoSeeder extends Seeder
 {
     /**
@@ -14,7 +18,21 @@ class JuegoSeeder extends Seeder
         
         DB::table('juegos')->truncate();
 
-        DB::table('juegos')->insert([
+         //FILE JSON
+         $json = File::get("database/data/juegos.json");
+         $data = json_decode($json);
+         foreach ($data as $obj) {
+           Juego::create(array(
+             'nombre' => $obj->nombre,
+             'fecha' => $obj->fecha,
+             'descripcion' => $obj->descripcion,
+             'slug' => $obj->slug,
+             'url_imagen' => $obj->url_imagen,
+           ));
+         }
+
+        //SEEDER
+        /*DB::table('juegos')->insert([
             'nombre' => 'Rainbow Six: Siege',
             'descripcion' => 'Tom Clancys Rainbow Six Siege supone la vuelta de la saga de juegos de acción táctica en primera persona. En Rainbow Six Siege, volvemos a encarnar al famoso grupo de élite de acción táctica, e incluso a los terroristas si optamos por ello. El juego invita al conocimiento de cada facción, y por primera vez en la saga, entraremos en una profunda faceta multijugador de 5 contra 5 jugadores en el que cada usuario tendrá un papel específico en el equipo, y en el cual los mapas y escenarios, nos obligarán a adecuar nuestras estrategias de forma pormenorizada.',
             //'desarrolladora' => '1',
@@ -462,7 +480,7 @@ class JuegoSeeder extends Seeder
             'fecha' => '2010-11-16', 
             'slug' => 'need-for-speed-hot-pursuit',
             'url_imagen' => 'https://www.dropbox.com/s/msfca8taoaqjomo/50-need-for-speed-hot-pursuit.jpg?raw=1',
-        ]);
+        ]);*/
 
     }
 }
