@@ -19,6 +19,8 @@
   <li>Exception handling.</li>
   <li>Migration file to create all the tables in the database.</li>
   <li>File seeder with 50 games to insert the data into the database.</li>
+  <li>Seeders are in JSON format</li>
+  <li>It is compatible with PHP 8</li>
   <li>Search filters of the games that are inserted in the database.</li>
   <li>Documentation of all the api enpoints with the Laravel Swagger 3.0.</li>
   <li>Users can be registered through the Api and it contains authentication by Sanctum to be able to carry out the action of some endpoints.</li>
