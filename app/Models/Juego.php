@@ -49,7 +49,7 @@ class Juego extends Base
 
         $validator = Validator::make($request->all(), [
             'nombre' => 'required|min:2|max:255|unique:juegos',
-            'descripcion' => 'required|min:10|max:255',
+            'descripcion' => 'required|min:10|max:800',
             'desarrolladora' => 'required|min:2|max:255',
             'fecha' => 'required|date_format:Y-m-d',
             'generos' => 'required|array|between:1,5',
@@ -71,7 +71,7 @@ class Juego extends Base
 
         $validator = Validator::make($request->all(), [
             'nombre' => 'nullable|min:2|max:255' . $exp,
-            'descripcion' => 'nullable|min:10|max:255',
+            'descripcion' => 'nullable|min:10|max:800',
             'desarrolladora' => 'nullable|min:2|max:255',
             'fecha' => 'nullable|date_format:Y-m-d',
             'generos' => 'nullable|array|between:1,5',
@@ -93,7 +93,7 @@ class Juego extends Base
 
         $validator = Validator::make($request->all(), [
             'nombre' => 'nullable|min:2|max:255' . $exp,
-            'descripcion' => 'nullable|min:10|max:255',
+            'descripcion' => 'nullable|min:10|max:800',
             'desarrolladora' => 'nullable|min:2|max:255',
             'generos' => 'nullable|array|between:1,5',
             'generos.*' => 'nullable|distinct|exists:generos,slug',
