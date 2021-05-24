@@ -3,8 +3,6 @@
 namespace App\Exceptions;
 
 use Exception;
-use Throwable;
-use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
@@ -36,7 +34,7 @@ class Handler extends ExceptionHandler
      *
      * @throws \Exception
      */
-    public function report(Throwable $exception)
+    public function report(Exception $exception)
     {
         parent::report($exception);
     }
@@ -50,14 +48,8 @@ class Handler extends ExceptionHandler
      *
      * @throws \Exception
      */
-    public function render($request, Throwable $exception)
+    public function render($request, Exception $exception)
     {
-        
-        //Error 405 Method Not allowed
-        if($exception instanceof AuthenticationException) {
-            return response()->json(['error' => 'No autorizado'], 401);
-        }
-
         return parent::render($request, $exception);
     }
 }

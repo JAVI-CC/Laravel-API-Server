@@ -1,10 +1,5 @@
 <?php
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\DesarrolladoraController;
-use App\Http\Controllers\GeneroController;
-use App\Http\Controllers\JuegoController;
-
 use Illuminate\Http\Request;
 
 /*
@@ -22,22 +17,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::prefix('juegos')->group(function () {
-  Route::get('/', [JuegoController::class, 'index'])->name('getAllJuegos');
-  Route::post('/', [JuegoController::class, 'store'])->name('addJuego')->middleware('auth:sanctum');
-  Route::get('{slug}', [JuegoController::class, 'show'])->name('getJuego');
-  Route::post('/edit', [JuegoController::class, 'update'])->name('editJuego')->middleware('auth:sanctum');
-  Route::put('/edit', [JuegoController::class, 'updatewithoutimage'])->name('editJuegoWithoutImage')->middleware('auth:sanctum');
-  Route::delete('/delete/{slug}', [JuegoController::class, 'delete'])->name('deleteJuego')->middleware('auth:sanctum');
-  Route::post('/filter/search/', [JuegoController::class, 'filter'])->name('filterJuego');
-  Route::get('/desarrolladoras/{slug}', [DesarrolladoraController::class, 'show'])->name('getJuegoDesarrolladora');
-  Route::get('/generos/show/all', [GeneroController::class, 'index'])->name('getAllGeneros');
-  Route::get('/generos/{slug}', [GeneroController::class, 'show'])->name('getJuegosGenero');
-});
-
-Route::prefix('auth')->group(function () {
-  Route::post('register', [AuthController::class, 'register'])->name('register');
-  Route::post('login', [AuthController::class, 'login'])->name('login');
-  Route::get('userinfo', [AuthController::class, 'userinfo'])->name('userinfo')->middleware('auth:sanctum');
-  Route::post('logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth:sanctum');
-});
+Route::get('juegos', 'ApiController@getAll')->name('getAllJuegos');
+Route::post('juegos', 'ApiController@add')->name('addJuego');
+Route::get('juegos/{slug}', 'ApiController@get')->name('getJuego');
+Route::post('juegos/{slug}', 'ApiController@edit')->name('editJuego');
+Route::get('juegos/delete/{slug}', 'ApiController@delete')->name('deleteJuego');
+Route::post('juegos/filter/search/', 'ApiController@filter')->name('filterJuego');
