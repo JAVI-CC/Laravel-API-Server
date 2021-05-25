@@ -41,10 +41,10 @@ class DesarrolladoraController extends Controller
      */
     public function show($slug)
     {
-        $id_des = $this->desarrolladora->findBySlug($slug)->juegables;
+        $id_des = $this->desarrolladora->findBySlug($slug);
         if (isset($id_des['error'])) {
             return response()->json(['error' => 'Desarrolladora no encontrada'], 200);
         }
-        return response()->json(JuegoResource::collection(($id_des)), 200);
+        return response()->json(JuegoResource::collection(($id_des->juegables)), 200);
     }
 }
