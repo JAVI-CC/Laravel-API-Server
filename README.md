@@ -194,7 +194,7 @@
 <ul>
 <li><span>nginx:alpine</span> - <code>:8000->80/tcp</code></li>
 <li><span>mariadb:latest</span> - <code>:3306</code></li>
-<li><span>php:7.4-fpm</span> - <code>:9000</code></li>
+<li><span>php:8.0.6-fpm</span> - <code>:9000</code></li>
 </ul>
 
 <h4>Containers structure:</h4>

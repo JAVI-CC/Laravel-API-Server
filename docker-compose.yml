@@ -3,11 +3,11 @@ services:
   app:
     build:
       args:
-        user: sammy
+        user: ${USER}
         uid: 1000
       context: ./
       dockerfile: Dockerfile
-    image: laravel-api-server
+    image: laravel-api
     container_name: laravel-api-server-app
     restart: unless-stopped
     working_dir: /var/www/
