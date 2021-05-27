@@ -13,6 +13,10 @@ use Illuminate\Database\Eloquent\Model;
  **/
 class Genero extends Base
 {
+
+    public $timestamps = false;
+    protected $fillable = ['nombre', 'slug'];
+    
     //Relacion de muchos a muchos polimorfica
     public function juegables()
     {

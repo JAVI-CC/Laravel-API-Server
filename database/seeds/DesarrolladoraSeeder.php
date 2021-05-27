@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\Desarrolladora;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class DesarrolladoraSeeder extends Seeder
 {
@@ -13,7 +16,18 @@ class DesarrolladoraSeeder extends Seeder
     {
         DB::table('desarrolladoras')->truncate();
 
-        DB::table('desarrolladoras')->insert([
+        //FILE JSON
+        $json = File::get("database/data/desarrolladoras.json");
+        $data = json_decode($json);
+        foreach ($data as $obj) {
+          Desarrolladora::create(array(
+            'nombre' => $obj->nombre,
+            'slug' => $obj->slug,
+          ));
+        }
+
+        //SEEDERS
+        /*DB::table('desarrolladoras')->insert([
             'id' => '1',
             'nombre' => 'Ubisoft',
             'slug' => 'ubisoft',
@@ -203,6 +217,6 @@ class DesarrolladoraSeeder extends Seeder
             'id' => '32',
             'nombre' => 'Warhorse Studios',
             'slug' => 'warhose-studios',
-        ]);
+        ]);*/
     }
 }
