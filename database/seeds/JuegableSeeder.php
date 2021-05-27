@@ -1089,7 +1089,7 @@ class JuegableSeeder extends Seeder
 
         DB::table('juegables')->insert([
             'juego_id' => '51',
-            'juegable_id' => '74',
+            'juegable_id' => '75',
             'juegable_type' => 'App\Models\Genero',
         ]);
 
