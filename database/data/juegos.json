@@ -300,9 +300,15 @@
         "slug": "need-for-speed-hot-pursuit"
     },
     {
-        "nombre": "Residen Evil 8 Village",
+        "nombre": "Resident Evil 8 Village",
         "descripcion": "Resident Evil 8: Village es la octava entrega de Resident Evil, la saga de survival horror de Capcom que a lo largo de los años nos ha llevado a luchar contra zombis, mutantes y otros seres sobrenaturales. Nos devuelve a la primera persona como ya sucedió en la séptima parte de la serie y nos llevará a una aldea maldita aislada en un clima hostil y frío, así como asediada por extrañas criaturas que hace la vida imposible a los habitantes.",
         "fecha": "2021-05-07",
         "slug": "resident-evil-8-village"
+    },
+    {
+        "nombre": "Biomutant",
+        "descripcion": "Biomutant es un título de rol y acción de mundo abierto, con especial énfasis en la exploración y el combate cuerpo a cuerpo. Llevándonos a un universo de ciencia ficción lejano, plagado de planetas selváticos y de climas extremos, en Biomutant encarnaremos a un animal capaz de mutar, añadir habilidades y viajar por distintos escenarios con los más variados vehículos, que irán desde mechas a globos y jetpacks. Colorido y especial.",
+        "fecha": "2021-05-28",
+        "slug": "biomutant"
     }
 ]
