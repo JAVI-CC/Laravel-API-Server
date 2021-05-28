@@ -205,7 +205,7 @@
 <h4>Setup:</h4>
 <pre>
 <code>$ git clone https://github.com/JAVI-CC/Laravel-API-Server.git
-$ cd Laravel-API-Server-master
+$ cd Laravel-API-Server
 $ cp .env.example .env
 $ docker-compose up -d
 $ docker-compose exec app composer install
