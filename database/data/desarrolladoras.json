@@ -126,5 +126,9 @@
     {
         "nombre": "Warhorse Studios",
         "slug": "warhose-studios"
+    },
+    {
+        "nombre": "THQ Nordic",
+        "slug": "thq-nordic"
     }
 ]

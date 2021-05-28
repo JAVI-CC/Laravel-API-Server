@@ -326,6 +326,12 @@ class JuegableSeeder extends Seeder
         ]);
 
         DB::table('juegables')->insert([
+            'juego_id' => '52',
+            'juegable_id' => '33',
+            'juegable_type' => 'App\Models\Desarrolladora',
+        ]);
+
+        DB::table('juegables')->insert([
             'juego_id' => '1',
             'juegable_id' => '44',
             'juegable_type' => 'App\Models\Genero',
@@ -1090,6 +1096,18 @@ class JuegableSeeder extends Seeder
         DB::table('juegables')->insert([
             'juego_id' => '51',
             'juegable_id' => '75',
+            'juegable_type' => 'App\Models\Genero',
+        ]);
+
+        DB::table('juegables')->insert([
+            'juego_id' => '52',
+            'juegable_id' => '59',
+            'juegable_type' => 'App\Models\Genero',
+        ]);
+
+        DB::table('juegables')->insert([
+            'juego_id' => '52',
+            'juegable_id' => '63',
             'juegable_type' => 'App\Models\Genero',
         ]);
 
