@@ -130,5 +130,9 @@
     {
         "nombre": "THQ Nordic",
         "slug": "thq-nordic"
+    },
+    {
+        "nombre": "Insomniac Games",
+        "slug": "insomniac-games"
     }
 ]

@@ -310,5 +310,11 @@
         "descripcion": "Biomutant es un título de rol y acción de mundo abierto, con especial énfasis en la exploración y el combate cuerpo a cuerpo. Llevándonos a un universo de ciencia ficción lejano, plagado de planetas selváticos y de climas extremos, en Biomutant encarnaremos a un animal capaz de mutar, añadir habilidades y viajar por distintos escenarios con los más variados vehículos, que irán desde mechas a globos y jetpacks. Colorido y especial.",
         "fecha": "2021-05-28",
         "slug": "biomutant"
+    },
+    {
+        "nombre": "Ratchet & Clank: Rift Apart",
+        "descripcion": "Ratchet & Clank: Rift Apart es una nueva entrega de la saga Ratchet & Clank, una de las licencias de acción y plataformas más longevas. Desarrollada por Insomniac Games, el título aprovechará las bondades técnicas de la nueva sobremesa y nos volverá a presentar una historia de humor y ciencia ficción pensada para la máquina desde cero, mejorando su apartado técnico y su alocada y accesible jugabilidad, que apostará por los portales y las dimensiones.",
+        "fecha": "2021-06-11",
+        "slug": "ratchet-and-clank-rift-apart"
     }
 ]
