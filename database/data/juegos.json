@@ -362,5 +362,12 @@
         "fecha": "2021-05-28",
         "slug": "biomutant",
         "url_imagen": "https://www.dropbox.com/s/rl8th3cdptnex2f/52-biomutant.png?raw=1"
+    },
+    {
+        "nombre": "Ratchet & Clank: Una dimensión aparte",
+        "descripcion": "Ratchet & Clank: Rift Apart es una nueva entrega de la saga Ratchet & Clank, una de las licencias de acción y plataformas más longevas. Desarrollada por Insomniac Games, el título aprovechará las bondades técnicas de la nueva sobremesa y nos volverá a presentar una historia de humor y ciencia ficción pensada para la máquina desde cero, mejorando su apartado técnico y su alocada y accesible jugabilidad, que apostará por los portales y las dimensiones.",
+        "fecha": "2021-06-11",
+        "slug": "ratchet-and-clank-una-dimension-aparte",
+        "url_imagen": "https://www.dropbox.com/s/j01c4ryo719gq52/53-ratchet-and-clank-una-dimension-aparte.png?raw=1"
     }
 ]
