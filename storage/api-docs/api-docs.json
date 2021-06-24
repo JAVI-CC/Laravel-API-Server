@@ -313,11 +313,7 @@
                                 "properties": {
                                     "imagen": {
                                         "description": "imagen del juego",
-                                        "type": "file",
-                                        "items": {
-                                            "type": "string",
-                                            "format": "binary"
-                                        }
+                                        "type": "file"
                                     }
                                 },
                                 "type": "object"
@@ -496,11 +492,7 @@
                                 "properties": {
                                     "imagen": {
                                         "description": "imagen del juego",
-                                        "type": "file",
-                                        "items": {
-                                            "type": "string",
-                                            "format": "binary"
-                                        }
+                                        "type": "file"
                                     }
                                 },
                                 "type": "object"
