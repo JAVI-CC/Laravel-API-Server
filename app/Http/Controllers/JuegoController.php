@@ -78,7 +78,6 @@ class JuegoController extends Controller
      *           property="imagen",
      *           description="imagen del juego",
      *           type="file",
-     *           @OA\Items(type="string", format="binary")
      *         ),
      *       ),
      *     ), 
@@ -171,7 +170,6 @@ class JuegoController extends Controller
      *           property="imagen",
      *           description="imagen del juego",
      *           type="file",
-     *           @OA\Items(type="string", format="binary")
      *         ),
      *       ),
      *     ), 
