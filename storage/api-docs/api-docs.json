@@ -581,7 +581,7 @@
                     {
                         "name": "filter",
                         "in": "query",
-                        "description": "Ordenar por diferente tipo. Ejemplos ['nombre', 'descripcion', 'desarolladora', 'fecha'] ",
+                        "description": "Ordenar por diferente tipo. Ejemplos ['nombre', 'descripcion', 'fecha'] ",
                         "required": false,
                         "schema": {
                             "type": "string",

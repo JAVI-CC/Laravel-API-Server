@@ -293,7 +293,7 @@ class JuegoController extends Controller
      *   ),
      *   @OA\Parameter(
      *     name="filter",
-     *     description="Ordenar por diferente tipo. Ejemplos ['nombre', 'descripcion', 'desarolladora', 'fecha'] ",
+     *     description="Ordenar por diferente tipo. Ejemplos ['nombre', 'descripcion', 'fecha'] ",
      *     in="query",
      *     required=false, 
      *     @OA\Schema(
