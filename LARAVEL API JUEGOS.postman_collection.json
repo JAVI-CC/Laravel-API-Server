@@ -200,6 +200,72 @@
 					]
 				},
 				{
+					"name": "Generos",
+					"item": [
+						{
+							"name": "Get all generos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://laravelapijuegos.herokuapp.com/api/juegos/generos/show/all",
+									"protocol": "https",
+									"host": [
+										"laravelapijuegos",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"api",
+										"juegos",
+										"generos",
+										"show",
+										"all"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get juegos generos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://laravelapijuegos.herokuapp.com/api/juegos/generos/carreras",
+									"protocol": "https",
+									"host": [
+										"laravelapijuegos",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"api",
+										"juegos",
+										"generos",
+										"carreras"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "Add game",
 					"protocolProfileBehavior": {
 						"disabledSystemHeaders": {
@@ -564,19 +630,14 @@
 						}
 					},
 					"response": []
-				}
-			]
-		},
-		{
-			"name": "Generos",
-			"item": [
+				},
 				{
-					"name": "Get all generos",
+					"name": "Get games pagination",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://laravelapijuegos.herokuapp.com/api/juegos/generos/show/all",
+							"raw": "https://laravelapijuegos.herokuapp.com/api/juegos/paginate?page=2&items=8",
 							"protocol": "https",
 							"host": [
 								"laravelapijuegos",
@@ -586,15 +647,16 @@
 							"path": [
 								"api",
 								"juegos",
-								"generos",
-								"show",
-								"all"
+								"paginate"
 							],
 							"query": [
 								{
-									"key": "",
-									"value": "",
-									"disabled": true
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "items",
+									"value": "8"
 								}
 							]
 						}
@@ -602,12 +664,12 @@
 					"response": []
 				},
 				{
-					"name": "Get juegos generos",
+					"name": "Get games random",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://laravelapijuegos.herokuapp.com/api/juegos/generos/carreras",
+							"raw": "https://laravelapijuegos.herokuapp.com/api/juegos/random?items=12",
 							"protocol": "https",
 							"host": [
 								"laravelapijuegos",
@@ -617,14 +679,12 @@
 							"path": [
 								"api",
 								"juegos",
-								"generos",
-								"carreras"
+								"random"
 							],
 							"query": [
 								{
-									"key": "",
-									"value": "",
-									"disabled": true
+									"key": "items",
+									"value": "12"
 								}
 							]
 						}
