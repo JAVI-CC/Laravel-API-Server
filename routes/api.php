@@ -24,6 +24,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::prefix('juegos')->group(function () {
   Route::get('/', [JuegoController::class, 'index'])->name('getAllJuegos');
+  Route::get('/paginate', [JuegoController::class, 'paginate'])->name('getPaginateJuegos');
+  Route::get('/random', [JuegoController::class, 'random'])->name('getRandomJuegos');
   Route::post('/', [JuegoController::class, 'store'])->name('addJuego')->middleware('auth:sanctum');
   Route::get('{slug}', [JuegoController::class, 'show'])->name('getJuego');
   Route::post('/edit', [JuegoController::class, 'update'])->name('editJuego')->middleware('auth:sanctum');

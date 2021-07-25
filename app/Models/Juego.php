@@ -54,7 +54,7 @@ class Juego extends Base
             'fecha' => 'required|date_format:Y-m-d',
             'generos' => 'required|array|between:1,5',
             'generos.*' => 'required|distinct|exists:generos,slug',
-            'imagen' => 'required|mimes:jpg,jpeg,png|max:1024|',
+            'imagen' => 'required|mimes:jpg,jpeg,png|max:4096|',
         ]);
 
         return $validator;
@@ -76,7 +76,7 @@ class Juego extends Base
             'fecha' => 'nullable|date_format:Y-m-d',
             'generos' => 'nullable|array|between:1,5',
             'generos.*' => 'nullable|distinct|exists:generos,slug',
-            'imagen' => 'required|mimes:jpg,jpeg,png|max:1024|',
+            'imagen' => 'required|mimes:jpg,jpeg,png|max:4096|',
         ]);
 
         return $validator;
@@ -193,7 +193,7 @@ class Juego extends Base
               $slug_antiguo = $request->input('slug');
               $request->request->add(['slug' => $slug]);
               //Cambiar el nombre del archivo
-              $id = $this->where('slug', $request->input('slug'))->first()->id;
+              $id = $this->where('slug', $slug_antiguo)->first()->id;
             }
 
             if($request->input('desarrolladora') != null) {

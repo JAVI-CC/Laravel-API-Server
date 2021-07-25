@@ -342,6 +342,82 @@
                 ]
             }
         },
+        "/api/juegos/paginate": {
+            "get": {
+                "tags": [
+                    "Juegos"
+                ],
+                "summary": "Obtener los juegos por una paginación de X elementos",
+                "description": "Muestra los juegos a través de una paginación",
+                "operationId": "getPaginateJuegos",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Numero de la paginación",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": "2"
+                        }
+                    },
+                    {
+                        "name": "items",
+                        "in": "query",
+                        "description": "Numero de juegos por página",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "8"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "No autorizado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                }
+            }
+        },
+        "/api/juegos/random": {
+            "get": {
+                "tags": [
+                    "Juegos"
+                ],
+                "summary": "Obtener una lista de X juegos aleatorios",
+                "description": "Muestra el resultado de X juegos de forma aleatoria",
+                "operationId": "getRandomJuegos",
+                "parameters": [
+                    {
+                        "name": "items",
+                        "in": "query",
+                        "description": "Numero de juegos",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "6"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "No autorizado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                }
+            }
+        },
         "/api/juegos/{slug}": {
             "get": {
                 "tags": [

@@ -48,6 +48,74 @@ class JuegoController extends Controller
     }
 
     /**
+     * @OA\Get(
+     *   path="/api/juegos/paginate",
+     *   tags={"Juegos"},
+     *   summary="Obtener los juegos por una paginación de X elementos",
+     *   description="Muestra los juegos a través de una paginación",
+     *   operationId="getPaginateJuegos",
+     *   @OA\Parameter(
+     *     name="page",
+     *     description="Numero de la paginación",
+     *     in="query",
+     *     required=false, 
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="2"
+     *     ),
+     *   ),
+     *   @OA\Parameter(
+     *    name="items",
+     *    description="Numero de juegos por página",
+     *    in="query",
+     *    required=true, 
+     *    @OA\Schema(
+     *      type="integer",
+     *        example="8"
+     *      ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=401, description="No autorizado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function paginate(Request $request)
+    {
+        $juegos = Juego::orderBy('id', 'DESC')->paginate($request->input('items'));
+        return response()->json(JuegoResource::collection(($juegos)), 200);
+    }
+
+    /**
+     * @OA\Get(
+     *   path="/api/juegos/random",
+     *   tags={"Juegos"},
+     *   summary="Obtener una lista de X juegos aleatorios",
+     *   description="Muestra el resultado de X juegos de forma aleatoria",
+     *   operationId="getRandomJuegos",
+     *   @OA\Parameter(
+     *     name="items",
+     *     description="Numero de juegos",
+     *     in="query",
+     *     required=true, 
+     *     @OA\Schema(
+     *       type="integer",
+     *       example="6"
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=401, description="No autorizado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function random(Request $request)
+    {
+        $juegos = Juego::all()->random($request->input('items'));
+        return response()->json(JuegoResource::collection(($juegos)), 200);
+    }
+
+    /**
      * @OA\Post(
      *   path="/api/juegos",
      *   tags={"Juegos"},
