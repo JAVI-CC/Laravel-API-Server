@@ -54,7 +54,7 @@ class Juego extends Base
             'fecha' => 'required|date_format:Y-m-d',
             'generos' => 'required|array|between:1,5',
             'generos.*' => 'required|distinct|exists:generos,slug',
-            'imagen' => 'required|mimes:jpg,jpeg,png|max:1024|',
+            'imagen' => 'required|mimes:jpg,jpeg,png|max:4096|',
         ]);
 
         return $validator;
@@ -76,7 +76,7 @@ class Juego extends Base
             'fecha' => 'nullable|date_format:Y-m-d',
             'generos' => 'nullable|array|between:1,5',
             'generos.*' => 'nullable|distinct|exists:generos,slug',
-            'imagen' => 'required|mimes:jpg,jpeg,png|max:1024|',
+            'imagen' => 'required|mimes:jpg,jpeg,png|max:4096|',
         ]);
 
         return $validator;
