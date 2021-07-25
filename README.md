@@ -142,6 +142,17 @@
 <td>/api/juegos/generos/show/all</td>
 <td>Get list all generes</td>
 <td>No</td>
+<tr>
+<td>GET</td>
+<td>/api/juegos/paginate</td>
+<td>Get paginate games</td>
+<td>No</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/api/juegos/random</td>
+<td>Get random games</td>
+<td>No</td>
 </tr>
 </tbody>
 </table>
