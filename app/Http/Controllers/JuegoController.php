@@ -74,6 +74,16 @@ class JuegoController extends Controller
      *        example="8"
      *      ),
      *   ),
+     *   @OA\Parameter(
+     *   name="order",
+     *   description="ordenar paginación de juegos (no es obligatorio). Opciones: [nombreAsc, nombrDesc, fechaAsc, fechaDesc]",
+     *   in="query",
+     *   required=false, 
+     *   @OA\Schema(
+     *     type="string",
+     *      example=""
+     *     ),
+     *   ),
      *   @OA\Response(response=200, description="Success"),
      *   @OA\Response(response=401, description="No autorizado"),
      *   @OA\Response(response=500, description="Error interno del servidor")
@@ -82,7 +92,24 @@ class JuegoController extends Controller
      */
     public function paginate(Request $request)
     {
-        $juegos = Juego::orderBy('id', 'DESC')->paginate($request->input('items'));
+        switch($request->input('order')) {
+            case 'nombreAsc':
+                $juegos = Juego::orderBy('nombre', 'ASC')->paginate($request->input('items'));
+                break;
+            case 'nombreDesc':
+                $juegos = Juego::orderBy('nombre', 'DESC')->paginate($request->input('items'));
+                break;
+            case 'fechaAsc':
+                $juegos = Juego::orderBy('fecha', 'ASC')->paginate($request->input('items'));
+                break;
+            case 'fechaDesc':
+                $juegos = Juego::orderBy('fecha', 'DESC')->paginate($request->input('items'));
+                break;
+            default:
+                $juegos = Juego::orderBy('id', 'DESC')->paginate($request->input('items'));
+                break;
+        }
+
         return response()->json(JuegoResource::collection(($juegos)), 200);
     }
 

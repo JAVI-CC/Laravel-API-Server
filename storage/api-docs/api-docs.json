@@ -370,6 +370,16 @@
                             "type": "integer",
                             "example": "8"
                         }
+                    },
+                    {
+                        "name": "order",
+                        "in": "query",
+                        "description": "ordenar paginación de juegos (no es obligatorio). Opciones: [nombreAsc, nombrDesc, fechaAsc, fechaDesc]",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": ""
+                        }
                     }
                 ],
                 "responses": {
