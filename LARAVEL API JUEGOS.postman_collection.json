@@ -637,7 +637,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://laravelapijuegos.herokuapp.com/api/juegos/paginate?page=2&items=8",
+							"raw": "https://laravelapijuegos.herokuapp.com/api/juegos/paginate?page=2&items=8&order",
 							"protocol": "https",
 							"host": [
 								"laravelapijuegos",
@@ -657,6 +657,10 @@
 								{
 									"key": "items",
 									"value": "8"
+								},
+								{
+									"key": "order",
+									"value": null
 								}
 							]
 						}
