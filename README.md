@@ -18,7 +18,7 @@
   <li>Requests validations.</li>
   <li>Exception handling.</li>
   <li>Migration file to create all the tables in the database.</li>
-  <li>File seeder with 50 games to insert the data into the database.</li>
+  <li>File seeder with +50 games to insert the data into the database.</li>
   <li>Seeders are in JSON format</li>
   <li>It is compatible with PHP 8</li>
   <li>Search filters of the games that are inserted in the database.</li>
@@ -27,6 +27,7 @@
   <li>The Api is uploaded in heroku <a href="https://laravelapijuegos.herokuapp.com/api/juegos" target="_blank">https://laravelapijuegos.herokuapp.com</a> so that users can use the endpoints without having to download the project.</li>
   <li>The project contains the files to deploy it in Docker.</li>
   <li>Demonstration of a Laravel project on the client interface side using this api <a href="https://github.com/JAVI-CC/Laravel-API-Client" target="_blank">https://github.com/JAVI-CC/Laravel-API-Client</a>.</li>
+  <li>Demonstration of a Quasar project on the client interface side using this api <a href="https://github.com/JAVI-CC/Quasar-API-client" target="_blank">https://github.com/JAVI-CC/Quasar-API-client</a>.</li>
 </ul> 
 
 <h3>Demo API</h3>
@@ -37,6 +38,9 @@
 
 <h3>Laravel Api client interface</h3>
 <p><a href="https://github.com/JAVI-CC/Laravel-API-Client" target="_blank">https://github.com/JAVI-CC/Laravel-API-Client</a></p>
+
+<h3>Quasar Api client interface</h3>
+<p><a href="https://github.com/JAVI-CC/Quasar-API-client" target="_blank">https://github.com/JAVI-CC/Quasar-API-client</a></p>
 
 <h3>.env</h3>
 <strong>DROPBOX_AUTH_TOKEN = </strong><span>{Dropbox_token}</span>
