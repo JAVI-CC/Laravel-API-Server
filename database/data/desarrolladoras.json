@@ -134,5 +134,13 @@
     {
         "nombre": "Insomniac Games",
         "slug": "insomniac-games"
+    },
+    {
+        "nombre": "Chucklefish",
+        "slug": "chucklefish"
+    },
+    {
+        "nombre": "Hazelight Studios",
+        "slug": "hazelight-studios"
     }
 ]

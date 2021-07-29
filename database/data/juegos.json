@@ -316,5 +316,17 @@
         "descripcion": "Ratchet & Clank: Rift Apart es una nueva entrega de la saga Ratchet & Clank, una de las licencias de acción y plataformas más longevas. Desarrollada por Insomniac Games, el título aprovechará las bondades técnicas de la nueva sobremesa y nos volverá a presentar una historia de humor y ciencia ficción pensada para la máquina desde cero, mejorando su apartado técnico y su alocada y accesible jugabilidad, que apostará por los portales y las dimensiones.",
         "fecha": "2021-06-11",
         "slug": "ratchet-and-clank-rift-apart"
+    },
+    {
+        "nombre": "Starbound",
+        "descripcion": "Es un juego de exploración y construcción en el que controlamos a un personaje que ha abandonado su planeta natal, para estrellarse en otro y tener que empezar de cero. Nos encontraremos con personajes, escenarios y armas generados aleatoriamente, en un mundo de juego que podremos explorar en busca de objetos, para fundar nuestra propia colonia, construir unas instalaciones y establecernos en ellas.",
+        "fecha": "2016-07-22",
+        "slug": "starbound"
+    },
+    {
+        "nombre": "It Takes Two",
+        "descripcion": "It Takes Two es un juego de acción en 3D y narración, hablamos de un videojuego cuya trama narra cómo el matrimonio formado por Cody y May discuten sobre divorciarse, algo a lo que se opone su hija quien, de algún modo, los transforma en dos muñecos que deben cooperar para deshacer el entuerto, todo ello mientras el libro mágico Dr. Hakim les da lecciones sobre el amor.",
+        "fecha": "2021-03-26",
+        "slug": "it-takes-two"
     }
 ]
