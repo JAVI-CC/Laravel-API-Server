@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use App\Traits\HasFind;
+use App\Traits\HasSlug;
 
 
 /**
@@ -26,8 +28,10 @@ use Illuminate\Support\Facades\Validator;
  * 
  * @package App\Models
  */
-class Juego extends Base
+class Juego extends Model
 {
+    use HasFind, HasSlug;
+
     public $timestamps = false;
     protected $table = 'juegos';
     protected $hidden = array('id');
