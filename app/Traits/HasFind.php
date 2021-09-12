@@ -1,35 +1,31 @@
 <?php
 
-namespace App\Models;
+namespace App\Traits;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
-class Base extends Model
+trait HasFind
 {
-    public function sluggable($string)
+    public function findById($id)
     {
-        return Str::slug($string);
-    }
-
-    public function findById($id) {
         $value = self::where('id', $id)->first();
-        if($value == null) {
+        if ($value == null) {
             return ['error' => 'No encontrado'];
         }
         return $value;
     }
 
-    public function findBySlug($slug) {
+    public function findBySlug($slug)
+    {
         $value = self::where('slug', $slug)->first();
-        if($value == null) {
+        if ($value == null) {
             return ['error' => 'No encontrado'];
         }
         return $value;
     }
 
-    public function findByNombre($nombre) {
+    public function findByNombre($nombre)
+    {
 
         if (DB::getDriverName() === 'pgsql') {
             $like = 'ilike';
@@ -38,10 +34,9 @@ class Base extends Model
         }
 
         $value = self::where('nombre', $like, '%' . $nombre . '%')->first();
-        if($value == null) {
+        if ($value == null) {
             return ['error' => 'No encontrado'];
         }
         return $value;
     }
-    
 }

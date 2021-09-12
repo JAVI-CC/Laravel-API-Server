@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\HasFind;
+use App\Traits\HasSlug;
 
 /**
  * @OA\Schema(
@@ -11,8 +13,10 @@ use Illuminate\Database\Eloquent\Model;
  *   @OA\Property(property="slug", type="string", description="Url amigable del nombre de la desarrolladora", example="test123-studios")
  * )
  **/
-class Desarrolladora extends Base
+class Desarrolladora extends Model
 {
+    use HasFind, HasSlug;
+
     public $timestamps = false;
     protected $fillable = ['nombre', 'slug'];
 
