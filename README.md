@@ -17,6 +17,7 @@
   <li>Resource file to show the values of some endpoints in a personalized way.</li>
   <li>Requests validations.</li>
   <li>Exception handling.</li>
+  <li>Traits.</li>
   <li>Migration file to create all the tables in the database.</li>
   <li>File seeder with +50 games to insert the data into the database.</li>
   <li>Seeders are in JSON format</li>
