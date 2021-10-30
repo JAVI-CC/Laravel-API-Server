@@ -107,15 +107,9 @@
 <td>No</td>
 </tr>
 <tr>
-<td>PUT</td>
-<td>/api/juegos/edit</td>
-<td>Update game without uploading the image</td>
-<td>Yes</td>
-</tr>
-<tr>
 <td>POST</td>
 <td>/api/juegos/edit</td>
-<td>Update a game with the included image</td>
+<td>Update a game</td>
 <td>Yes</td>
 </tr>
 <tr>
