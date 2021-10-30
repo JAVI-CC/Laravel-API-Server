@@ -19,6 +19,7 @@ use App\Traits\HasSlug;
  *   @OA\Property(property="nombre", description="Nombre del juego", type="string", example="Test123"),
  *   @OA\Property(property="descripcion", description="descripción del juego", type="string", example="insertando juego de prueba..."),
  *   @OA\Property(property="desarrolladora", description="nombre de la desarrolladora que pertenece al juego", type="string", example="Test123 Studios"),
+ *   @OA\Property(property="imagen", description="imagen en base64 que pertenece al juego", type="string", format="base64", example="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPj/HwADBwIAMCbHYQAAAABJRU5ErkJggg=="),
  *   @OA\Property(property="fecha", type="string", description="fecha de salida de lanzamiento del juego", example="2021-01-01"),
  *   @OA\Property(property="generos", type="string", description="Slugs de generos ya existentes en la base de datos de tipo array (No se puede insertar generos que no esten registrado en la base de datos).", example={"aventura", "rpg-de-accion", "multijugador"}),
  *   @OA\Property(property="slug", type="string", description="Url amigable del nombre del juego", example="test123")
@@ -58,7 +59,7 @@ class Juego extends Model
             'fecha' => 'required|date_format:Y-m-d',
             'generos' => 'required|array|between:1,5',
             'generos.*' => 'required|distinct|exists:generos,slug',
-            'imagen' => 'required|mimes:jpg,jpeg,png|max:4096|',
+            'imagen' => 'required|base64mimes:jpg,jpeg,png|base64max:4096|',
         ]);
 
         return $validator;
@@ -80,28 +81,7 @@ class Juego extends Model
             'fecha' => 'nullable|date_format:Y-m-d',
             'generos' => 'nullable|array|between:1,5',
             'generos.*' => 'nullable|distinct|exists:generos,slug',
-            'imagen' => 'required|mimes:jpg,jpeg,png|max:4096|',
-        ]);
-
-        return $validator;
-    }
-
-    public function validation_update_without_image($request, $nombre)
-    {
-
-        if ($request->nombre == $nombre) {
-            $exp = '';
-        } else {
-            $exp = '|unique:juegos';
-        }
-
-        $validator = Validator::make($request->all(), [
-            'nombre' => 'nullable|min:2|max:255' . $exp,
-            'descripcion' => 'nullable|min:10|max:800',
-            'desarrolladora' => 'nullable|min:2|max:255',
-            'generos' => 'nullable|array|between:1,5',
-            'generos.*' => 'nullable|distinct|exists:generos,slug',
-            'fecha' => 'nullable|date_format:Y-m-d',
+            'imagen' => 'required|base64mimes:jpg,jpeg,png|base64max:4096|',
         ]);
 
         return $validator;
@@ -151,9 +131,11 @@ class Juego extends Model
               $slug = $request->input('slug');
             }
 
-            $dropbox = new Dropbox();
-            $url_imagen = $dropbox->update_imagen($id_juego['url_imagen'], $request->imagen);
-            $request->request->add(['slug' => $slug, 'url_imagen' => $url_imagen]);
+            if($request->input('imagen') != null) {
+              $dropbox = new Dropbox();
+              $url_imagen = $dropbox->update_imagen($id_juego['url_imagen'], $request->imagen);
+              $request->request->add(['slug' => $slug, 'url_imagen' => $url_imagen]);
+            }
             
             if($request->input('desarrolladora') != null) {
               $desarrolladora = new Desarrolladora();
@@ -184,53 +166,6 @@ class Juego extends Model
               }
             }
             
-            return $id_juego;
-        }
-    }
-
-    public function exists_id_update_without_image($id_juego, $request)
-    {
-
-        if ($id_juego == null) {
-            return response()->json(['error' => 'Juego no encontrado']);
-        } else {
-
-            if($request->input('nombre') != null) {
-                $slug = $this->sluggable($request->nombre);
-                $request->request->add(['slug' => $slug]);
-              } else {
-                $slug = $request->input('slug');
-              }
-
-            if($request->input('desarrolladora') != null) {
-              $desarrolladora = new Desarrolladora();
-              $desarrolladora = $desarrolladora->similar_name($request->input('desarrolladora'));
-              $request->merge(['desarrolladora' => $desarrolladora->id]);
-            }
-            
-            $id_juego->update($request->only([
-                'nombre',
-                'descripcion',
-                'desarrolladora',
-                'fecha',
-                'generos',
-                'slug',
-                'url_imagen'
-            ]));
-            
-            if($request->input('desarrolladora') != null) {
-              $id_juego->desarrolladoras()->update(['juegable_id' => $desarrolladora->id]);
-            }
-
-            if($request->input('generos') != null) {
-              $class_genero = new Genero();
-              $id_juego->generos()->detach();
-              foreach($request->input('generos') as $genero) {
-                $class_genero->findBySlug($genero);
-                $id_juego->generos()->syncWithoutDetaching($class_genero->findBySlug($genero)->id);
-              }
-            }
-
             return $id_juego;
         }
     }

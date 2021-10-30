@@ -29,7 +29,6 @@ Route::prefix('juegos')->group(function () {
   Route::post('/', [JuegoController::class, 'store'])->name('addJuego')->middleware('auth:sanctum');
   Route::get('{slug}', [JuegoController::class, 'show'])->name('getJuego');
   Route::post('/edit', [JuegoController::class, 'update'])->name('editJuego')->middleware('auth:sanctum');
-  Route::put('/edit', [JuegoController::class, 'updatewithoutimage'])->name('editJuegoWithoutImage')->middleware('auth:sanctum');
   Route::delete('/delete/{slug}', [JuegoController::class, 'delete'])->name('deleteJuego')->middleware('auth:sanctum');
   Route::post('/filter/search/', [JuegoController::class, 'filter'])->name('filterJuego');
   Route::get('/desarrolladoras/{slug}', [DesarrolladoraController::class, 'show'])->name('getJuegoDesarrolladora');
