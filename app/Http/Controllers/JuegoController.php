@@ -158,24 +158,12 @@ class JuegoController extends Controller
      *       @OA\Property(property="nombre", ref="#/components/schemas/Juego/properties/nombre"),
      *       @OA\Property(property="descripcion", ref="#/components/schemas/Juego/properties/descripcion"),
      *       @OA\Property(property="desarrolladora", ref="#/components/schemas/Juego/properties/desarrolladora"),
+     *       @OA\Property(property="imagen", ref="#/components/schemas/Juego/properties/imagen"),
      *       @OA\Property(property="fecha", ref="#/components/schemas/Juego/properties/fecha"),
      *       @OA\Property(property="generos[0]", type="string", example="accion"),
      *       @OA\Property(property="generos[1]", type="string", example="first-person-shooter"),
      *       @OA\Property(property="generos[2]", type="string", example="multijugador"),
      *     ),
-     *   ),
-     *   @OA\RequestBody(
-     *     required=true,
-     *     @OA\MediaType(
-     *       mediaType="multipart/form-data",
-     *       @OA\Schema(
-     *         @OA\Property(
-     *           property="imagen",
-     *           description="imagen del juego",
-     *           type="file",
-     *         ),
-     *       ),
-     *     ), 
      *   ),
      *   security={ * {"SANCTUM": {}}, * },
      *   @OA\Response(response=201, description="Se ha creado correctamente"),
@@ -237,8 +225,8 @@ class JuegoController extends Controller
      * @OA\Post(
      *   path="/api/juegos/edit",
      *   tags={"Juegos"},
-     *   summary="Actualizar un juego con la imagen incluida",
-     *   description="Actulizar un juego ya existente con parametros con la imagen incluida.",
+     *   summary="Actualizar un juego",
+     *   description="Actulizar un juego ya existente",
      *   operationId="editJuego",
      *   @OA\Parameter(
      *     name="Juego",
@@ -249,25 +237,13 @@ class JuegoController extends Controller
      *       @OA\Property(property="nombre", ref="#/components/schemas/Juego/properties/nombre"),
      *       @OA\Property(property="descripcion", ref="#/components/schemas/Juego/properties/descripcion"),
      *       @OA\Property(property="desarrolladora", ref="#/components/schemas/Juego/properties/desarrolladora"),
+     *       @OA\Property(property="imagen", ref="#/components/schemas/Juego/properties/imagen"),
      *       @OA\Property(property="fecha", ref="#/components/schemas/Juego/properties/fecha"),
      *       @OA\Property(property="generos[0]", type="string", example="aventura"),
      *       @OA\Property(property="generos[1]", type="string", example="rpg-de-accion"),
      *       @OA\Property(property="generos[2]", type="string", example="multijugador"),
      *       @OA\Property(property="slug", ref="#/components/schemas/Juego/properties/slug"),
      *     ),
-     *   ),
-     *   @OA\RequestBody(
-     *     required=true,
-     *     @OA\MediaType(
-     *       mediaType="multipart/form-data",
-     *       @OA\Schema(
-     *         @OA\Property(
-     *           property="imagen",
-     *           description="imagen del juego",
-     *           type="file",
-     *         ),
-     *       ),
-     *     ), 
      *   ),
      *   security={ * {"SANCTUM": {}}, * },
      *   @OA\Response(response=200, description="Success"),
@@ -288,51 +264,6 @@ class JuegoController extends Controller
                 return response()->json($validator->errors(), 220);
             } else {
                 $juego = $this->juego->exists_id_update($juego, $request);
-                return response()->json(new JuegoResource($juego), 200);
-            }
-        }
-    }
-
-    /**
-     * @OA\Put(
-     *   path="/api/juegos/edit",
-     *   tags={"Juegos"},
-     *   summary="Actualizar un juego sin subir la imagen",
-     *   description="Actulizar un juego ya existente con parametros sin la necesidad de subir la imagen.",
-     *   operationId="editJuegoWithoutImage",
-     *   @OA\RequestBody(
-     *     required=true,
-     *     description="{nombre, descripcion, desarrolladora, fecha, generos, slug}",
-     *     @OA\JsonContent(
-     *       required={"slug"},
-     *       @OA\Property(property="nombre", ref="#/components/schemas/Juego/properties/nombre"),
-     *       @OA\Property(property="descripcion", ref="#/components/schemas/Juego/properties/descripcion"),
-     *       @OA\Property(property="desarrolladora", ref="#/components/schemas/Juego/properties/desarrolladora"),
-     *       @OA\Property(property="fecha", ref="#/components/schemas/Juego/properties/fecha"),
-     *       @OA\Property(property="generos", ref="#/components/schemas/Juego/properties/generos"),
-     *       @OA\Property(property="slug", ref="#/components/schemas/Juego/properties/slug")
-     *    ),
-     *   ),
-     *   security={ * {"SANCTUM": {}}, * },
-     *   @OA\Response(response=200, description="Success"),
-     *   @OA\Response(response=220, description="No se cumple todos los requisitos"),
-     *   @OA\Response(response=401, description="No autorizado"),
-     *   @OA\Response(response=500, description="Error interno del servidor")
-     * )
-     *
-     */
-    public function updatewithoutimage(Request $request)
-    {
-        $juego = $this->juego->show_id($request->input('slug'));
-
-        if (isset($juego->original['error'])) {
-            return $juego;
-        } else {
-            $validator = $this->juego->validation_update_without_image($request, $juego->nombre);
-            if ($validator->fails()) {
-                return response()->json($validator->errors(), 220);
-            } else {
-                $juego = $this->juego->exists_id_update_without_image($juego, $request);
                 return response()->json(new JuegoResource($juego), 200);
             }
         }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "263aea31bf085a8934793fa9f7fa4a07",
+    "content-hash": "9da0397e782e54e124762eca53b23d3a",
     "packages": [
         {
             "name": "brick/math",
@@ -57,6 +57,64 @@
                 }
             ],
             "time": "2021-01-20T22:51:39+00:00"
+        },
+        {
+            "name": "crazybooot/base64-validation",
+            "version": "1.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/crazybooot/base64-validation.git",
+                "reference": "1ef6b810a0c1a6a1b8c9cef486f98ade02e8817e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/crazybooot/base64-validation/zipball/1ef6b810a0c1a6a1b8c9cef486f98ade02e8817e",
+                "reference": "1ef6b810a0c1a6a1b8c9cef486f98ade02e8817e",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^5.5|^6.0|^7.0|^8.0",
+                "php": "^7.1|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Crazybooot\\Base64Validation\\Providers\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "App\\": "app/",
+                    "Crazybooot\\Base64Validation\\": "/src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "crazybooot",
+                    "email": "crazybooot@gmail.com"
+                }
+            ],
+            "description": "Laravel validators for base64 encoded files",
+            "keywords": [
+                "base64",
+                "download",
+                "encoded",
+                "files",
+                "images",
+                "laravel",
+                "validation"
+            ],
+            "support": {
+                "issues": "https://github.com/crazybooot/base64-validation/issues",
+                "source": "https://github.com/crazybooot/base64-validation/tree/1.0.8"
+            },
+            "time": "2021-06-15T10:04:43+00:00"
         },
         {
             "name": "darkaonline/l5-swagger",
@@ -7201,5 +7259,5 @@
         "php": "^8.0.6"
     },
     "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "plugin-api-version": "2.1.0"
 }

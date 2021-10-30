@@ -285,6 +285,9 @@
                                 "desarrolladora": {
                                     "$ref": "#/components/schemas/Juego/properties/desarrolladora"
                                 },
+                                "imagen": {
+                                    "$ref": "#/components/schemas/Juego/properties/imagen"
+                                },
                                 "fecha": {
                                     "$ref": "#/components/schemas/Juego/properties/fecha"
                                 },
@@ -305,22 +308,6 @@
                         }
                     }
                 ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "multipart/form-data": {
-                            "schema": {
-                                "properties": {
-                                    "imagen": {
-                                        "description": "imagen del juego",
-                                        "type": "file"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
                 "responses": {
                     "201": {
                         "description": "Se ha creado correctamente"
@@ -462,73 +449,12 @@
             }
         },
         "/api/juegos/edit": {
-            "put": {
-                "tags": [
-                    "Juegos"
-                ],
-                "summary": "Actualizar un juego sin subir la imagen",
-                "description": "Actulizar un juego ya existente con parametros sin la necesidad de subir la imagen.",
-                "operationId": "editJuegoWithoutImage",
-                "requestBody": {
-                    "description": "{nombre, descripcion, desarrolladora, fecha, generos, slug}",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "slug"
-                                ],
-                                "properties": {
-                                    "nombre": {
-                                        "$ref": "#/components/schemas/Juego/properties/nombre"
-                                    },
-                                    "descripcion": {
-                                        "$ref": "#/components/schemas/Juego/properties/descripcion"
-                                    },
-                                    "desarrolladora": {
-                                        "$ref": "#/components/schemas/Juego/properties/desarrolladora"
-                                    },
-                                    "fecha": {
-                                        "$ref": "#/components/schemas/Juego/properties/fecha"
-                                    },
-                                    "generos": {
-                                        "$ref": "#/components/schemas/Juego/properties/generos"
-                                    },
-                                    "slug": {
-                                        "$ref": "#/components/schemas/Juego/properties/slug"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Success"
-                    },
-                    "220": {
-                        "description": "No se cumple todos los requisitos"
-                    },
-                    "401": {
-                        "description": "No autorizado"
-                    },
-                    "500": {
-                        "description": "Error interno del servidor"
-                    }
-                },
-                "security": [
-                    {
-                        "SANCTUM": []
-                    }
-                ]
-            },
             "post": {
                 "tags": [
                     "Juegos"
                 ],
-                "summary": "Actualizar un juego con la imagen incluida",
-                "description": "Actulizar un juego ya existente con parametros con la imagen incluida.",
+                "summary": "Actualizar un juego",
+                "description": "Actulizar un juego ya existente",
                 "operationId": "editJuego",
                 "parameters": [
                     {
@@ -546,6 +472,9 @@
                                 },
                                 "desarrolladora": {
                                     "$ref": "#/components/schemas/Juego/properties/desarrolladora"
+                                },
+                                "imagen": {
+                                    "$ref": "#/components/schemas/Juego/properties/imagen"
                                 },
                                 "fecha": {
                                     "$ref": "#/components/schemas/Juego/properties/fecha"
@@ -570,22 +499,6 @@
                         }
                     }
                 ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "multipart/form-data": {
-                            "schema": {
-                                "properties": {
-                                    "imagen": {
-                                        "description": "imagen del juego",
-                                        "type": "file"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
                 "responses": {
                     "200": {
                         "description": "Success"
@@ -756,6 +669,12 @@
                         "description": "nombre de la desarrolladora que pertenece al juego",
                         "type": "string",
                         "example": "Test123 Studios"
+                    },
+                    "imagen": {
+                        "description": "imagen en base64 que pertenece al juego",
+                        "type": "string",
+                        "format": "base64",
+                        "example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPj/HwADBwIAMCbHYQAAAABJRU5ErkJggg=="
                     },
                     "fecha": {
                         "description": "fecha de salida de lanzamiento del juego",
