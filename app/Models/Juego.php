@@ -162,8 +162,9 @@ class Juego extends Model
           if($request->input('imagen') != null) {
             $class_imagen = new Imagen();
             $class_imagen->updati($id_juego['id'], $request->input('slug'), $request->imagen, 'juegos');
-            return $id_juego;
           }
+
+          return $id_juego;
 
         }
     }
