@@ -81,7 +81,7 @@ class Juego extends Model
             'fecha' => 'nullable|date_format:Y-m-d',
             'generos' => 'nullable|array|between:1,5',
             'generos.*' => 'nullable|distinct|exists:generos,slug',
-            'imagen' => 'required|base64mimes:jpg,jpeg,png|base64max:4096|',
+            'imagen' => 'nullable|base64mimes:jpg,jpeg,png|base64max:4096|',
         ]);
 
         return $validator;
