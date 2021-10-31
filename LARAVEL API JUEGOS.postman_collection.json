@@ -168,7 +168,7 @@
 					"name": "Desarrolladora",
 					"item": [
 						{
-							"name": "Get Juegos desarrolladora",
+							"name": "Get Juegos desarrolladoras",
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -185,6 +185,37 @@
 										"juegos",
 										"desarrolladoras",
 										"from-software"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all desarrolladora",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://laravelapijuegos.herokuapp.com/api/juegos/desarrolladoras/show/all",
+									"protocol": "https",
+									"host": [
+										"laravelapijuegos",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"api",
+										"juegos",
+										"desarrolladoras",
+										"show",
+										"all"
 									],
 									"query": [
 										{
@@ -314,8 +345,8 @@
 								},
 								{
 									"key": "imagen",
-									"type": "file",
-									"src": []
+									"value": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPj/HwADBwIAMCbHYQAAAABJRU5ErkJggg==",
+									"type": "text"
 								},
 								{
 									"key": "generos[]",
@@ -491,8 +522,8 @@
 								},
 								{
 									"key": "imagen",
-									"type": "file",
-									"src": []
+									"value": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPj/HwADBwIAMCbHYQAAAABJRU5ErkJggg==",
+									"type": "text"
 								},
 								{
 									"key": "slug",
@@ -534,68 +565,6 @@
 									"key": "",
 									"value": null,
 									"disabled": true
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Edit game without image",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Introduzca el token!!!",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "https://laravelapijuegos.herokuapp.com/api/juegos/edit?nombre=test123&descripcion=escribiendo...&desarrolladora=test123 Studios&fecha=2020-08-01&slug=test123&generos[]=rpg-de-accion&generos[]=plataformas&generos[]=cartas",
-							"protocol": "https",
-							"host": [
-								"laravelapijuegos",
-								"herokuapp",
-								"com"
-							],
-							"path": [
-								"api",
-								"juegos",
-								"edit"
-							],
-							"query": [
-								{
-									"key": "nombre",
-									"value": "test123"
-								},
-								{
-									"key": "descripcion",
-									"value": "escribiendo..."
-								},
-								{
-									"key": "desarrolladora",
-									"value": "test123 Studios"
-								},
-								{
-									"key": "fecha",
-									"value": "2020-08-01"
-								},
-								{
-									"key": "slug",
-									"value": "test123"
-								},
-								{
-									"key": "generos[]",
-									"value": "rpg-de-accion"
-								},
-								{
-									"key": "generos[]",
-									"value": "plataformas"
-								},
-								{
-									"key": "generos[]",
-									"value": "cartas"
 								}
 							]
 						}
