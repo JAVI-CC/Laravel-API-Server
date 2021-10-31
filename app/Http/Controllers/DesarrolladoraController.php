@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Juego;
 use App\Models\Desarrolladora;
+use App\Http\Resources\DesarrolladoraResource;
 use App\Http\Resources\JuegoResource;
 use Illuminate\Http\Request;
 
@@ -14,6 +15,25 @@ class DesarrolladoraController extends Controller
     public function __construct(Desarrolladora $desarrolladora)
     {
         $this->desarrolladora = $desarrolladora;
+    }
+
+    /**
+     * @OA\Get(
+     *   path="/api/juegos/desarrolladoras/show/all",
+     *   tags={"Desarrolladoras"},
+     *   summary="Obtener todos las desarrolladoras",
+     *   description="Muestra la información de todos las desarrolladoras que se encuentran insertados en la base de datos.",
+     *   operationId="getAllDesarrolladoras",
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=401, description="No autorizado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function index()
+    {
+        $desarrolladoras = Desarrolladora::orderBy('nombre', 'ASC')->get();
+        return response()->json(DesarrolladoraResource::collection(($desarrolladoras)), 200);
     }
 
     /**

@@ -19,7 +19,7 @@ use Illuminate\Http\Request;
 */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+  return $request->user();
 });
 
 Route::prefix('juegos')->group(function () {
@@ -31,9 +31,14 @@ Route::prefix('juegos')->group(function () {
   Route::post('/edit', [JuegoController::class, 'update'])->name('editJuego')->middleware('auth:sanctum');
   Route::delete('/delete/{slug}', [JuegoController::class, 'delete'])->name('deleteJuego')->middleware('auth:sanctum');
   Route::post('/filter/search/', [JuegoController::class, 'filter'])->name('filterJuego');
-  Route::get('/desarrolladoras/{slug}', [DesarrolladoraController::class, 'show'])->name('getJuegoDesarrolladora');
-  Route::get('/generos/show/all', [GeneroController::class, 'index'])->name('getAllGeneros');
-  Route::get('/generos/{slug}', [GeneroController::class, 'show'])->name('getJuegosGenero');
+  Route::prefix('desarrolladoras')->group(function () {
+    Route::get('/show/all', [DesarrolladoraController::class, 'index'])->name('getAllDesarrolladoras');
+    Route::get('/{slug}', [DesarrolladoraController::class, 'show'])->name('getJuegoDesarrolladora');
+  });
+  Route::prefix('generos')->group(function () {
+    Route::get('/show/all', [GeneroController::class, 'index'])->name('getAllGeneros');
+    Route::get('/{slug}', [GeneroController::class, 'show'])->name('getJuegosGenero');
+  });
 });
 
 Route::prefix('auth')->group(function () {
