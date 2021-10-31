@@ -130,6 +130,12 @@
 </tr>
 <tr>
 <td>GET</td>
+<td>/api/juegos/desarrolladoras/show/all</td>
+<td>Get list all developers</td>
+<td>No</td>
+</tr>
+<tr>
+<td>GET</td>
 <td>/api/juegos/generos/{slug}</td>
 <td>Get games from a genere</td>
 <td>No</td>
