@@ -5,7 +5,7 @@
     },
     "routes": [{
         "src": "/(.*)",
-        "dest": "/vercel/index.php"
+        "dest": "/api/index.php"
     }],
     "env": {
         "APP_ENV": "production",
