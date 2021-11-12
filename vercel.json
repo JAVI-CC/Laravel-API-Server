@@ -8,8 +8,7 @@
         "dest": "/api/index.php"
     }],
     "env": {
-        "APP_NAME": "Laravel",
-        "APP_ENV": "local",
+        "APP_ENV": "production",
         "APP_DEBUG": "true",
         "APP_URL": "https://laravel-api-server.vercel.app",
 
@@ -19,7 +18,6 @@
         "APP_ROUTES_CACHE": "/tmp/routes.php",
         "APP_SERVICES_CACHE": "/tmp/services.php",
         "VIEW_COMPILED_PATH": "/tmp",
-
         "CACHE_DRIVER": "array",
         "LOG_CHANNEL": "stderr",
         "SESSION_DRIVER": "cookie"
