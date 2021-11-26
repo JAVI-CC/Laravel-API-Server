@@ -190,6 +190,12 @@
 <td>Yes</td>
 </tr>
 <tr>
+<td>GET</td>
+<td>/api/auth/check</td>
+<td>Check if user authenticated</td>
+<td>No</td>
+</tr>
+<tr>
 <td>POST</td>
 <td>/api/auth/logout</td>
 <td>Log out a user</td>

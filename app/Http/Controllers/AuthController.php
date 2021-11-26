@@ -105,6 +105,27 @@ class AuthController extends Controller
     }
 
     /**
+     * @OA\Get(
+     *   path="/api/auth/check",
+     *   tags={"User"},
+     *   summary="Comprobar si el usuario esta autenticado",
+     *   description="Comprobar si el usuario esta autenticado a través de su token",
+     *   operationId="check",
+     *   security={ * {"SANCTUM": {}}, * },
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function check()
+    {
+        if (auth('sanctum')->check() == 1) {
+            return response()->json(['logged' => true], 200);
+        }
+        return response()->json(['logged' => false], 200);
+    }
+
+    /**
      * @OA\Post(
      *   path="/api/auth/logout",
      *   tags={"User"},
