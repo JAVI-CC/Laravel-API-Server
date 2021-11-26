@@ -154,6 +154,29 @@
                 ]
             }
         },
+        "/api/auth/check": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Comprobar si el usuario esta autenticado",
+                "description": "Comprobar si el usuario esta autenticado a través de su token",
+                "operationId": "check",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "SANCTUM": []
+                    }
+                ]
+            }
+        },
         "/api/juegos/desarrolladoras/show/all": {
             "get": {
                 "tags": [
