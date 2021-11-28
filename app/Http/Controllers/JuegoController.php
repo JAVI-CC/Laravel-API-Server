@@ -298,7 +298,7 @@ class JuegoController extends Controller
         $id_juego = $this->juego->show_id($slug);
         $juego = $this->juego->exists_id_delete($id_juego);
         return $juego;
-    }
+    } 
 
     /**
      * @OA\Post(
