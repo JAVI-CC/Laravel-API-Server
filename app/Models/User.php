@@ -79,7 +79,7 @@ class User extends Authenticatable
         ]);
 
         $request->headers->set('Authorization', 'Bearer ' . $user->createToken('API Token')->plainTextToken);
-        return ['token' => 'Bearer ' . $user->createToken('API Token')->plainTextToken];
+        return ['token' => 'Bearer '.$user->createToken('API Token')->plainTextToken, 'name' => $request->input('name'), 'email' => $request->input('email')];
     }
 
     public function login($request)
@@ -87,8 +87,7 @@ class User extends Authenticatable
         if (!Auth::attempt($request->only('email', 'password'))) {
             return ['error' => 'Las credenciales no són correctas'];
         }
-
-        return ['token' => 'Bearer ' . auth()->user()->createToken('API Token')->plainTextToken];
+        return ['token' => 'Bearer '.auth()->user()->createToken('API Token')->plainTextToken, 'name' => auth()->user()->name, 'email' => auth()->user()->email];
     }
 
     public function logout()
