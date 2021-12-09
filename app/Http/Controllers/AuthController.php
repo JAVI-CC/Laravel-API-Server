@@ -120,7 +120,7 @@ class AuthController extends Controller
     public function check()
     {
         if (auth('sanctum')->check() == 1) {
-            return response()->json(['logged' => true], 200);
+            return response()->json(['logged' => true, 'name' => auth('sanctum')->user()->name, 'email' => auth('sanctum')->user()->email], 200);
         }
         return response()->json(['logged' => false], 200);
     }
