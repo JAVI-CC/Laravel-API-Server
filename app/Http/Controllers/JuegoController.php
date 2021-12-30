@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\DeleteJuegoEvent;
+use App\Events\NewJuegoEvent;
+use App\Events\UpdateJuegoEvent;
 use App\Models\Juego;
 use App\Http\Resources\JuegoResource;
 use Illuminate\Http\Request;
@@ -182,6 +185,7 @@ class JuegoController extends Controller
             return response()->json($validator->errors(), 220);
         } else {
             $juego = $this->juego->add_juego($request);
+            if(env('PUSHER_APP_KEY') != null) event(new NewJuegoEvent(new JuegoResource($juego)));
             return response()->json(new JuegoResource($juego), 201);
         }
     }
@@ -255,6 +259,7 @@ class JuegoController extends Controller
      */
     public function update(Request $request)
     {
+        $oldSlug = $request->input('slug');
         $juego = $this->juego->show_id($request->input('slug'));
         if (isset($juego->original['error'])) {
             return $juego;
@@ -264,6 +269,7 @@ class JuegoController extends Controller
                 return response()->json($validator->errors(), 220);
             } else {
                 $juego = $this->juego->exists_id_update($juego, $request);
+                if(env('PUSHER_APP_KEY') != null) event(new UpdateJuegoEvent(new JuegoResource($juego), $oldSlug));
                 return response()->json(new JuegoResource($juego), 200);
             }
         }
@@ -297,6 +303,7 @@ class JuegoController extends Controller
     {
         $id_juego = $this->juego->show_id($slug);
         $juego = $this->juego->exists_id_delete($id_juego);
+        if(env('PUSHER_APP_KEY') != null) event(new DeleteJuegoEvent($slug));
         return $juego;
     } 
 

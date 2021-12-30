@@ -2,6 +2,12 @@
 
 namespace App\Providers;
 
+use App\Events\DeleteJuegoEvent;
+use App\Events\NewJuegoEvent;
+use App\Events\UpdateJuegoEvent;
+use App\Listeners\DeleteJuegoListener;
+use App\Listeners\NewJuegoListener;
+use App\Listeners\UpdateJuegoListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -17,6 +23,15 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+        ],
+        NewJuegoEvent::class => [
+            NewJuegoListener::class
+        ],
+        UpdateJuegoEvent::class => [
+            UpdateJuegoListener::class
+        ],
+        DeleteJuegoEvent::class => [
+            DeleteJuegoListener::class
         ],
     ];
 
