@@ -23,6 +23,7 @@
   <li>Seeders are in JSON format</li>
   <li>It is compatible with PHP 8</li>
   <li>Search filters of the games that are inserted in the database.</li>
+  <li>Websockets with Pusher.</li>
   <li>Documentation of all the api enpoints with the Laravel Swagger 3.0.</li>
   <li>Users can be registered through the Api and it contains authentication by Sanctum to be able to carry out the action of some endpoints.</li>
   <li>The Api is uploaded in heroku <a href="https://laraveljuegosapi.herokuapp.com/api/juegos" target="_blank">https://laraveljuegosapi.herokuapp.com</a> so that users can use the endpoints without having to download the project.</li>
@@ -205,6 +206,18 @@
 </table>
 
 <h4><a href="http://laraveljuegosapi.herokuapp.com/api/documentation" target="_blank">Attributes</a></h4>
+
+<br>
+
+<h2>Start the websockets with Pusher</h2>
+<pre><code>1. In your <a href="https://pusher.com/" target="_blank">Pusher account</a> create a channel called: <strong>juegos-api</strong></code></pre>
+<pre><code>2. Enter the file: <strong>.env</strong></code></pre>
+<pre><code>3. fill in the following credentials:
+<strong>PUSHER_APP_ID=</strong>{App Keys in the channel juegos-api app_id}
+<strong>PUSHER_APP_KEY=</strong>{App Keys in the channel juegos-api key}
+<strong>PUSHER_APP_SECRET=</strong>{App Keys in the channel juegos-api secret}
+<strong>PUSHER_APP_CLUSTER=</strong>{App Keys in the channel juegos-api cluster}
+</code></pre>
 
 <br>
 
