@@ -47,7 +47,7 @@
 <h3>.env</h3>
 <strong>DROPBOX_AUTH_TOKEN = </strong><span>{Dropbox_token}</span>
 
-<h2>Start the websockets with Pusher</h2>
+<h2>Start the websockets with Pusher (Optional)</h2>
 <pre><code>1. In your <a href="https://pusher.com/" target="_blank">Pusher account</a> create a channel called: <strong>juegos-api</strong></code></pre>
 <pre><code>2. Enter the file: <strong>.env</strong></code></pre>
 <pre><code>3. fill in the following credentials:
