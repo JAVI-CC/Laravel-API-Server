@@ -142,5 +142,9 @@
     {
         "nombre": "Hazelight Studios",
         "slug": "hazelight-studios"
+    },
+    {
+        "nombre": "EA Sports",
+        "slug": "ea-sports"
     }
 ]

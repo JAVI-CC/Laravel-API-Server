@@ -328,5 +328,19 @@
         "descripcion": "It Takes Two es un juego de acción en 3D y narración, hablamos de un videojuego cuya trama narra cómo el matrimonio formado por Cody y May discuten sobre divorciarse, algo a lo que se opone su hija quien, de algún modo, los transforma en dos muñecos que deben cooperar para deshacer el entuerto, todo ello mientras el libro mágico Dr. Hakim les da lecciones sobre el amor.",
         "fecha": "2021-03-26",
         "slug": "it-takes-two"
+    },
+    {
+        "nombre": "FIFA 22",
+        "descripcion": "FIFA 22 es un videojuego de simulación de fútbol aún por presentar de EA Sports que llegará a las tiendas a finales del 2021 para PC y consolas. Aunque las ediciones de las consolas de la octava generación y PC son bastante continuistas, esta nueva entrega tiene como abanderada la tecnología Hypermotion, que permite lograr un comportamiento más realista de los jugadores dentro del campo y que es exclusiva de las versiones de nueva generación.",
+        "fecha": "2021-09-26",
+        "slug": "fifa-22",
+        "url_imagen": "https://www.dropbox.com/s/qysxcildfb6h107/56-fifa-22.png?raw=1"
+    },
+    {
+        "nombre": "Metal Gear Solid 2: Sons of Liberty",
+        "descripcion": "Años después de los sucesos de Metal Gear Solid, en Shadow Moses, el agente Raiden tiene que infiltrarse en una planta de limpieza que ha sido atacada por un grupo terrorista dirigido por Revolver Ocelot y Solidus Snake. Para ello contará con la ayuda de Solid Snake.",
+        "fecha": "2003-03-08",
+        "slug": "metal-gear-solid-2-sons-of-liberty",
+        "url_imagen": "https://www.dropbox.com/s/ojgxefu58jelgan/57-metal-gear-solid-2-sons-of-liberty.png?raw=1"
     }
 ]
