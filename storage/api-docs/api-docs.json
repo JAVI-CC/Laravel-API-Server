@@ -2,7 +2,7 @@
     "openapi": "3.0.0",
     "info": {
         "title": "Laravel Api Juegos",
-        "description": "Documentación de todos los endpoints de un aplicación que consiste en un CRUD de Juegos que contiene relaciones, donde se trabaja con el envió de archivos y también contiene filtros de búsqueda sobre resultados de los juegos que existen insertados, se puede registrar usuarios y también contiene autenticación por SANCTUM para poder realizar la acción de algunos endpoints.<br><br><a href='https://github.com/JAVI-CC/Laravel-API-Server' target='_blank'>https://github.com/JAVI-CC/Laravel-API-Server</a><br><br><a href='https://github.com/JAVI-CC/Laravel-API-Client' target='_blank'>https://github.com/JAVI-CC/Laravel-API-Client</a>",
+        "description": "Documentación de todos los endpoints de un aplicación que consiste en un CRUD de Juegos que contiene relaciones, donde se trabaja con el envió de archivos y también contiene filtros de búsqueda sobre resultados de los juegos que existen insertados, se puede registrar usuarios y también contiene autenticación por SANCTUM para poder realizar la acción de algunos endpoints.<br><br><a href='https://github.com/JAVI-CC/Laravel-API-Server' target='_blank'>https://github.com/JAVI-CC/Laravel-API-Server</a><br><br><a href='https://github.com/JAVI-CC/Laravel-API-Client' target='_blank'>https://github.com/JAVI-CC/Laravel-API-Client</a><br><br><a href='https://github.com/JAVI-CC/VUE3-API-client' target='_blank'>https://github.com/JAVI-CC/VUE3-API-client</a>",
         "version": "1.0.1"
     },
     "paths": {
@@ -114,8 +114,8 @@
                     "200": {
                         "description": "Success"
                     },
-                    "220": {
-                        "description": "No se cumple todos los requisitos"
+                    "401": {
+                        "description": "No autorizado"
                     },
                     "500": {
                         "description": "Error interno del servidor"
@@ -140,8 +140,8 @@
                     "200": {
                         "description": "Success"
                     },
-                    "220": {
-                        "description": "No se cumple todos los requisitos"
+                    "401": {
+                        "description": "No autorizado"
                     },
                     "500": {
                         "description": "Error interno del servidor"
@@ -165,6 +165,35 @@
                 "responses": {
                     "200": {
                         "description": "Success"
+                    },
+                    "401": {
+                        "description": "No autorizado"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                },
+                "security": [
+                    {
+                        "SANCTUM": []
+                    }
+                ]
+            }
+        },
+        "/api/auth/delete": {
+            "delete": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Eliminar usuario",
+                "description": "Eliminar el usuario autenticado",
+                "operationId": "delete",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "No autorizado"
                     },
                     "500": {
                         "description": "Error interno del servidor"
