@@ -79,7 +79,7 @@ class User extends Authenticatable
             'email' => $request->input('email')
         ]);
 
-        $request->headers->set('Authorization', 'Bearer '.$user->createToken('API Token')->plainTextToken);
+        //$request->headers->set('Authorization', 'Bearer '.$user->createToken('API Token')->plainTextToken);
         return ['token' => 'Bearer '.$user->createToken('API Token')->plainTextToken, 'name' => $request->input('name'), 'email' => $request->input('email')];
     }
 
