@@ -78,7 +78,7 @@ class User extends Authenticatable
             'email' => $request->input('email')
         ]);
 
-        $request->headers->set('Authorization', 'Bearer ' . $user->createToken('API Token')->plainTextToken);
+        //$request->headers->set('Authorization', 'Bearer ' . $user->createToken('API Token')->plainTextToken);
         return ['token' => 'Bearer '.$user->createToken('API Token')->plainTextToken, 'name' => $request->input('name'), 'email' => $request->input('email')];
     }
 
@@ -94,5 +94,12 @@ class User extends Authenticatable
     {
         auth()->user()->tokens()->delete();
         return ['message' => 'Tokens Revoked'];
+    }
+
+    public function deleteUser($user, $nombre)
+    {
+        $user->tokens()->delete();
+        $user->delete();
+        return response()->json(['message' => 'El usuario ' . $nombre . ' se ha eliminado correctamente'], 200);
     }
 }

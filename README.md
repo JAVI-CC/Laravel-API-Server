@@ -214,6 +214,12 @@
 <td>Log out a user</td>
 <td>Yes</td>
 </tr>
+<tr>
+<td>DELETE</td>
+<td>/api/auth/delete</td>
+<td>Delete user authenticated</td>
+<td>Yes</td>
+</tr>
 </tbody>
 </table>
 
