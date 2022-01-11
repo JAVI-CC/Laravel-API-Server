@@ -94,7 +94,7 @@ class AuthController extends Controller
      *   operationId="userinfo",
      *   security={ * {"SANCTUM": {}}, * },
      *   @OA\Response(response=200, description="Success"),
-     *   @OA\Response(response=220, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=401, description="No autorizado"),
      *   @OA\Response(response=500, description="Error interno del servidor")
      * )
      *
@@ -113,6 +113,7 @@ class AuthController extends Controller
      *   operationId="check",
      *   security={ * {"SANCTUM": {}}, * },
      *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=401, description="No autorizado"),
      *   @OA\Response(response=500, description="Error interno del servidor")
      * )
      *
@@ -134,7 +135,7 @@ class AuthController extends Controller
      *   operationId="logout",
      *   security={ * {"SANCTUM": {}}, * },
      *   @OA\Response(response=200, description="Success"),
-     *   @OA\Response(response=220, description="No se cumple todos los requisitos"),
+     *   @OA\Response(response=401, description="No autorizado"),
      *   @OA\Response(response=500, description="Error interno del servidor")
      * )
      *
@@ -142,5 +143,26 @@ class AuthController extends Controller
     public function logout()
     {
         return $this->user->logout();
+    }
+
+    /**
+     * @OA\Delete(
+     *   path="/api/auth/delete",
+     *   tags={"User"},
+     *   summary="Eliminar usuario",
+     *   description="Eliminar el usuario autenticado",
+     *   operationId="delete",
+     *   security={ * {"SANCTUM": {}}, * },
+     *   @OA\Response(response=200, description="Success"),
+     *   @OA\Response(response=401, description="No autorizado"),
+     *   @OA\Response(response=500, description="Error interno del servidor")
+     * )
+     *
+     */
+    public function delete()
+    {
+        $user = request()->user();
+        $nombre = auth('sanctum')->user()->name;
+        return $this->user->deleteUser($user, $nombre);
     }
 }

@@ -97,5 +97,12 @@ class User extends Authenticatable
         auth()->user()->tokens()->delete();
         return ['message' => 'Tokens Revoked'];
     }
+
+    public function deleteUser($user, $nombre)
+    {
+        $user->tokens()->delete();
+        $user->delete();
+        return response()->json(['message' => 'El usuario ' . $nombre . ' se ha eliminado correctamente'], 200);
+    }
     
 }

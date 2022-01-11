@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "c23c3cf8-8844-4b36-9f3d-bbae4e8cee74",
-		"name": "LARAVEL API JUEGOS",
+		"_postman_id": "a7bb19b9-6efa-4302-bdef-4ec4fba92e63",
+		"name": "LARAVEL JUEGOS API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -200,6 +200,38 @@
 								"api",
 								"auth",
 								"check"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Introduzca el token!!!",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "https://laraveljuegosapi.herokuapp.com/api/auth/delete",
+							"protocol": "https",
+							"host": [
+								"laraveljuegosapi",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"auth",
+								"delete"
 							]
 						}
 					},
