@@ -26,17 +26,17 @@
   <li>Websockets with Pusher.</li>
   <li>Documentation of all the api enpoints with the Laravel Swagger 3.0.</li>
   <li>Users can be registered through the Api and it contains authentication by Sanctum to be able to carry out the action of some endpoints.</li>
-  <li>The Api is uploaded in railway <a href="https://web-production-8893.up.railway.app/api/juegos" target="_blank">https://web-production-8893.up.railway.app</a> so that users can use the endpoints without having to download the project.</li>
+  <li>The Api is uploaded in railway <a href="https://laravel-api-server.up.railway.app/api/juegos" target="_blank">https://laravel-api-server.up.railway.app</a> so that users can use the endpoints without having to download the project.</li>
   <li>The project contains the files to deploy it in Docker.</li>
   <li>Demonstration of a <b>Laravel</b> project on the client interface side using this api <a href="https://github.com/JAVI-CC/Laravel-API-Client" target="_blank">https://github.com/JAVI-CC/Laravel-API-Client</a>.</li>
   <li>Demonstration of a <b>VUE 3 and Quasar Framework</b> project on the client interface side using this api <a href="https://github.com/JAVI-CC/VUE3-API-client" target="_blank">https://github.com/JAVI-CC/VUE3-API-client</a>.</li>
 </ul> 
 
 <h3>Demo API</h3>
-<p><a href="https://web-production-8893.up.railway.app/api/juegos" target="_blank">https://web-production-8893.up.railway.app</p>
+<p><a href="https://laravel-api-server.up.railway.app/api/juegos" target="_blank">https://laravel-api-server.up.railway.app</p>
 
 <h3>Documentation API SWAGGER 3.0</h3>
-<p><a href="http://web-production-8893.up.railway.app/api/documentation" target="_blank">http://web-production-8893.up.railway.app/api/documentation</p>
+<p><a href="http://laravel-api-server.up.railway.app/api/documentation" target="_blank">http://laravel-api-server.up.railway.app/api/documentation</p>
 
 <h3>Laravel Api client interface</h3>
 <p><a href="https://github.com/JAVI-CC/Laravel-API-Client" target="_blank">https://github.com/JAVI-CC/Laravel-API-Client</a></p>
@@ -211,7 +211,7 @@
 </tbody>
 </table>
 
-<h4><a href="http://web-production-8893.up.railway.app/api/documentation" target="_blank">Attributes</a></h4>
+<h4><a href="http://laravel-api-server.up.railway.app/api/documentation" target="_blank">Attributes</a></h4>
 
 <br>
 
