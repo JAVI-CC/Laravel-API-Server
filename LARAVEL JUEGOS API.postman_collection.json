@@ -29,7 +29,7 @@
 							]
 						},
 						"url": {
-							"raw": "https://laraveljuegosapi.herokuapp.com/api/auth/login",
+							"raw": "https://web-production-8893.up.railway.app/api/auth/login",
 							"protocol": "https",
 							"host": [
 								"laraveljuegosapi",
@@ -61,7 +61,7 @@
 							"formdata": []
 						},
 						"url": {
-							"raw": "https://laraveljuegosapi.herokuapp.com/api/auth/logout",
+							"raw": "https://web-production-8893.up.railway.app/api/auth/logout",
 							"protocol": "https",
 							"host": [
 								"laraveljuegosapi",
@@ -96,7 +96,7 @@
 							"formdata": []
 						},
 						"url": {
-							"raw": "https://laraveljuegosapi.herokuapp.com/api/auth/userinfo",
+							"raw": "https://web-production-8893.up.railway.app/api/auth/userinfo",
 							"protocol": "https",
 							"host": [
 								"laraveljuegosapi",
@@ -143,7 +143,7 @@
 							]
 						},
 						"url": {
-							"raw": "https://laraveljuegosapi.herokuapp.com/api/auth/register",
+							"raw": "https://web-production-8893.up.railway.app/api/auth/register",
 							"protocol": "https",
 							"host": [
 								"laraveljuegosapi",
@@ -189,7 +189,7 @@
 							]
 						},
 						"url": {
-							"raw": "https://laraveljuegosapi.herokuapp.com/api/auth/check",
+							"raw": "https://web-production-8893.up.railway.app/api/auth/check",
 							"protocol": "https",
 							"host": [
 								"laraveljuegosapi",
@@ -221,7 +221,7 @@
 							"formdata": []
 						},
 						"url": {
-							"raw": "https://laraveljuegosapi.herokuapp.com/api/auth/delete",
+							"raw": "https://web-production-8893.up.railway.app/api/auth/delete",
 							"protocol": "https",
 							"host": [
 								"laraveljuegosapi",
@@ -251,7 +251,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://laraveljuegosapi.herokuapp.com/api/juegos/desarrolladoras/from-software",
+									"raw": "https://web-production-8893.up.railway.app/api/juegos/desarrolladoras/from-software",
 									"protocol": "https",
 									"host": [
 										"laraveljuegosapi",
@@ -281,7 +281,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://laraveljuegosapi.herokuapp.com/api/juegos/desarrolladoras/show/all",
+									"raw": "https://web-production-8893.up.railway.app/api/juegos/desarrolladoras/show/all",
 									"protocol": "https",
 									"host": [
 										"laraveljuegosapi",
@@ -317,7 +317,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://laraveljuegosapi.herokuapp.com/api/juegos/generos/show/all",
+									"raw": "https://web-production-8893.up.railway.app/api/juegos/generos/show/all",
 									"protocol": "https",
 									"host": [
 										"laraveljuegosapi",
@@ -348,7 +348,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://laraveljuegosapi.herokuapp.com/api/juegos/generos/carreras",
+									"raw": "https://web-production-8893.up.railway.app/api/juegos/generos/carreras",
 									"protocol": "https",
 									"host": [
 										"laraveljuegosapi",
@@ -444,7 +444,7 @@
 							]
 						},
 						"url": {
-							"raw": "https://laraveljuegosapi.herokuapp.com/api/juegos",
+							"raw": "https://web-production-8893.up.railway.app/api/juegos",
 							"protocol": "https",
 							"host": [
 								"laraveljuegosapi",
@@ -468,7 +468,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://laraveljuegosapi.herokuapp.com/api/juegos/test123",
+							"raw": "https://web-production-8893.up.railway.app/api/juegos/test123",
 							"protocol": "https",
 							"host": [
 								"laraveljuegosapi",
@@ -497,7 +497,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://laraveljuegosapi.herokuapp.com/api/juegos/",
+							"raw": "https://web-production-8893.up.railway.app/api/juegos/",
 							"protocol": "https",
 							"host": [
 								"laraveljuegosapi",
@@ -533,7 +533,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://laraveljuegosapi.herokuapp.com/api/juegos/filter/search?search=dark&filter=fecha&order=ASC",
+							"raw": "https://web-production-8893.up.railway.app/api/juegos/filter/search?search=dark&filter=fecha&order=ASC",
 							"protocol": "https",
 							"host": [
 								"laraveljuegosapi",
@@ -626,7 +626,7 @@
 							]
 						},
 						"url": {
-							"raw": "https://laraveljuegosapi.herokuapp.com/api/juegos/edit",
+							"raw": "https://web-production-8893.up.railway.app/api/juegos/edit",
 							"protocol": "https",
 							"host": [
 								"laraveljuegosapi",
@@ -661,7 +661,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://laraveljuegosapi.herokuapp.com/api/juegos/delete/test123",
+							"raw": "https://web-production-8893.up.railway.app/api/juegos/delete/test123",
 							"protocol": "https",
 							"host": [
 								"laraveljuegosapi",
@@ -684,7 +684,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://laraveljuegosapi.herokuapp.com/api/juegos/paginate?page=2&items=8&order",
+							"raw": "https://web-production-8893.up.railway.app/api/juegos/paginate?page=2&items=8&order",
 							"protocol": "https",
 							"host": [
 								"laraveljuegosapi",
@@ -720,7 +720,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://laraveljuegosapi.herokuapp.com/api/juegos/random?items=12",
+							"raw": "https://web-production-8893.up.railway.app/api/juegos/random?items=12",
 							"protocol": "https",
 							"host": [
 								"laraveljuegosapi",
