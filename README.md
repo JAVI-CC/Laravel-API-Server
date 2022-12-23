@@ -36,7 +36,7 @@
 <p><a href="https://web-production-8893.up.railway.app/api/juegos" target="_blank">https://web-production-8893.up.railway.app</p>
 
 <h3>Documentation API SWAGGER 3.0</h3>
-<p><a href="http://laraveljuegosapi.herokuapp.com/api/documentation" target="_blank">http://laraveljuegosapi.herokuapp.com/api/documentation</p>
+<p><a href="http://web-production-8893.up.railway.app/api/documentation" target="_blank">http://web-production-8893.up.railway.app/api/documentation</p>
 
 <h3>Laravel Api client interface</h3>
 <p><a href="https://github.com/JAVI-CC/Laravel-API-Client" target="_blank">https://github.com/JAVI-CC/Laravel-API-Client</a></p>
@@ -211,7 +211,7 @@
 </tbody>
 </table>
 
-<h4><a href="http://laraveljuegosapi.herokuapp.com/api/documentation" target="_blank">Attributes</a></h4>
+<h4><a href="http://web-production-8893.up.railway.app/api/documentation" target="_blank">Attributes</a></h4>
 
 <br>
 
