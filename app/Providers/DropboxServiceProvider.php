@@ -1,10 +1,14 @@
 <?php
+
 namespace App\Providers;
-use Storage;
+
+use Illuminate\Filesystem\FilesystemAdapter;
+use Illuminate\Support\Facades\Storage;
 use League\Flysystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
 use Spatie\Dropbox\Client as DropboxClient;
 use Spatie\FlysystemDropbox\DropboxAdapter;
+
 class DropboxServiceProvider extends ServiceProvider
 {
     /**
@@ -15,11 +19,16 @@ class DropboxServiceProvider extends ServiceProvider
     public function boot()
     {
         // Extendemos el Storage de Laravel agregando nuestro nuevo driver.
-        Storage::extend('dropbox', function ($app, $config) { 
-            $client = new DropboxClient(
-                $config['authorizationToken'] // Hacemos referencia al hash
+        Storage::extend('dropbox', function ($app, $config) {
+            $adapter = new DropboxAdapter(
+                new DropboxClient($config['authorizationToken'])
             );
-            return new Filesystem(new DropboxAdapter($client)); 
+
+            return new FilesystemAdapter(
+                new Filesystem($adapter, $config),
+                $adapter,
+                $config
+            );
         });
     }
     /**

@@ -37,7 +37,7 @@ class Dropbox extends Model
 
         $ruta_enlace = Storage::disk('dropbox')->put('/media/juegos', $imagen);
 
-        $dropbox = Storage::disk('dropbox')->getDriver()->getAdapter()->getClient();
+        $dropbox = Storage::disk('dropbox')->getAdapter()->getClient();
 
         $response_enlace = $dropbox->createSharedLinkWithSettings($ruta_enlace, ["requested_visibility" => "public"]);
 
