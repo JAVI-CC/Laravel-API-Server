@@ -7,7 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-<span>Application made with Laravel 8 that consists of the creation of a CRUD of a games api that contains the following functionalities:</span>
+<span>Application made with Laravel 10 that consists of the creation of a CRUD of a games api that contains the following functionalities:</span>
 <ul>
   <li>Relationships between different models with polymorphic tables.</li>
   <li>Contains endpoints of type GET, POST, PUT and DELETE</li>
