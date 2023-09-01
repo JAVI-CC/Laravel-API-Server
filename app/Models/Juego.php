@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 use App\Traits\HasFind;
 use App\Traits\HasSlug;
-
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @OA\Schema(
@@ -31,7 +31,7 @@ use App\Traits\HasSlug;
  */
 class Juego extends Model
 {
-    use HasFind, HasSlug;
+    use HasFind, HasSlug, HasFactory;
 
     public $timestamps = false;
     protected $table = 'juegos';
