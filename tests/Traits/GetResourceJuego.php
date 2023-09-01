@@ -36,6 +36,19 @@ trait GetResourceJuego
         ];
     }
 
+    private function getNewResourceStructureJuego(): array
+    {
+        return [
+            "nombre",
+            "descripcion",
+            "desarrolladora" => ["nombre", "slug"],
+            "generos" => ['*' =>  ["nombre", "slug"]],
+            "fecha",
+            "slug",
+            "imagen"
+        ];
+    }
+
     private function getResourceCollectionStructureJuego(): array
     {
         return [

@@ -1,5 +1,10 @@
 <?php
 
+use Database\Seeders\DesarrolladoraSeeder;
+use Database\Seeders\GeneroSeeder;
+use Database\Seeders\JuegableSeeder;
+use Database\Seeders\JuegoSeeder;
+use Database\Seeders\UserSeeder;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
