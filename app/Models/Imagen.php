@@ -4,6 +4,7 @@ namespace App\Models;
 use Illuminate\Support\Facades\File;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Imagen extends Model
 {
@@ -17,10 +18,11 @@ class Imagen extends Model
         $imagen = str_replace(' ', '+', $imagen); 
         $imagen = base64_decode($imagen);
 
-        $filename = "eliminar." . $extension;
+        //$filename = "eliminar." . $extension;
         $filenamePNG = $id . "-" . $slug . ".png";
-        file_put_contents('media/'.$nombre.'/'.$filename, $imagen);
-        imagepng(imagecreatefromstring(file_get_contents(public_path('media/'.$nombre.'/' . $filename))), public_path('media/'.$nombre.'/' . $filenamePNG));
+        Storage::disk('juegos')->put($nombre.'/' . $filenamePNG, $imagen);
+        //file_put_contents('media/'.$nombre.'/'.$filename, $imagen);
+        //imagepng(imagecreatefromstring(file_get_contents(public_path($nombre.'/' . $filename))), public_path($nombre.'/' . $filenamePNG));
         File::delete(File::glob(public_path('media/'.$nombre.'/eliminar.*')));
     }
 
