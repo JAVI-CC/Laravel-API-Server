@@ -234,14 +234,14 @@
 <h4>Containers:</h4>
 <ul>
 <li><span>nginx:alpine</span> - <code>:8000->80/tcp</code></li>
-<li><span>mariadb:latest</span> - <code>:3306</code></li>
+<li><span>mariadb:11.2.2</span> - <code>:3306</code></li>
 <li><span>php:8.0.6-fpm</span> - <code>:9000</code></li>
 </ul>
 
 <h4>Containers structure:</h4>
-<div class="highlight highlight-source-shell"><pre>├── laravel-api-server-app
-├── laravel-api-server-web
-└── laravel-api-server-db</pre></div>
+<div class="highlight highlight-source-shell"><pre>├── laravel-server-juegos-api-app
+├── laravel-server-juegos-api-nginx
+└── laravel-server-juegos-api-db</pre></div>
 
 <h4>Setup:</h4>
 <pre>
@@ -249,10 +249,15 @@
 $ cd Laravel-API-Server
 $ cp .env.example .env
 $ docker-compose up -d
-$ docker-compose exec --user=root app chmod -R 777 /var/www/
-$ docker-compose exec app composer install
 $ docker-compose exec app php artisan key:generate
-$ docker-compose exec app php artisan migrate --seed</code>
+$ docker-compose exec app php artisan migrate --seed
+$ docker-compose exec app php artisan test</code>
 </pre>
+
+<br>
+
+<p>In case you are using your IDE to develop the application and it odes not detect the files it contains within the <strong>vendor folder</strong>, you have to copy the files from the vendor folder of the container to the host machine with the following command.</p>
+
+<pre><code>$ docker compose cp app:/var/www/vendor .</code></pre>
 
 <span>Once you have the containers deployed, you can access the API at </span> <a href="http://localhost:8000" target="_blank">http://localhost:8000</a>
