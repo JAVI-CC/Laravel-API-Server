@@ -34,7 +34,7 @@ services:
 
   nginx:
     image: nginx:alpine
-    container_name: laravel-server-juegos-api-nginx
+    container_name: laravel-server-juegos-api-web
     restart: unless-stopped
     ports:
       - "8000:80"
@@ -45,6 +45,7 @@ services:
 networks:
   laravel-server-juegos-api:
     driver: bridge
+    # driver: host # laravel-client-juegos-api
 
 volumes:
   db-data:

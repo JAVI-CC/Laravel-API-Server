@@ -240,7 +240,7 @@
 
 <h4>Containers structure:</h4>
 <div class="highlight highlight-source-shell"><pre>├── laravel-server-juegos-api-app
-├── laravel-server-juegos-api-nginx
+├── laravel-server-juegos-api-web
 └── laravel-server-juegos-api-db</pre></div>
 
 <h4>Setup:</h4>
