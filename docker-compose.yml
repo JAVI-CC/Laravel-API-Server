@@ -34,7 +34,7 @@ services:
 
   nginx:
     image: nginx:alpine
-    container_name: laravel-server-juegos-dropbox-api-nginx
+    container_name: laravel-server-juegos-dropbox-api-web
     restart: unless-stopped
     ports:
       - "8000:80"

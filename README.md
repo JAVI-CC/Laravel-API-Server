@@ -240,7 +240,7 @@
 
 <h4>Containers structure:</h4>
 <div class="highlight highlight-source-shell"><pre>├── laravel-server-juegos-dropbox-api-app
-├── laravel-server-juegos-dropbox-api-nginx
+├── laravel-server-juegos-dropbox-api-web
 └── laravel-server-juegos-dropbox-api-db</pre></div>
 
 <h4>Setup:</h4>
